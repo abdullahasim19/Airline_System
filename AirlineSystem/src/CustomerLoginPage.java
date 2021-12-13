@@ -97,6 +97,13 @@ public class CustomerLoginPage {
 		frame.getContentPane().add(Cancel);
 		
 		JButton SignUp = new JButton("Sign up");
+		SignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SignUpPage sp=new SignUpPage();
+				
+				sp.setVisible(true);
+			}
+		});
 		SignUp.setIcon(new ImageIcon(CustomerLoginPage.class.getResource("/imgs/signup.png")));
 		SignUp.setFont(new Font("Tahoma", Font.BOLD, 20));
 		SignUp.setBounds(332, 450, 164, 57);
