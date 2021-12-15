@@ -77,6 +77,15 @@ public class AdminLoginPage {
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		JButton loginbtn = new JButton("Login");
+		loginbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AdminMainPage ap = new AdminMainPage();
+				ap.setVisible(true);
+				frame.dispose();
+				
+			}
+		});
 		loginbtn.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/login.png")));
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
 		loginbtn.setBounds(510, 450, 164, 57);
