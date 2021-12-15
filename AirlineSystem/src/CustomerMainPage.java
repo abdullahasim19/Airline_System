@@ -81,5 +81,11 @@ public class CustomerMainPage {
 		
 		JMenuItem Logout = new JMenuItem("Log out");
 		ProfileMenu.add(Logout);
+		
+		JMenu mnNewMenu = new JMenu("Booking");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem BookTrip = new JMenuItem("Book Trip");
+		mnNewMenu.add(BookTrip);
 	}
 }
