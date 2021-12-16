@@ -4,9 +4,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
@@ -51,12 +56,12 @@ public class CustomerMainPage {
 		JLabel WelcomeLabel = new JLabel("Hi ");
 		WelcomeLabel.setIcon(new ImageIcon(CustomerMainPage.class.getResource("/imgs/hi.png")));
 		WelcomeLabel.setFont(new Font("Monospaced", Font.BOLD, 55));
-		WelcomeLabel.setBounds(128, 11, 381, 98);
+		WelcomeLabel.setBounds(128, 11, 546, 138);
 		frame.getContentPane().add(WelcomeLabel);
 		
 		JLabel lblNewLabel = new JLabel("Hot Picks");
 		lblNewLabel.setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 40));
-		lblNewLabel.setBounds(228, 101, 246, 71);
+		lblNewLabel.setBounds(241, 150, 246, 71);
 		frame.getContentPane().add(lblNewLabel);
 		frame.setBounds(100, 100, 700, 590);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,10 +82,31 @@ public class CustomerMainPage {
 		ProfileMenu.add(Viewhistory);
 		
 		JMenuItem ChangePassword = new JMenuItem("Change Password");
+		ChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ChangePassword cp=new ChangePassword();
+				cp.setVisible(true);
+			}
+		});
+		
+		
 		ProfileMenu.add(ChangePassword);
+		
 		
 		JMenuItem Logout = new JMenuItem("Log out");
 		ProfileMenu.add(Logout);
+		Logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				JOptionPane.showMessageDialog(null, "See you soon. Good Bye!","Loging Out", JOptionPane.INFORMATION_MESSAGE);
+				FrontPage fp = new FrontPage();
+				fp.setVisible(true);
+				frame.dispose();
+				
+			}
+		});
+		
 		
 		JMenu mnNewMenu = new JMenu("Booking");
 		menuBar.add(mnNewMenu);
@@ -88,4 +114,26 @@ public class CustomerMainPage {
 		JMenuItem BookTrip = new JMenuItem("Book Trip");
 		mnNewMenu.add(BookTrip);
 	}
+	
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		frame.setVisible(b);
+	}
+
+	public void pack() {
+		// TODO Auto-generated method stub
+		frame.pack();
+	}
+
+	public void setLocationRelativeTo(Object object) {
+		// TODO Auto-generated method stub
+		frame.setLocationRelativeTo(null);
+	}
+
+	public void setExtendedState(int maximizedBoth) {
+		// TODO Auto-generated method stub
+		frame.setExtendedState(JFrame.NORMAL);
+	}
+	
+	
 }
