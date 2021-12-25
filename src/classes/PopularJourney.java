@@ -1,6 +1,8 @@
 package classes;
 
-public class PopularJourney extends Packages{
+import interfaces.IPopularJourney;
+
+public class PopularJourney extends Packages implements IPopularJourney{
 	@Override
 	public void price() {
 		

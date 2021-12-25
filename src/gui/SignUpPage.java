@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
 
 import classes.Admin;
+import classes.Customer;
 import classes.Person;
 import classes.database;
 
@@ -23,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 public class SignUpPage {
 
@@ -178,7 +180,7 @@ public class SignUpPage {
 				}
 				else if (pass1.getPassword().toString().equals(pass2.getPassword().toString()))
 				{
-					
+					JOptionPane.showMessageDialog(null, "Both password field must be same","Error", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				
@@ -187,47 +189,49 @@ public class SignUpPage {
 				
 				if(Female.isSelected())
 				{
-					gender="Female";
+					gender="F";
 					
 				}
 				else
 				{
-					gender="Male";
+					gender="M";
 				}
 				
 				
 				//System.out.println(password.getPassword().toString());
 				
-				Person p=new Admin();
-				p.setUsername(userrname.getText());
-				p.setPassword(String.valueOf(password.getPassword()));
+				Customer p=new Customer();
+				p.setUsername(username.getText());
+				p.setPassword(String.valueOf(pass1.getPassword()));
 				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String d = sdf.format(date.getDate());
+				p.setDob(d);
+				p.setAddress(address.getText());
+				p.setFullname(fname.getText());
+				p.setGender(gender);
+				p.setContact(contact.getText());
 				//System.out.println("hello\n");
 				
 				try {
-					database d=new database();
+					database db=new database();
 					
-					String b = d.login(p);
+					db.signUp(p);
+				
+					JOptionPane.showMessageDialog(null, "Sucessfully created","Done", JOptionPane.INFORMATION_MESSAGE);
+					frame.dispose();
 					
-					if(b.equals("1"))
-					{
-						AdminMainPage ap = new AdminMainPage();
-						ap.setVisible(true);
-						frame.dispose();
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
-					}
+						
 					
 					
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
-					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+					
 					e1.printStackTrace();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Username may already exist","Error", JOptionPane.ERROR_MESSAGE);
+					
 					e1.printStackTrace();
 				} 
 				

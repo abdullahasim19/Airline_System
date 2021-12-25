@@ -20,31 +20,26 @@ import javax.swing.JPanel;
 import java.awt.CardLayout;
 import javax.swing.border.TitledBorder;
 
+import classes.Customer;
+
 public class CustomerMainPage {
 
 	private JFrame frame;
-
+	private Customer customer;
+	private JLabel WelcomeLabel;
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CustomerMainPage window = new CustomerMainPage();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public CustomerMainPage() {
+	public CustomerMainPage(Customer c) {
+		this.setCustomer(c);
+		//System.out.println(c.getFullname());
 		initialize();
+		
+		
 	}
 
 	/**
@@ -55,17 +50,17 @@ public class CustomerMainPage {
 		frame.getContentPane().setBackground(new Color(204, 204, 255));
 		frame.getContentPane().setLayout(null);
 		
-		JLabel WelcomeLabel = new JLabel("Hi ");
+		WelcomeLabel = new JLabel("Hi " + customer.getFullname());
 		WelcomeLabel.setIcon(new ImageIcon(CustomerMainPage.class.getResource("/imgs/hi.png")));
 		WelcomeLabel.setFont(new Font("Monospaced", Font.BOLD, 55));
-		WelcomeLabel.setBounds(128, 11, 546, 138);
+		WelcomeLabel.setBounds(86, 11, 546, 138);
 		frame.getContentPane().add(WelcomeLabel);
 		
 		JLabel lblNewLabel = new JLabel("Hot Picks");
 		lblNewLabel.setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 40));
 		lblNewLabel.setBounds(241, 150, 246, 71);
 		frame.getContentPane().add(lblNewLabel);
-		frame.setBounds(100, 100, 700, 590);
+		frame.setBounds(100, 100, 830, 590);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -164,6 +159,14 @@ public class CustomerMainPage {
 	public void setExtendedState(int maximizedBoth) {
 		// TODO Auto-generated method stub
 		frame.setExtendedState(JFrame.NORMAL);
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	

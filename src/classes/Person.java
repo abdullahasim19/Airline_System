@@ -1,6 +1,8 @@
 package classes;
 
-abstract public class Person {
+import interfaces.IPerson;
+
+abstract public class Person implements IPerson{
 	private String username;
 	private String password;
 	public void getPersonDetail() {

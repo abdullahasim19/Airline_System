@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class database {
 	
-	private Connection con;
+	private static Connection con;
 	
 	public  database() throws ClassNotFoundException
 	{
@@ -41,27 +41,41 @@ public class database {
 	}
 	
 
-	public Boolean signUp(Customer c) throws SQLException
+	public void signUp(Customer c) throws SQLException
 	{
-		String check = this.login((Person)c);
 		
-		if(check.equals("1"))
-		{
-			return false;
-		}
-		else
-		{
 			Statement st = con.createStatement(); 
-			st.executeUpdate("inser into User values (\""+ c.getUsername() + "\", \"" + c.getPassword() +"\")");
+			st.executeUpdate("insert into User values (\""+ c.getUsername() + "\", \"" + c.getPassword() +"\")");
 	       
-			st.executeUpdate("inser into Customer values (\""+ c.getUsername() + "\", \"" + c.getFullname() + "\", \""+ c.getGender() 
+			st.executeUpdate("insert into Customer values (\""+ c.getUsername() + "\", \"" + c.getFullname() + "\", \""+ c.getGender() 
 			+  "\", \""+ c.getDob() + "\", \""+  c.getContact() +"\", \"" + c.getAddress()  +"\");");
 			
-			return true;
 			
-		}
 		
 		//return null;
+		
+	}
+	
+	
+	public static void setCustomerDetails(Customer c) throws SQLException
+	{
+		
+		Statement st = con.createStatement();
+		
+		ResultSet rs=st.executeQuery("select c.fullName, c.Gender, c.dob, c.contact, c.address from"
+				+ " User u join Customer c on u.username=c.username "
+				+ "where" + " u.username=\"" + c.getUsername() + "\" and u.password=\"" + c.getPassword() + "\";");
+		
+		if(rs.next())
+		{
+			 c.setFullname(rs.getString("c.fullName"));
+			 c.setGender(rs.getString("c.Gender"));
+			 c.setContact(rs.getString("c.contact"));
+			 c.setAddress(rs.getString("c.address"));
+			 c.setDob(rs.getString("c.dob"));
+		}
+		
+		
 		
 	}
 

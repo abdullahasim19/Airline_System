@@ -1,5 +1,4 @@
 package classes;
-
 public class Admin extends Employee{
 	@Override
 	public void getPersonDetail() {

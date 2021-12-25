@@ -1,6 +1,8 @@
 package classes;
 
-public class PrivateTrip extends Trip{
+import interfaces.IPrivateTrip;
+
+public class PrivateTrip extends Trip implements IPrivateTrip{
 	@Override
 	public void getpickUpLocation() {
 		

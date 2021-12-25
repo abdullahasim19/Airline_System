@@ -1,6 +1,12 @@
 package classes;
 
-public class Airline {
+import interfaces.IAirlineSystem;
+import interfaces.IAirportFunction;
+import interfaces.IBookingFunction;
+import interfaces.IEditDetails;
+import interfaces.IRegistration;
+
+public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBookingFunction, IAirportFunction{
 	public void login() {
 		
 	}

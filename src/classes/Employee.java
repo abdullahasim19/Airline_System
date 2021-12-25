@@ -1,6 +1,8 @@
 package classes;
 
-abstract public class Employee extends Person{
+import interfaces.IEmployee;
+
+abstract public class Employee extends Person implements IEmployee{
 	@Override
 	public void getPersonDetail() {
 		

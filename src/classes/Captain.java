@@ -1,6 +1,8 @@
 package classes;
 
-public class Captain extends Employee{
+import interfaces.ICaptain;
+
+public class Captain extends Employee implements ICaptain{
 	@Override
 	public void getPersonDetail() {
 		

@@ -1,6 +1,8 @@
 package classes;
 
-public class Family extends Packages{
+import interfaces.IFamily;
+
+public class Family extends Packages implements IFamily{
 	@Override
 	public void price() {
 		

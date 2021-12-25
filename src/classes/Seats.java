@@ -1,6 +1,8 @@
 package classes;
 
-abstract public class Seats {
+import interfaces.ISeats;
+
+abstract public class Seats implements ISeats{
 	public void seatNumber() {
 		
 	}

@@ -4,13 +4,20 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import classes.Customer;
+import classes.Person;
+import classes.database;
+
 import java.awt.Color;
 
 public class CustomerLoginPage {
@@ -82,9 +89,51 @@ public class CustomerLoginPage {
 		loginbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				CustomerMainPage cp=new CustomerMainPage();
-				cp.setVisible(true);
-				frame.dispose();
+				if(userrname.getText().equals("") || password.getPassword().toString().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Information missing","Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				//System.out.println(password.getPassword().toString());
+				
+				Customer p=new Customer();
+				p.setUsername(userrname.getText());
+				p.setPassword(String.valueOf(password.getPassword()));
+				
+				//System.out.println("hello\n");
+				
+				try {
+					database d=new database();
+					
+					String b = d.login((Person)p);
+					
+					if(b.equals("1"))
+					{
+						//System.out.println(p.getFullname());
+						database.setCustomerDetails(p);
+						CustomerMainPage ap = new CustomerMainPage(p);
+						//ap.setCustomer((Customer) p);
+						ap.setVisible(true);
+						frame.dispose();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
+					
+				} catch (ClassNotFoundException e1) {
+					
+					
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+				
+					
+					e1.printStackTrace();
+				} 
+				
+				;
 				
 			}
 		});
@@ -124,22 +173,22 @@ public class CustomerLoginPage {
 	
 	
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
+	
 		frame.setVisible(b);
 	}
 
 	public void pack() {
-		// TODO Auto-generated method stub
+	
 		frame.pack();
 	}
 
 	public void setLocationRelativeTo(Object object) {
-		// TODO Auto-generated method stub
+		
 		frame.setLocationRelativeTo(null);
 	}
 
 	public void setExtendedState(int maximizedBoth) {
-		// TODO Auto-generated method stub
+		
 		frame.setExtendedState(JFrame.NORMAL);
 	}
 

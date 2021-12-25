@@ -1,6 +1,8 @@
 package classes;
 
-public class Private extends Planes{
+import interfaces.IPrivate;
+
+public class Private extends Planes implements IPrivate{
 	@Override
 	public void fuelLimit() {
 		

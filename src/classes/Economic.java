@@ -1,6 +1,8 @@
 package classes;
 
-public class Economic extends Seats{
+import interfaces.IEconomic;
+
+public class Economic extends Seats implements IEconomic{
 	@Override
 	public void seatNumber() {
 		

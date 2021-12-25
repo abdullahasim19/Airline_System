@@ -1,7 +1,8 @@
 package classes;
 
-public class Customer extends Person{
-	
+import interfaces.ICustomer;
+
+public class Customer extends Person implements ICustomer{
 	private String dob;
 	private String contact;
 	private String address;

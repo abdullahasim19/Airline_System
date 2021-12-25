@@ -1,6 +1,8 @@
 package classes;
 
-abstract public class Packages {
+import interfaces.IPackage;
+
+abstract public class Packages implements IPackage{
 	public void price() {
 		
 	}

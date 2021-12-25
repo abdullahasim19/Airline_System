@@ -1,6 +1,8 @@
 package classes;
 
-abstract public class Trip {
+import interfaces.ITrip;
+
+abstract public class Trip implements ITrip{
 	public void getpickUpLocation() {
 		
 	}

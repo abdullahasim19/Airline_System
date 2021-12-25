@@ -1,6 +1,8 @@
 package classes;
 
-abstract public class Planes {
+import interfaces.IPlane;
+
+abstract public class Planes implements IPlane{
 	public void fuelLimit() {
 		
 	}

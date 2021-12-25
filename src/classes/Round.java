@@ -1,6 +1,8 @@
 package classes;
 
-public class Round extends Trip{
+import interfaces.IRound;
+
+public class Round extends Trip implements IRound{
 	@Override
 	public void getpickUpLocation() {
 		

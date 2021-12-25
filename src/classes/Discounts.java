@@ -1,6 +1,8 @@
 package classes;
 
-public class Discounts extends Packages{
+import interfaces.IDiscount;
+
+public class Discounts extends Packages implements IDiscount{
 	@Override
 	public void price() {
 		

@@ -1,6 +1,8 @@
 package classes;
 
-public class GUI {
+import interfaces.IGUI;
+
+public class GUI implements IGUI{
 	public void userLoginButton() {
 		
 	}
