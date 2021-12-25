@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -77,6 +78,15 @@ public class CustomerLoginPage {
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		JButton loginbtn = new JButton("Login");
+		loginbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				CustomerMainPage cp=new CustomerMainPage();
+				cp.setVisible(true);
+				frame.dispose();
+				
+			}
+		});
 		loginbtn.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/login.png")));
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
 		loginbtn.setBounds(590, 450, 164, 57);

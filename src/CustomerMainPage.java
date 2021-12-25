@@ -1,3 +1,4 @@
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -74,12 +75,33 @@ public class CustomerMainPage {
 		
 		JMenuItem viewProfile = new JMenuItem("View Profile");
 		ProfileMenu.add(viewProfile);
+		viewProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ViewProfileCustomer vp=new ViewProfileCustomer();
+				vp.setVisible(true);
+			}
+		});
 		
 		JMenuItem EditProfile = new JMenuItem("Edit Profile");
 		ProfileMenu.add(EditProfile);
+		EditProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				EditCustomerProfile cp=new EditCustomerProfile();
+				cp.setVisible(true);
+			}
+		});
 		
 		JMenuItem Viewhistory = new JMenuItem("View History");
 		ProfileMenu.add(Viewhistory);
+		Viewhistory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewHistoryCustomer h=new ViewHistoryCustomer();
+				h.setVisible(true);
+				
+			}
+		});
 		
 		JMenuItem ChangePassword = new JMenuItem("Change Password");
 		ChangePassword.addActionListener(new ActionListener() {
@@ -113,6 +135,14 @@ public class CustomerMainPage {
 		
 		JMenuItem BookTrip = new JMenuItem("Book Trip");
 		mnNewMenu.add(BookTrip);
+		BookTrip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Booking b =new Booking();
+				b.setVisible(true);
+				
+			}
+		});
 	}
 	
 	public void setVisible(boolean b) {

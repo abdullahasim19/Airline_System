@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
@@ -68,18 +69,28 @@ public class AdminMainPage {
 		
 		JMenuItem EditCustomer = new JMenuItem("Edit Customer Details");
 		customerMenu.add(EditCustomer);
+		EditCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				EditUserDetailsbyAdmin ed=new EditUserDetailsbyAdmin();
+				ed.setVisible(true);
+				
+			}
+		});
 		
 		JMenu AirportMenu = new JMenu("Airport");
 		menuBar.add(AirportMenu);
 		
 		JMenuItem AddAirport = new JMenuItem("Add Airport");
 		AirportMenu.add(AddAirport);
-		
-		JMenuItem RemoveAirport = new JMenuItem("Remove Airport");
-		AirportMenu.add(RemoveAirport);
-		
-		JMenuItem EditAirportDetails = new JMenuItem("Edit Airport Details");
-		AirportMenu.add(EditAirportDetails);
+		AddAirport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AddAirportAdmin ap=new AddAirportAdmin();
+				ap.setVisible(true);
+				
+			}
+		});
 		
 		JMenu PlanesMenu = new JMenu("Planes");
 		menuBar.add(PlanesMenu);
@@ -107,6 +118,22 @@ public class AdminMainPage {
 		
 		JMenuItem EditCap = new JMenuItem("Edit Captain Details");
 		CaptainMenu.add(EditCap);
+		
+		JMenu flightmenu = new JMenu("Flights");
+		menuBar.add(flightmenu);
+		
+		JMenuItem addFlight = new JMenuItem("Add Flight");
+		flightmenu.add(addFlight);
+		addFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddFlightAdmin fp=new AddFlightAdmin();
+				fp.setVisible(true);
+				
+			}
+		});
+		
+		JMenuItem editflight = new JMenuItem("Edit Flight Details");
+		flightmenu.add(editflight);
 		
 		JMenu mnNewMenu = new JMenu("Packages");
 		menuBar.add(mnNewMenu);
@@ -140,7 +167,7 @@ public class AdminMainPage {
 		JButton Logout = new JButton("Log out");
 		Logout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				JOptionPane.showMessageDialog(null, "See you soon. Good Bye!","Loging Out", JOptionPane.INFORMATION_MESSAGE);
 				FrontPage fp=new FrontPage();
 				fp.setVisible(true);
 				frame.dispose();
