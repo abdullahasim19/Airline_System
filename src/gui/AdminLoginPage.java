@@ -1,18 +1,28 @@
-
+package gui;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import java.awt.Color;
+import javax.swing.JOptionPane;
 
-public class CustomerLoginPage {
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+
+import classes.Admin;
+import classes.Person;
+import classes.database;
+
+import javax.swing.JPasswordField;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+
+
+public class AdminLoginPage {
 
 	private JFrame frame;
 	private JTextField userrname;
@@ -25,7 +35,7 @@ public class CustomerLoginPage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerLoginPage window = new CustomerLoginPage();
+					AdminLoginPage window = new AdminLoginPage();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +47,7 @@ public class CustomerLoginPage {
 	/**
 	 * Create the application.
 	 */
-	public CustomerLoginPage() {
+	public AdminLoginPage() {
 		initialize();
 	}
 
@@ -46,16 +56,15 @@ public class CustomerLoginPage {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(210, 180, 140));
-		frame.setBounds(100, 100, 809, 585);
+		frame.getContentPane().setBackground(new Color(102, 205, 170));
+		frame.setBounds(100, 100, 836, 599);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		
-		JLabel lblNewLabel = new JLabel("Customer Login");
+		JLabel lblNewLabel = new JLabel("Admin Login");
 		lblNewLabel.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/adminlg.png")));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 55));
-		lblNewLabel.setBounds(129, 47, 628, 158);
+		lblNewLabel.setBounds(186, 40, 490, 158);
 		frame.getContentPane().add(lblNewLabel);
 		
 		userrname = new JTextField();
@@ -81,15 +90,43 @@ public class CustomerLoginPage {
 		loginbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				CustomerMainPage cp=new CustomerMainPage();
-				cp.setVisible(true);
-				frame.dispose();
+				
+				Person p=new Admin();
+				p.setUsername(userrname.getText());
+				p.setPassword(password.getPassword().toString());
+				
+				try {
+					database d=new database();
+					
+					boolean b = d.login(p);
+					
+					if(b)
+					{
+						AdminMainPage ap = new AdminMainPage();
+						ap.setVisible(true);
+						frame.dispose();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
+					
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
+				
+				
 				
 			}
 		});
 		loginbtn.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/login.png")));
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		loginbtn.setBounds(590, 450, 164, 57);
+		loginbtn.setBounds(510, 450, 164, 57);
 		frame.getContentPane().add(loginbtn);
 		
 		JButton Cancel = new JButton("Cancel");
@@ -103,23 +140,9 @@ public class CustomerLoginPage {
 		});
 		Cancel.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/close.png")));
 		Cancel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		Cancel.setBounds(76, 450, 164, 57);
+		Cancel.setBounds(192, 450, 164, 57);
 		frame.getContentPane().add(Cancel);
-		
-		JButton SignUp = new JButton("Sign up");
-		SignUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				SignUpPage sp=new SignUpPage();
-				
-				sp.setVisible(true);
-			}
-		});
-		SignUp.setIcon(new ImageIcon(CustomerLoginPage.class.getResource("/imgs/signup.png")));
-		SignUp.setFont(new Font("Tahoma", Font.BOLD, 20));
-		SignUp.setBounds(332, 450, 164, 57);
-		frame.getContentPane().add(SignUp);
 	}
-	
 	
 	
 	public void setVisible(boolean b) {
@@ -141,5 +164,6 @@ public class CustomerLoginPage {
 		// TODO Auto-generated method stub
 		frame.setExtendedState(JFrame.NORMAL);
 	}
-
+	
+	
 }

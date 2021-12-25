@@ -1,3 +1,4 @@
+package classes;
 
 abstract public class Trip {
 	public void getpickUpLocation() {

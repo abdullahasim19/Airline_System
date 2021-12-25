@@ -1,3 +1,4 @@
+package gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -65,6 +66,7 @@ public class AddAirportAdmin {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JComboBox<String> countries = new JComboBox<String>();
+		
 		countries.setModel(new DefaultComboBoxModel<String>(new String[] {"Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States", ""}));
 		countries.setBounds(271, 196, 218, 22);
 		frame.getContentPane().add(countries);
@@ -74,9 +76,9 @@ public class AddAirportAdmin {
 		lblNewLabel_1_1.setBounds(101, 243, 105, 60);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(271, 267, 218, 22);
-		frame.getContentPane().add(comboBox_1);
+		JComboBox<String> city = new JComboBox<String>();
+		city.setBounds(271, 267, 218, 22);
+		frame.getContentPane().add(city);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Airport Name");
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -113,7 +115,12 @@ public class AddAirportAdmin {
 		btnNewButton_1.setBounds(59, 427, 170, 45);
 		frame.getContentPane().add(btnNewButton_1);
 	
-
+		countries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 	}
 	
 	

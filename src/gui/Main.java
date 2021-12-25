@@ -1,4 +1,4 @@
-import gui.FrontPage;
+package gui;
 
 public class Main {
 

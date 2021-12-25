@@ -1,8 +1,9 @@
 package classes;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class database {
 	
@@ -22,5 +23,19 @@ public class database {
 		}
 	}
 	
+	public Boolean login(Person p) throws SQLException
+	{
+		boolean log =false;
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select count(*) as done from Admin a join User u on a.username=u.username where"
+				+ " a.username=\"" + p.getUsername() + "\" and u.password=\"" + p.getPassword() + "\";" );
+		if(rs.next())
+		{
+			log = rs.getBoolean("done");
+		}
+		
+		return log;
+		
+	}
 	
 }

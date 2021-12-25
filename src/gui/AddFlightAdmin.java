@@ -1,3 +1,4 @@
+package gui;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -83,10 +84,10 @@ public class AddFlightAdmin {
 		lblNewLabel_1.setBounds(417, 378, 81, 36);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States", ""}));
-		comboBox.setBounds(538, 388, 134, 22);
-		frame.getContentPane().add(comboBox);
+		JComboBox<String> countries = new JComboBox<String>();
+		countries.setModel(new DefaultComboBoxModel<String>(new String[] {"Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States", ""}));
+		countries.setBounds(538, 388, 134, 22);
+		frame.getContentPane().add(countries);
 		
 		JButton getAirport = new JButton("Get Airports");
 		

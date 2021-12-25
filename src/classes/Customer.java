@@ -1,3 +1,4 @@
+package classes;
 
 public class Customer extends Person{
 	@Override

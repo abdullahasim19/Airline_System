@@ -1,3 +1,4 @@
+package classes;
 
 public class PopularJourney extends Packages{
 	@Override

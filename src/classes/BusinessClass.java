@@ -1,3 +1,4 @@
+package classes;
 
 public class BusinessClass extends Seats{
 	@Override

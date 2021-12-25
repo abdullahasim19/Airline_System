@@ -1,3 +1,4 @@
+package classes;
 
 public class PrivateTrip extends Trip{
 	@Override

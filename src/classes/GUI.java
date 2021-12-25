@@ -1,3 +1,4 @@
+package classes;
 
 public class GUI {
 	public void userLoginButton() {

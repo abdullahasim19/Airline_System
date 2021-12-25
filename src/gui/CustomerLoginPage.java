@@ -1,18 +1,19 @@
-import java.awt.EventQueue;
+package gui;
 
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.JTextField;
 import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.SystemColor;
+import javax.swing.JTextField;
 import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
-public class AdminLoginPage {
+public class CustomerLoginPage {
 
 	private JFrame frame;
 	private JTextField userrname;
@@ -25,7 +26,7 @@ public class AdminLoginPage {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminLoginPage window = new AdminLoginPage();
+					CustomerLoginPage window = new CustomerLoginPage();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +38,7 @@ public class AdminLoginPage {
 	/**
 	 * Create the application.
 	 */
-	public AdminLoginPage() {
+	public CustomerLoginPage() {
 		initialize();
 	}
 
@@ -46,15 +47,16 @@ public class AdminLoginPage {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(102, 205, 170));
-		frame.setBounds(100, 100, 836, 599);
+		frame.getContentPane().setBackground(new Color(210, 180, 140));
+		frame.setBounds(100, 100, 809, 585);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Admin Login");
+		
+		JLabel lblNewLabel = new JLabel("Customer Login");
 		lblNewLabel.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/adminlg.png")));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 55));
-		lblNewLabel.setBounds(186, 40, 490, 158);
+		lblNewLabel.setBounds(129, 47, 628, 158);
 		frame.getContentPane().add(lblNewLabel);
 		
 		userrname = new JTextField();
@@ -80,15 +82,15 @@ public class AdminLoginPage {
 		loginbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				AdminMainPage ap = new AdminMainPage();
-				ap.setVisible(true);
+				CustomerMainPage cp=new CustomerMainPage();
+				cp.setVisible(true);
 				frame.dispose();
 				
 			}
 		});
 		loginbtn.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/login.png")));
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
-		loginbtn.setBounds(510, 450, 164, 57);
+		loginbtn.setBounds(590, 450, 164, 57);
 		frame.getContentPane().add(loginbtn);
 		
 		JButton Cancel = new JButton("Cancel");
@@ -102,9 +104,23 @@ public class AdminLoginPage {
 		});
 		Cancel.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/close.png")));
 		Cancel.setFont(new Font("Tahoma", Font.BOLD, 20));
-		Cancel.setBounds(192, 450, 164, 57);
+		Cancel.setBounds(76, 450, 164, 57);
 		frame.getContentPane().add(Cancel);
+		
+		JButton SignUp = new JButton("Sign up");
+		SignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SignUpPage sp=new SignUpPage();
+				
+				sp.setVisible(true);
+			}
+		});
+		SignUp.setIcon(new ImageIcon(CustomerLoginPage.class.getResource("/imgs/signup.png")));
+		SignUp.setFont(new Font("Tahoma", Font.BOLD, 20));
+		SignUp.setBounds(332, 450, 164, 57);
+		frame.getContentPane().add(SignUp);
 	}
+	
 	
 	
 	public void setVisible(boolean b) {
@@ -126,6 +142,5 @@ public class AdminLoginPage {
 		// TODO Auto-generated method stub
 		frame.setExtendedState(JFrame.NORMAL);
 	}
-	
-	
+
 }
