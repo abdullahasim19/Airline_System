@@ -14,7 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
-import lu.tudor.santec.jtimechooser.JTimeChooser;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,10 +21,7 @@ import java.awt.event.ActionEvent;
 public class AssignCaptainAdmin {
 
 	private JFrame frame;
-	private JTable table;
-	private JTable table_1;
-	private JTextField aid;
-	private JTextField aid2;
+	
 
 	/**
 	 * Launch the application.
@@ -48,7 +44,7 @@ public class AssignCaptainAdmin {
 	 */
 	public AssignCaptainAdmin() {
 		initialize();
-		aid.setVisible(false);
+		//aid.setVisible(false);
 		
 		//this.
 	}

@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -10,11 +12,17 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
+
+import classes.Admin;
+import classes.Person;
+import classes.database;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 
 public class SignUpPage {
 
@@ -154,13 +162,77 @@ public class SignUpPage {
 		Female.setBounds(410, 227, 89, 23);
 		frame.getContentPane().add(Female);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(317, 276, 257, 20);
-		frame.getContentPane().add(dateChooser);
+		JDateChooser date = new JDateChooser();
+		date.setBounds(317, 276, 257, 20);
+		frame.getContentPane().add(date);
 		
 		JButton SignUpbtn = new JButton("Sign Up");
 		SignUpbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
+				if(username.getText().equals("") || pass1.getPassword().toString().equals("") || pass2.getPassword().toString().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Information missing","Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				else if (pass1.getPassword().toString().equals(pass2.getPassword().toString()))
+				{
+					
+				}
+				
+				
+				
+				String gender;
+				
+				if(Female.isSelected())
+				{
+					gender="Female";
+					
+				}
+				else
+				{
+					gender="Male";
+				}
+				
+				
+				//System.out.println(password.getPassword().toString());
+				
+				Person p=new Admin();
+				p.setUsername(userrname.getText());
+				p.setPassword(String.valueOf(password.getPassword()));
+				
+				//System.out.println("hello\n");
+				
+				try {
+					database d=new database();
+					
+					String b = d.login(p);
+					
+					if(b.equals("1"))
+					{
+						AdminMainPage ap = new AdminMainPage();
+						ap.setVisible(true);
+						frame.dispose();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
+					
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+					e1.printStackTrace();
+				} 
+				
+				
+				
 				frame.dispose();
 			
 			}

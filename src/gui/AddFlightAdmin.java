@@ -155,21 +155,21 @@ public class AddFlightAdmin {
 		lblNewLabel_2_1_1.setBounds(98, 320, 100, 28);
 		frame.getContentPane().add(lblNewLabel_2_1_1);
 		
-		JComboBox minutes = new JComboBox();
+		JComboBox<String> minutes = new JComboBox<String>();
 		minutes.setEnabled(false);
-		minutes.setModel(new DefaultComboBoxModel(new String[] {"min", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
+		minutes.setModel(new DefaultComboBoxModel<String>(new String[] {"min", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
 		minutes.setBounds(124, 359, 52, 22);
 		frame.getContentPane().add(minutes);
 		
-		JComboBox hours = new JComboBox();
+		JComboBox<String> hours = new JComboBox<String>();
 		hours.setEnabled(false);
-		hours.setModel(new DefaultComboBoxModel(new String[] {"hour", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+		hours.setModel(new DefaultComboBoxModel<String>(new String[] {"hour", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
 		hours.setBounds(60, 359, 54, 22);
 		frame.getContentPane().add(hours);
 		
-		JComboBox am_pm = new JComboBox();
+		JComboBox<String> am_pm = new JComboBox<String>();
 		am_pm.setEnabled(false);
-		am_pm.setModel(new DefaultComboBoxModel(new String[] {"AM", "PM"}));
+		am_pm.setModel(new DefaultComboBoxModel<String>(new String[] {"AM", "PM"}));
 		am_pm.setBounds(186, 359, 41, 22);
 		frame.getContentPane().add(am_pm);
 		
@@ -224,22 +224,22 @@ public class AddFlightAdmin {
 	
 
 	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
+	
 		frame.setVisible(b);
 	}
 
 	public void pack() {
-		// TODO Auto-generated method stub
+		
 		frame.pack();
 	}
 
 	public void setLocationRelativeTo(Object object) {
-		// TODO Auto-generated method stub
+	
 		frame.setLocationRelativeTo(null);
 	}
 
 	public void setExtendedState(int maximizedBoth) {
-		// TODO Auto-generated method stub
+		
 		frame.setExtendedState(JFrame.NORMAL);
 	}
 	

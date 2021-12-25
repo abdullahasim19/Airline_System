@@ -115,12 +115,7 @@ public class AddAirportAdmin {
 		btnNewButton_1.setBounds(59, 427, 170, 45);
 		frame.getContentPane().add(btnNewButton_1);
 	
-		countries.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
+		
 	}
 	
 	

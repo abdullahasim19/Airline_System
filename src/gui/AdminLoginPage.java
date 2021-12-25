@@ -15,7 +15,6 @@ import classes.database;
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -90,17 +89,26 @@ public class AdminLoginPage {
 		loginbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(userrname.getText().equals("") || password.getPassword().toString().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Information missing","Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				//System.out.println(password.getPassword().toString());
 				
 				Person p=new Admin();
 				p.setUsername(userrname.getText());
-				p.setPassword(password.getPassword().toString());
+				p.setPassword(String.valueOf(password.getPassword()));
+				
+				//System.out.println("hello\n");
 				
 				try {
 					database d=new database();
 					
-					boolean b = d.login(p);
+					String b = d.login(p);
 					
-					if(b)
+					if(b.equals("1"))
 					{
 						AdminMainPage ap = new AdminMainPage();
 						ap.setVisible(true);
@@ -114,9 +122,11 @@ public class AdminLoginPage {
 					
 				} catch (ClassNotFoundException e1) {
 					// TODO Auto-generated catch block
+					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
+					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				} 
 				
