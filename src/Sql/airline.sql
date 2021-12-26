@@ -1,5 +1,5 @@
 create database airlinesystem;
-
+drop database airlinesystem;
 use airlinesystem;
 
 
@@ -42,48 +42,26 @@ select * from User;
 create table Plane
 (
    planeID int not null primary key,
-   planeName varchar(50),
-   Capacity int
+   planeName varchar(50)
 );
+
 
 create table PrivatePlane
 (
    planeID int,
-   FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
-   Facility varchar(50)
+   FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade
 );
 
 create table GeneralPlane
 (
    planeID int,
    FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
-   SeatCount int
+   totalSeatsCount int,
+   BusinessClassSeatsCount int,
+   EconomicCLassSeatsCount int,
+   FirstClassSeatsCount int
 );
 
-create table Seats
-( 
-   planeID int,
-   FOREIGN KEY(planeID) REFERENCES GeneralPlane(planeID) on delete cascade,
-   seatNum int not null primary key
-);
-
-create table Economic
-( 
-   seatNum int,
-   FOREIGN KEY(seatNum) REFERENCES Seats(seatNum) on delete cascade
-);
-
-create table FirstClass
-( 
-   seatNum int,
-   FOREIGN KEY(seatNum) REFERENCES Seats(seatNum) on delete cascade
-);
-
-create table Business
-( 
-   seatNum int,
-   FOREIGN KEY(seatNum) REFERENCES Seats(seatNum) on delete cascade
-);
 
 create table Feedback
 ( 
@@ -97,14 +75,21 @@ create table Feedback
 
 create table Booking
 (
+	bookingID varchar(30) not null primary key,
    username varchar(50) not null,
    FOREIGN KEY(username) REFERENCES Customer(username) on delete cascade,
+   seatsCount int not null, 
     planeID int,
    FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
-   seatNum int,
-   FOREIGN KEY(seatNum) REFERENCES Seats(seatNum) on delete cascade,
+   seatType varchar(2),
+   # for Economic store E
+   # for First class store F
+   # for Business class store B
    packageId int,
-   FOREIGN KEY(packageId) REFERENCES Packages(packageId) on delete cascade
+   FOREIGN KEY(packageId) REFERENCES Packages(packageId) on delete cascade,
+    tripID int,
+    FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
+   
 );
 
 create table Packages
@@ -153,5 +138,7 @@ create Table SingleTrip
   tripID int,
     FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
 );
+
+
 
 
