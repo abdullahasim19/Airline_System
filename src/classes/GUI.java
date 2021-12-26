@@ -108,7 +108,7 @@ public class GUI implements IGUI{
 			
 		}
 	
-	
+	// done
 	public void displayAllBookings(JTable table)
 	{
 		try {
