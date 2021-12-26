@@ -10,6 +10,7 @@ public class Booking implements IBooking{
 	private String SeatsType;
 	private Trip trip;
 	private Package packages;
+	private Flight flight;
 	
 	public void bookTrip() {
 		
@@ -56,5 +57,11 @@ public class Booking implements IBooking{
 	}
 	public void setPackages(Package packages) {
 		this.packages = packages;
+	}
+	public Flight getFlight() {
+		return flight;
+	}
+	public void setFlight(Flight flight) {
+		this.flight = flight;
 	}
 }

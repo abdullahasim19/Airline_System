@@ -1,6 +1,7 @@
 package interfaces;
 
 import classes.Customer;
+import classes.Flight;
 import classes.Planes;
 import classes.Trip;
 
@@ -22,5 +23,6 @@ public interface IBooking {
 	public void setTrip(Trip trip) ;
 	public Package getPackages() ;
 	public void setPackages(Package packages);
-	
+	public Flight getFlight();
+	public void setFlight(Flight flight);
 }

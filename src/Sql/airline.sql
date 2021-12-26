@@ -135,11 +135,13 @@ create table Booking
    packageId int,
    FOREIGN KEY(packageId) REFERENCES Packages(packageId) on delete cascade,
     tripID int,
-    FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
+    FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade,
+    flightID varchar(50),
+    FOREIGN KEY(flightID) REFERENCES Flight(flightID) on delete cascade
    
 );
 
-
+drop table Booking;
 
 create table Feedback
 ( 
@@ -150,8 +152,27 @@ create table Feedback
    feedback varchar(300)
 
 );
+create table Airport
+(
+	airportID varchar(50) primary key not null,
+	country varchar(50),
+	city varchar(50)
+);
+create table Flight
+(
+	flightID varchar(50) primary key not null,
+     planeID int,
+	FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
+	airportID varchar(50),
+	FOREIGN KEY(airportID) REFERENCES Airport(airportID) on delete cascade,
+    flightdate date,
+    destination varchar(50),
+    flightTime time 
+)
 
+select * from Bookings b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID;
 
+ 
 
 
 
