@@ -93,4 +93,26 @@ public class ViewAllBookings {
 		back.setBounds(10, 11, 56, 52);
 		frame.getContentPane().add(back);
 	}
+	
+	
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		frame.setVisible(b);
+	}
+
+	public void pack() {
+		// TODO Auto-generated method stub
+		frame.pack();
+	}
+
+	public void setLocationRelativeTo(Object object) {
+		// TODO Auto-generated method stub
+		frame.setLocationRelativeTo(null);
+	}
+
+	public void setExtendedState(int maximizedBoth) {
+		// TODO Auto-generated method stub
+		frame.setExtendedState(JFrame.NORMAL);
+	}
+	
 }

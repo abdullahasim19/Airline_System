@@ -154,6 +154,9 @@ public class AdminMainPage {
 		ViewBookings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				ViewAllBookings v=new ViewAllBookings();
+				v.setVisible(true);
+				
 			}
 		});
 		ViewBookings.setFont(new Font("Tahoma", Font.BOLD, 18));
