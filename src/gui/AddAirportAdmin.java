@@ -67,7 +67,8 @@ public class AddAirportAdmin {
 		
 		JComboBox<String> countries = new JComboBox<String>();
 		
-		countries.setModel(new DefaultComboBoxModel<String>(new String[] {"Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States", ""}));
+		
+		countries.setModel(new DefaultComboBoxModel<String>(new String[] { "","Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States", ""}));
 		countries.setBounds(271, 196, 218, 22);
 		frame.getContentPane().add(countries);
 		
@@ -90,31 +91,133 @@ public class AddAirportAdmin {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Add");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton add = new JButton("Add");
+		add.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// more code needed
 				frame.dispose();
 				
 			}
 		});
-		btnNewButton.setIcon(new ImageIcon(AddAirportAdmin.class.getResource("/imgs/add.png")));
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton.setBounds(407, 427, 125, 45);
-		frame.getContentPane().add(btnNewButton);
+		add.setIcon(new ImageIcon(AddAirportAdmin.class.getResource("/imgs/add.png")));
+		add.setFont(new Font("Tahoma", Font.BOLD, 18));
+		add.setBounds(407, 427, 125, 45);
+		frame.getContentPane().add(add);
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton cancel = new JButton("Cancel");
+		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				frame.dispose();
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon(AddAirportAdmin.class.getResource("/imgs/close.png")));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnNewButton_1.setBounds(59, 427, 170, 45);
-		frame.getContentPane().add(btnNewButton_1);
+		cancel.setIcon(new ImageIcon(AddAirportAdmin.class.getResource("/imgs/close.png")));
+		cancel.setFont(new Font("Tahoma", Font.BOLD, 18));
+		cancel.setBounds(59, 427, 170, 45);
+		frame.getContentPane().add(cancel);
 	
+		
+		
+		countries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			 if(countries.getSelectedItem().equals("Australia"))
+				{
+				 	city.removeAllItems();
+					city.addItem("Sydney");
+					city.addItem("Perth");
+				        city.addItem("Melbourne");
+				        city.addItem("Brisbane");
+				}
+
+				else 
+					if(countries.getSelectedItem().equals("France"))
+				{
+						city.removeAllItems();
+					city.addItem("Paris");
+					city.addItem("Bordeaux");
+				        city.addItem("Marseille");
+				        city.addItem("Nantes");
+				} 
+
+				else 
+					if(countries.getSelectedItem().equals("Germany"))
+				{
+						city.removeAllItems();
+					city.addItem("Berlin");
+					city.addItem("Hamburg");
+				        city.addItem("Munich");
+				        city.addItem("Cologne");
+				}
+				else 
+					if(countries.getSelectedItem().equals("India"))
+				{
+						city.removeAllItems();
+					city.addItem("Mombay");
+					city.addItem("Dehli");
+				        city.addItem("Ahmadabad");
+				        city.addItem("Banglore");
+				}
+
+				else 
+					if(countries.getSelectedItem().equals("Italy"))
+				{
+						city.removeAllItems();
+					city.addItem("Rome");
+					city.addItem("Milan");
+				        city.addItem("Naples");
+				        city.addItem("Turin");
+				} 
+
+				else 
+					if(countries.getSelectedItem().equals("Newzland"))
+				{
+						city.removeAllItems();
+					city.addItem("Auckland");
+					city.addItem("Hamilton");
+				        city.addItem("Tauranga");
+				        city.addItem("Dunedin");
+				}
+				else 
+					if(countries.getSelectedItem().equals("Pakistan"))
+				{
+						city.removeAllItems();
+					city.addItem("Lahore");
+					city.addItem("Faislabad");
+				        city.addItem("Karachi");
+				        city.addItem("Quetta");
+				}
+
+				else 
+					if(countries.getSelectedItem().equals("Spain"))
+				{
+						city.removeAllItems();
+					city.addItem("Barcelona");
+					city.addItem("Madrid");
+				        city.addItem("Seville");
+				        city.addItem("Toledo");
+				} 
+
+				else 
+					if(countries.getSelectedItem().equals("United Kingdom"))
+				{
+						city.removeAllItems();
+					city.addItem("London");
+					city.addItem("Manchester");
+				        city.addItem("Newport");
+				        city.addItem("Newcastle");
+				}
+				
+				else 
+					if(countries.getSelectedItem().equals("United States"))
+				{
+						city.removeAllItems();
+					city.addItem("NewYorkCity");
+					city.addItem("LosAngeles");
+				        city.addItem("Chicago");
+				        city.addItem("Houston");
+				}
+			}
+		});
 		
 	}
 	

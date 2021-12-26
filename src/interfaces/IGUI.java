@@ -1,11 +1,11 @@
 package interfaces;
-
+import classes.Customer;
+import classes.Person;
 public interface IGUI {
-public void userLoginButton();
-	public void logOutButton();
-	public void signUpButton() ;
+public boolean userLoginButton(Customer c);
+	public boolean signUpButton(Customer c) ;
 	public void viewAllCustomers();
-	public void adminLoginButton() ;
+	public boolean adminLoginButton(Person p) ;
 	public void viewAllBookings() ;
 	public void addPackage();
 	public void addPlanes() ;

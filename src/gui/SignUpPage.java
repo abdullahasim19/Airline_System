@@ -13,17 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
 
-import classes.Admin;
 import classes.Customer;
-import classes.Person;
-import classes.database;
-
+import classes.GUI;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 public class SignUpPage {
@@ -213,31 +209,20 @@ public class SignUpPage {
 				p.setContact(contact.getText());
 				//System.out.println("hello\n");
 				
-				try {
-					database db=new database();
-					
-					db.signUp(p);
+				GUI g = new GUI();
+				boolean b = g.signUpButton(p);
 				
+				if(b)
+				{
 					JOptionPane.showMessageDialog(null, "Sucessfully created","Done", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
-					
-						
-					
-					
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Username may already exist","Error", JOptionPane.ERROR_MESSAGE);
-					
-					e1.printStackTrace();
-				} 
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Something went wrong","Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 				
-				
-				frame.dispose();
 			
 			}
 		});

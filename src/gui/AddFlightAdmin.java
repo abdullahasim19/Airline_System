@@ -58,7 +58,7 @@ public class AddFlightAdmin {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Assign Captain");
+		JLabel lblNewLabel = new JLabel("Add Flight");
 		lblNewLabel.setIcon(new ImageIcon(AssignCaptainAdmin.class.getResource("/imgs/captain.png")));
 		lblNewLabel.setFont(new Font("Sylfaen", Font.BOLD, 55));
 		lblNewLabel.setBounds(313, 0, 507, 138);

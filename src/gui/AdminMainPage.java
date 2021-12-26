@@ -151,6 +151,11 @@ public class AdminMainPage {
 		frame.getContentPane().add(ViewAllCustomer);
 		
 		JButton ViewBookings = new JButton("View All Bookings");
+		ViewBookings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		ViewBookings.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ViewBookings.setBounds(404, 289, 205, 37);
 		frame.getContentPane().add(ViewBookings);

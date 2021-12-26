@@ -1,23 +1,123 @@
 package classes;
 
+import java.sql.SQLException;
+
+import gui.FrontPage;
 import interfaces.IGUI;
 
 public class GUI implements IGUI{
-	public void userLoginButton() {
+	
+	public GUI()
+	{
+		FrontPage fp=new FrontPage();
+		fp.setVisible(true);
+	}
+	
+	// done signup button 
+	public boolean signUpButton(Customer c) {
+			
+			try {
+				database db=new database();
+				
+				db.signUp(c);
+			
+				return true;
+				
+				
+			} catch (ClassNotFoundException e1) {
+				
+				
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				
+				
+				
+				e1.printStackTrace();
+			} 
+			
+			return false;
+		}
+		
+	// done user login button
+	public boolean userLoginButton(Customer c) {
+		
+		try {
+			database d=new database();
+			
+			String b = d.login((Person)c);
+			
+			if(b.equals("1"))
+			{
+				
+				//frame.dispose();
+				return true;
+			}
+			else
+			{
+				
+				return false;
+			}
+			
+			
+		} catch (ClassNotFoundException e1) {
+			
+			e1.printStackTrace();
+			return false;
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+			return false;
+		} 
+		
 		
 	}
-	public void logOutButton() {
-		
-	}
-	public void signUpButton() {
-		
-	}
+	
+	// done admin login button
+	public boolean adminLoginButton(Person p) {
+			
+			
+			try {
+				database d=new database();
+				
+				String b = d.login(p);
+				
+				if(b.equals("1"))
+				{
+					
+					//frame.dispose();
+					return true;
+				}
+				else
+				{
+					
+					return false;
+				}
+				
+				
+			} catch (ClassNotFoundException e1) {
+				
+				e1.printStackTrace();
+				return false;
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+				return false;
+			} 
+			
+		}
+	
+	
+	
+	
+	
+	
+	
 	public void viewAllCustomers() {
 		
 	}
-	public void adminLoginButton() {
-		
-	}
+	
+	
+	
 	public void viewAllBookings() {
 		
 	}
@@ -45,4 +145,5 @@ public class GUI implements IGUI{
 	public void editTripDetailButton() {
 		
 	}
+	
 }

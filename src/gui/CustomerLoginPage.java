@@ -4,8 +4,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,9 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import classes.Customer;
-import classes.Person;
-import classes.database;
-
+import classes.GUI;
 import java.awt.Color;
 
 public class CustomerLoginPage {
@@ -103,40 +99,26 @@ public class CustomerLoginPage {
 				
 				//System.out.println("hello\n");
 				
-				try {
-					database d=new database();
-					
-					String b = d.login((Person)p);
-					
-					if(b.equals("1"))
-					{
-						//System.out.println(p.getFullname());
-						database.setCustomerDetails(p);
-						CustomerMainPage ap = new CustomerMainPage(p);
-						//ap.setCustomer((Customer) p);
-						ap.setVisible(true);
-						frame.dispose();
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
-					}
-					
-					
-				} catch (ClassNotFoundException e1) {
-					
-					
-					e1.printStackTrace();
-				} catch (SQLException e1) {
+				GUI g=new GUI();
+				boolean b = g.userLoginButton(p);
 				
-					
-					e1.printStackTrace();
-				} 
+				if(b)
+				{
+					CustomerMainPage ap = new CustomerMainPage(p);
+					//ap.setCustomer((Customer) p);
+					ap.setVisible(true);
+					frame.dispose();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
-				;
+				
 				
 			}
 		});
+		
 		loginbtn.setIcon(new ImageIcon(AdminLoginPage.class.getResource("/imgs/login.png")));
 		loginbtn.setFont(new Font("Tahoma", Font.BOLD, 20));
 		loginbtn.setBounds(590, 450, 164, 57);

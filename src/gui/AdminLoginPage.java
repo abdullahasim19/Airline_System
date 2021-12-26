@@ -10,14 +10,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
 import classes.Admin;
+import classes.GUI;
 import classes.Person;
-import classes.database;
-
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 
@@ -103,33 +101,18 @@ public class AdminLoginPage {
 				
 				//System.out.println("hello\n");
 				
-				try {
-					database d=new database();
-					
-					String b = d.login(p);
-					
-					if(b.equals("1"))
-					{
-						AdminMainPage ap = new AdminMainPage();
-						ap.setVisible(true);
-						frame.dispose();
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
-					}
-					
-					
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					//JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
-					e1.printStackTrace();
-				} 
-				
+				GUI g=new GUI();
+				boolean b = g.adminLoginButton(p);
+				if(b)
+				{
+					AdminMainPage ap = new AdminMainPage();
+					ap.setVisible(true);
+					frame.dispose();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 				
 			}

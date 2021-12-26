@@ -7,21 +7,23 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JComboBox;
 
 public class Booking {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField time;
+	private JTextField date;
 	private JPasswordField passwordField;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -51,7 +53,7 @@ public class Booking {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 467, 347);
+		frame.setBounds(100, 100, 770, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -59,14 +61,9 @@ public class Booking {
 		l1.addElement("Karachi");
 		l1.addElement("Lahore");
 		
-		JList list = new JList();
-		list.setBounds(288, 81, 136, 95);
-		list.setModel(l1);
-		frame.getContentPane().add(list);
-		
 		JLabel lblNewLabel = new JLabel("Available Trips");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setBounds(298, 56, 136, 14);
+		lblNewLabel.setBounds(354, 25, 136, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Book Trip");
@@ -78,9 +75,9 @@ public class Booking {
 		lblNewLabel_2.setBounds(10, 82, 161, 14);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(170, 79, 30, 20);
-		frame.getContentPane().add(spinner);
+		JSpinner seats = new JSpinner();
+		seats.setBounds(170, 79, 30, 20);
+		frame.getContentPane().add(seats);
 		
 		JLabel lblNewLabel_3 = new JLabel("Select Time");
 		lblNewLabel_3.setBounds(10, 122, 78, 14);
@@ -90,73 +87,95 @@ public class Booking {
 		lblNewLabel_4.setBounds(10, 147, 65, 14);
 		frame.getContentPane().add(lblNewLabel_4);
 		
-		textField = new JTextField();
-		textField.setBounds(85, 119, 86, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		time = new JTextField();
+		time.setBounds(85, 119, 86, 20);
+		frame.getContentPane().add(time);
+		time.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(85, 144, 86, 20);
-		frame.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		date = new JTextField();
+		date.setBounds(85, 144, 86, 20);
+		frame.getContentPane().add(date);
+		date.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Choose Payment Method");
 		lblNewLabel_5.setBounds(10, 186, 190, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Cash");
-		rdbtnNewRadioButton.setBounds(6, 207, 95, 23);
-		frame.getContentPane().add(rdbtnNewRadioButton);
+		JRadioButton cash = new JRadioButton("Cash");
+		cash.setBounds(6, 207, 95, 23);
+		frame.getContentPane().add(cash);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Credit");
-		rdbtnNewRadioButton_1.setBounds(116, 207, 109, 23);
-		frame.getContentPane().add(rdbtnNewRadioButton_1);
+		JRadioButton credit = new JRadioButton("Credit");
+		credit.setBounds(116, 207, 109, 23);
+		frame.getContentPane().add(credit);
 		
 		JLabel lblNewLabel_6 = new JLabel("Enter Password to Confirm");
 		lblNewLabel_6.setBounds(10, 244, 161, 14);
 		frame.getContentPane().add(lblNewLabel_6);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(181, 241, 102, 20);
+		passwordField.setBounds(181, 237, 102, 20);
 		frame.getContentPane().add(passwordField);
 		
-		JButton btnNewButton = new JButton("Book Trip");
-		btnNewButton.setBounds(191, 274, 89, 23);
-		frame.getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// more code needed
-				frame.dispose();
-				
+		JButton booktrip = new JButton("Book Trip");
+		booktrip.setBounds(242, 427, 89, 23);
+		frame.getContentPane().add(booktrip);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(293, 75, 438, 222);
+		frame.getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Departure", "Destination", "Plane Type", "Time", "Date", "Available Seats"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				true, true, true, true, true, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
 			}
 		});
 		
+		JComboBox departure = new JComboBox();
+		departure.setBounds(106, 269, 65, 22);
+		frame.getContentPane().add(departure);
+		
+		JLabel lblNewLabel_7 = new JLabel("Departure");
+		lblNewLabel_7.setBounds(20, 269, 81, 14);
+		frame.getContentPane().add(lblNewLabel_7);
+		
+		JComboBox destination = new JComboBox();
+		destination.setBounds(106, 302, 67, 22);
+		frame.getContentPane().add(destination);
+		
+		JLabel lblNewLabel_8 = new JLabel("Destination");
+		lblNewLabel_8.setBounds(20, 306, 81, 14);
+		frame.getContentPane().add(lblNewLabel_8);
+		
+		JLabel lblNewLabel_9 = new JLabel("Plane Type");
+		lblNewLabel_9.setBounds(20, 348, 68, 14);
+		frame.getContentPane().add(lblNewLabel_9);
+		
+		JComboBox planetype = new JComboBox();
+		planetype.setBounds(106, 344, 65, 22);
+		frame.getContentPane().add(planetype);
+		table.getColumnModel().getColumn(5).setPreferredWidth(93);
+		
 		
 		
 		
 		
 		
 	}
-	
-	
-	
+
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
 		frame.setVisible(b);
-	}
-
-	public void pack() {
-		// TODO Auto-generated method stub
-		frame.pack();
-	}
-
-	public void setLocationRelativeTo(Object object) {
-		// TODO Auto-generated method stub
-		frame.setLocationRelativeTo(null);
-	}
-
-	public void setExtendedState(int maximizedBoth) {
-		// TODO Auto-generated method stub
-		frame.setExtendedState(JFrame.NORMAL);
 	}
 }
