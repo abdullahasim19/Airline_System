@@ -18,4 +18,5 @@ public boolean userLoginButton(Customer c);
 	public void editUserDetailButton();
 	public void editTripDetailButton() ;
 	public void displayAllBookings(JTable table);
+	public void displayTrips(JTable table);
 }
