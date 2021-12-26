@@ -9,4 +9,5 @@ public interface IDatabase {
 	public void editUserInfo();
 	public void verifyCredential();
 	public void checkValidity();
+	public void displayTrips();
 }

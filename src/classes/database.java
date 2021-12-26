@@ -1,9 +1,5 @@
 package classes;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -17,9 +13,9 @@ public class database {
 		con=null;
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem?characterEncoding=latin1&useConfigs=maxPerformance","root","Panthom3813");
-		}catch (SQLException e) {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -107,6 +103,37 @@ public class database {
 			model.addRow(new Object[]{id,fn,country,dest,pid,sc,fd});
 		}
 	}
-	
+	public void DisplayTrips(JTable table)
+	{
+		try {
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+			Statement st=connection.createStatement();
+			PreparedStatement ps=connection.prepareStatement("select Trip.tripID,Trip.departure,"
+					+ "Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats "
+					+ "from Trip join Flight on Trip.planeID=Flight.planeID;");
+			
+			//ResultSet rs=st.executeQuery("select *from User");
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next())
+			{
+				String tripID=String.valueOf(rs.getInt("tripID"));
+				String departure=rs.getString("departure");
+				String destination=rs.getString("destination");
+				String ftime=rs.getTime("flightTime").toString();
+				String fdate=rs.getDate("flightDate").toString();
+				String seats=String.valueOf(rs.getInt("availableseats"));
+				
+				String []arr= {tripID,departure,destination,ftime,fdate,seats};
+				DefaultTableModel tb=(DefaultTableModel)table.getModel();
+				tb.addRow(arr);
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	
 }

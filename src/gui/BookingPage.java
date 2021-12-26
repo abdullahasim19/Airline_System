@@ -14,8 +14,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import classes.GUI;
+
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BookingPage {
 
@@ -54,7 +59,7 @@ public class BookingPage {
 	@SuppressWarnings("serial")
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 770, 500);
+		frame.setBounds(100, 100, 1100, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -119,20 +124,21 @@ public class BookingPage {
 		frame.getContentPane().add(passwordField);
 		
 		JButton booktrip = new JButton("Book Trip");
-		booktrip.setBounds(242, 427, 89, 23);
+		booktrip.setBounds(85, 432, 89, 23);
 		frame.getContentPane().add(booktrip);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(293, 75, 438, 222);
+		scrollPane.setBounds(293, 75, 730, 274);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
+	
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Departure", "Destination", "Plane Type", "Time", "Date", "Available Seats"
+				"Trip ID","Departure", "Destination",  "Time", "Date", "Available Seats"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -166,6 +172,16 @@ public class BookingPage {
 		JComboBox planetype = new JComboBox();
 		planetype.setBounds(106, 344, 65, 22);
 		frame.getContentPane().add(planetype);
+		
+		JButton btnNewButton = new JButton("View Trips");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUI g=new GUI();
+				g.displayTrips(table);
+			}
+		});
+		btnNewButton.setBounds(581, 375, 171, 23);
+		frame.getContentPane().add(btnNewButton);
 		table.getColumnModel().getColumn(5).setPreferredWidth(93);
 		
 		

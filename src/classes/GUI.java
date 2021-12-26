@@ -11,8 +11,8 @@ public class GUI implements IGUI{
 	
 	public GUI()
 	{
-		FrontPage fp=new FrontPage();
-		fp.setVisible(true);
+//		FrontPage fp=new FrontPage();
+//		fp.setVisible(true);
 	}
 	
 	// done signup button 
@@ -159,6 +159,18 @@ public class GUI implements IGUI{
 		
 	}
 	public void editTripDetailButton() {
+		
+	}
+
+	@Override
+	public void displayTrips(JTable table) {
+		try {
+			database d=new database();
+			d.DisplayTrips(table);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
