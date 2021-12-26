@@ -10,6 +10,9 @@ import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableModel;
+
+import classes.GUI;
+
 import javax.swing.JScrollPane;
 
 public class ViewAllBookings {
@@ -38,6 +41,8 @@ public class ViewAllBookings {
 	 */
 	public ViewAllBookings() {
 		initialize();
+		GUI g=new GUI();
+		g.displayAllBookings(table);
 	}
 
 	/**
@@ -66,11 +71,11 @@ public class ViewAllBookings {
 			new Object[][] {
 			},
 			new String[] {
-				"Booking ID", "Name", "Departure", "Destination", "Package","No of Seats", "Date", "Status"
+				"Booking ID", "Name", "Departure", "Destination", "Package","No of Seats", "Date"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false, false
+				false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];

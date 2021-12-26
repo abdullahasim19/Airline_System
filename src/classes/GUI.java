@@ -2,6 +2,8 @@ package classes;
 
 import java.sql.SQLException;
 
+import javax.swing.JTable;
+
 import gui.FrontPage;
 import interfaces.IGUI;
 
@@ -107,7 +109,21 @@ public class GUI implements IGUI{
 		}
 	
 	
-	
+	public void displayAllBookings(JTable table)
+	{
+		try {
+			database d=new database();
+			d.fillbookingTable(table);
+			
+		} catch (ClassNotFoundException e1) {
+			
+			e1.printStackTrace();
+			
+		} catch (SQLException e1) {
+			
+			e1.printStackTrace();
+		} 
+	}
 	
 	
 	

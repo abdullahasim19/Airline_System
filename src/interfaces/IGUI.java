@@ -1,4 +1,6 @@
 package interfaces;
+import javax.swing.JTable;
+
 import classes.Customer;
 import classes.Person;
 public interface IGUI {
@@ -15,4 +17,5 @@ public boolean userLoginButton(Customer c);
 	public void displayError() ;
 	public void editUserDetailButton();
 	public void editTripDetailButton() ;
+	public void displayAllBookings(JTable table);
 }

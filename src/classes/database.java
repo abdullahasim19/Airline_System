@@ -81,32 +81,30 @@ public class database {
 		
 		
 	}
-
-	
-	private String getCustomerName()
-	{
-		
-		return null;
-	}
-	
 	
 	public void fillbookingTable(JTable table) throws SQLException
 	{
 		Statement st = con.createStatement();
-		ResultSet rs=st.executeQuery("Select * from Student");
+		ResultSet rs=st.executeQuery("select b.bookingID, c.fullName,ar.country ,f.destination, pp.packageID, b.seatsCount, f.flightdate  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID\r\n"
+				+ "join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID \r\n"
+				+ "join Trip t on t.tripID=b.tripID join Flight f on f.flightID=b.flightID; ");
+		
+		
+		
+		
 		while(rs.next())
 		{
-			String id=rs.getString("stdId");
-			String name = rs.getString("stdName");
-			String Fname=rs.getString("FatherName");
-			String gender=rs.getString("gender");
-			String birthdate=rs.getString("birthdate");
-			String phoneNo=rs.getString("phoneNo");
-			String address=rs.getString("address");
-           
-
+			
+			String id=rs.getString("b.bookingID");
+			String fn=rs.getString("c.fullName");
+			String country=rs.getString("ar.country");
+			String dest=rs.getString("f.destination");
+			String pid=rs.getString("pp.packageID");
+			String sc=rs.getString("b.seatsCount");
+			String fd=rs.getString("f.flightdate");
+			
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.addRow(new Object[]{id,name,Fname,gender,birthdate,phoneNo,address});
+			model.addRow(new Object[]{id,fn,country,dest,pid,sc,fd});
 		}
 	}
 	

@@ -21,7 +21,7 @@ create table Admin
 
 insert into Admin Values("rasaal");
 
-select count(*) as done from Admin a join User u on a.username=u.username where a.username='rasaal' and u.password="123123123"; 
+#select count(*) as done from Admin a join User u on a.username=u.username where a.username='rasaal' and u.password="123123123"; 
 
 
 create table Customer
@@ -35,16 +35,37 @@ create table Customer
     FOREIGN KEY(username) REFERENCES User(username) on delete cascade
 );
 
-select * from Customer;
-select * from User;
+#select * from Customer;
+#select * from User;
+
+create table Airport
+(
+	airportID varchar(50) primary key not null,
+	country varchar(50),
+	city varchar(50)
+);
+
 
 
 create table Plane
 (
    planeID int not null primary key,
-   planeName varchar(50)
+   planeName varchar(50), 
+   airportID varchar(50),
+	FOREIGN KEY(airportID) REFERENCES Airport(airportID) on delete cascade
 );
 
+create table Flight
+(
+	flightID varchar(50) primary key not null,
+     planeID int,
+	FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
+	airportID varchar(50),
+	FOREIGN KEY(airportID) REFERENCES Airport(airportID) on delete cascade,
+    flightdate date,
+    destination varchar(50),
+    flightTime time 
+);
 
 create table PrivatePlane
 (
@@ -141,7 +162,6 @@ create table Booking
    
 );
 
-drop table Booking;
 
 create table Feedback
 ( 
@@ -152,25 +172,11 @@ create table Feedback
    feedback varchar(300)
 
 );
-create table Airport
-(
-	airportID varchar(50) primary key not null,
-	country varchar(50),
-	city varchar(50)
-);
-create table Flight
-(
-	flightID varchar(50) primary key not null,
-     planeID int,
-	FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
-	airportID varchar(50),
-	FOREIGN KEY(airportID) REFERENCES Airport(airportID) on delete cascade,
-    flightdate date,
-    destination varchar(50),
-    flightTime time 
-)
 
-select * from Bookings b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID;
+
+select b.bookingID, c.fullName,f.departure ,f.destination  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID
+join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID 
+join Trip t on t.tripID=b.tripID join Flight f on f.flightID=b.flightID; 
 
  
 
