@@ -11,8 +11,7 @@ public class GUI implements IGUI{
 	
 	public GUI()
 	{
-//		FrontPage fp=new FrontPage();
-//		fp.setVisible(true);
+
 	}
 	
 	// done signup button 
@@ -172,6 +171,13 @@ public class GUI implements IGUI{
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public void OpenFrontPage() {
+		// TODO Auto-generated method stub
+		FrontPage fp=new FrontPage();
+		fp.setVisible(true);
 	}
 	
 }
