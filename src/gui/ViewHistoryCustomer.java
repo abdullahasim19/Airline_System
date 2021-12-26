@@ -50,7 +50,7 @@ public class ViewHistoryCustomer {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Booking History");
+		JLabel lblNewLabel = new JLabel("BookingPage History");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
 		lblNewLabel.setBounds(90, 43, 428, 70);
 		frame.getContentPane().add(lblNewLabel);

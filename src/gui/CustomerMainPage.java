@@ -126,7 +126,7 @@ public class CustomerMainPage {
 		});
 		
 		
-		JMenu mnNewMenu = new JMenu("Booking");
+		JMenu mnNewMenu = new JMenu("BookingPage");
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem BookTrip = new JMenuItem("Book Trip");
@@ -134,8 +134,8 @@ public class CustomerMainPage {
 		BookTrip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Booking b =new Booking();
-				b.setVisible(true);
+				//BookingPage b =new BookingPage();
+				//b.setVisible(true);
 				
 			}
 		});

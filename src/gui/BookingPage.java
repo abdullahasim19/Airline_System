@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 
-public class Booking {
+public class BookingPage {
 
 	private JFrame frame;
 	private JTextField time;
@@ -32,7 +32,7 @@ public class Booking {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Booking window = new Booking();
+					BookingPage window = new BookingPage();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,13 +44,14 @@ public class Booking {
 	/**
 	 * Create the application.
 	 */
-	public Booking() {
+	public BookingPage() {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("serial")
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 770, 500);

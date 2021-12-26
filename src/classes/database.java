@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class database {
 	
 	private static Connection con;
@@ -79,4 +82,33 @@ public class database {
 		
 	}
 
+	
+	private String getCustomerName()
+	{
+		
+		return null;
+	}
+	
+	
+	public void fillbookingTable(JTable table) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("Select * from Student");
+		while(rs.next())
+		{
+			String id=rs.getString("stdId");
+			String name = rs.getString("stdName");
+			String Fname=rs.getString("FatherName");
+			String gender=rs.getString("gender");
+			String birthdate=rs.getString("birthdate");
+			String phoneNo=rs.getString("phoneNo");
+			String address=rs.getString("address");
+           
+
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{id,name,Fname,gender,birthdate,phoneNo,address});
+		}
+	}
+	
+	
 }

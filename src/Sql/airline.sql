@@ -63,15 +63,62 @@ create table GeneralPlane
 );
 
 
-create table Feedback
-( 
-   username varchar(50) not null,
-   FOREIGN KEY(username) REFERENCES Customer(username) on delete cascade,
-    planeID int,
-   FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
-   feedback varchar(300)
 
+
+
+
+create table Packages
+( 
+   packageID int not null primary key,
+   price int
 );
+
+create table Family
+( 
+   packageID int,
+   FOREIGN KEY(packageID) REFERENCES Packages(packageID) on delete cascade,
+   members int
+);
+
+create table PopularDest
+( 
+   packageID int,
+   FOREIGN KEY(packageID) REFERENCES Packages(packageID) on delete cascade,
+   departure varchar(50),
+   destination varchar(50)
+);
+
+
+
+create table Discounts
+( 
+   packageID int,
+   FOREIGN KEY(packageID) REFERENCES Packages(packageID) on delete cascade,
+   discountedAmount float
+);
+
+
+create Table Trip
+(
+	tripID int not null primary key,
+	TripName varchar(50),
+    departure varchar(50),
+	destination varchar(50)
+);
+
+create Table RoundTrip
+(
+  tripID int,
+   FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
+);
+
+create Table SingleTrip
+(
+  tripID int,
+    FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
+);
+
+
 
 create table Booking
 (
@@ -92,52 +139,18 @@ create table Booking
    
 );
 
-create table Packages
+
+
+create table Feedback
 ( 
-   packageID int not null primary key
+   username varchar(50) not null,
+   FOREIGN KEY(username) REFERENCES Customer(username) on delete cascade,
+    planeID int,
+   FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
+   feedback varchar(300)
+
 );
 
-create table Family
-( 
-   packageID int,
-   FOREIGN KEY(packageID) REFERENCES Packages(packageID) on delete cascade
-);
-
-create table PopularDest
-( 
-   packageID int,
-   FOREIGN KEY(packageID) REFERENCES Packages(packageID) on delete cascade
-);
-
-create table PopularJourney
-( 
-   packageID int,
-   FOREIGN KEY(packageID) REFERENCES Packages(packageID) on delete cascade
-);
-
-create table Discounts
-( 
-   packageID int,
-   FOREIGN KEY(packageID) REFERENCES Packages(packageID) on delete cascade
-);
-
-create Table Trip
-(
-	tripID int not null primary key,
-  TripName varchar(50) 
-);
-
-create Table RoundTrip
-(
-  tripID int,
-   FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
-);
-
-create Table SingleTrip
-(
-  tripID int,
-    FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
-);
 
 
 

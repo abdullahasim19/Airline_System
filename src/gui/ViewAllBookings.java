@@ -57,7 +57,7 @@ public class ViewAllBookings {
 		frame.getContentPane().add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(43, 159, 642, 351);
+		scrollPane.setBounds(20, 159, 681, 351);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -66,11 +66,11 @@ public class ViewAllBookings {
 			new Object[][] {
 			},
 			new String[] {
-				"Booking ID", "Customer ID", "Name", "Departure", "Destination", "Package","No of Seats", "Date", "Status"
+				"Booking ID", "Name", "Departure", "Destination", "Package","No of Seats", "Date", "Status"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false, false, false, false
+				false, false, false, false, false, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
