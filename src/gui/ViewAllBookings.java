@@ -66,7 +66,7 @@ public class ViewAllBookings {
 			new Object[][] {
 			},
 			new String[] {
-				"Booking ID", "Customer ID", "Name", "Departure", "Destination", "Package", "No of Seats", "Date", "Status"
+				"Booking ID", "Customer ID", "Name", "Departure", "Destination", "Package","No of Seats", "Date", "Status"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
