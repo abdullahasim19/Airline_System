@@ -107,12 +107,14 @@ public class AdminLoginPage {
 				{
 					AdminMainPage ap = new AdminMainPage();
 					ap.setVisible(true);
+					ap.setP(p);
 					frame.dispose();
 				}
 				else
 				{
 					JOptionPane.showMessageDialog(null, "Invalid username or password","Error", JOptionPane.ERROR_MESSAGE);
 				}
+				
 				
 				
 			}

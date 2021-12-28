@@ -16,7 +16,8 @@ public class database implements IDatabase{
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
+			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,9 +84,12 @@ public class database implements IDatabase{
 	public void fillbookingTable(JTable table) throws SQLException
 	{
 		Statement st = con.createStatement();
-		ResultSet rs=st.executeQuery("select b.bookingID, c.fullName,ar.country ,f.destination, pp.packageID, b.seatsCount, f.flightdate  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID\r\n"
-				+ "join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID \r\n"
-				+ "join Trip t on t.tripID=b.tripID join Flight f on f.flightID=b.flightID; ");
+		ResultSet rs=st.executeQuery("select b.bookingID, c.fullName,ar.country ,f.destination, pp.packageID, b.seatsCount, f.flightdate  from Booking b \r\n"
+				+ "join Customer c on b.username=c.username  \r\n"
+				+ "left join Packages pp on pp.packageID=b.packageID  \r\n"
+				+ "left join Trip t on t.tripID=b.tripID \r\n"
+				+ "join Flight f on f.flightID=b.flightID\r\n"
+				+ "join Airport ar on ar.airportID=f.airportID;");
 		
 		
 		
@@ -137,6 +141,7 @@ public class database implements IDatabase{
 			e1.printStackTrace();
 		}
 	}
+
 
 	@Override
 	public void storeBookingTripDetails() {
@@ -218,7 +223,26 @@ public class database implements IDatabase{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+
+	public void fillCustomerTable(JTable table) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select * from Customer");
 		
+		while(rs.next())
+		{
+			
+			String usr=rs.getString("username");
+			String fn=rs.getString("fullName");
+			String gender=rs.getString("Gender");
+			String dob=rs.getString("dob");
+			String cont=rs.getString("contact");
+			String adr=rs.getString("address");
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{usr,fn,gender,dob,cont,adr});
+		}
 	}
 	
 }

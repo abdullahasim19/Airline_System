@@ -9,7 +9,7 @@ public class Main {
 		//System.out.println("hello world");
 		
 		GUI g=new GUI();
-		
+		g.OpenFrontPage();
 	}
 
 }
