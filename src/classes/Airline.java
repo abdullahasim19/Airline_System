@@ -151,6 +151,17 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	public void getAirportInfo() {
 		
 	}
+	
+	public void fillPlaneTable(JTable table)
+	{
+		try {
+			database d=new database();
+			d.fillPlaneTable(table);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
 	@Override
@@ -178,7 +189,18 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	}
 
 	
-	
+	public boolean removePlane(Planes p)
+	{
+		try {
+			database d=new database();
+			d.removePlane(p);
+			return true;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 
 	

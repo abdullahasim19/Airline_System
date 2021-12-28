@@ -44,13 +44,17 @@ public class GUI implements IGUI{
 		
 	}
 	
-	@Override
-//	public void displayTrips(JTable table) {
-//		this.arlineSystem.displayTrips(table);
-//		
-//	}
-
 	
+	public void fillPlaneTable(JTable table)
+	{
+		this.arlineSystem.fillPlaneTable(table);
+	}
+	
+	
+	public boolean removePlane(Planes p)
+	{
+		return this.arlineSystem.removePlane(p);
+	}
 	
 	public void viewAllCustomers() {
 		

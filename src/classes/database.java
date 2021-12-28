@@ -16,8 +16,8 @@ public class database implements IDatabase{
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
-			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
+			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,14 +109,15 @@ public class database implements IDatabase{
 			model.addRow(new Object[]{id,fn,country,dest,pid,sc,fd});
 		}
 	}
+	
 	public void DisplayTrips(JTable table)
 	{
 		try {
-			
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
-			Statement st=connection.createStatement();
-			PreparedStatement ps=connection.prepareStatement("select Trip.tripID,Trip.departure,"
+		
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+			Statement st=con.createStatement();
+			PreparedStatement ps=con.prepareStatement("select Trip.tripID,Trip.departure,"
 					+ "Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats "
 					+ "from Trip join Flight on Trip.planeID=Flight.planeID;");
 			
@@ -139,6 +140,23 @@ public class database implements IDatabase{
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+		}
+	}
+	
+	public void fillPlaneTable(JTable table) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select * from Plane p join Airport a on a.airportID=p.airportID");
+		
+		while(rs.next())
+		{
+			
+			String id=rs.getString("planeID");
+			String fn=rs.getString("planeName");
+			String aid=rs.getString("airportID");
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{id,fn,aid});
 		}
 	}
 
@@ -201,10 +219,10 @@ public class database implements IDatabase{
 	public void viewHistory(String username, JTable table) {
 		try {
 			
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
-			Statement st=connection.createStatement();
-			PreparedStatement ps=connection.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+			Statement st=con.createStatement();
+			PreparedStatement ps=con.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
 			ps.setString(1, username);
 			
 			//ResultSet rs=st.executeQuery("select *from User");
@@ -243,6 +261,16 @@ public class database implements IDatabase{
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			model.addRow(new Object[]{usr,fn,gender,dob,cont,adr});
 		}
+	}
+	
+	
+	public void removePlane(Planes p) throws SQLException
+	{
+		Statement st = con.createStatement(); 
+		st.executeUpdate("delete from Plane where planeID="+ p.getPlaneID() + ";");
+		
+		System.out.println("delete from Plane where planeID="+ String.valueOf(p.getPlaneID()) + ";");
+		
 	}
 	
 }

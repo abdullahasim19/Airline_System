@@ -72,8 +72,8 @@ public class AdminMainPage {
 		customerMenu.add(ViewCustomer);
 		ViewCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ViewAllCustomers v=new ViewAllCustomers();
-				//v.setVisible(true);
+				ViewAllCustomers v=new ViewAllCustomers();
+				v.setVisible(true);
 			}
 		});
 		
@@ -96,6 +96,14 @@ public class AdminMainPage {
 		
 		JMenuItem AddPlane = new JMenuItem("Add Plane");
 		PlanesMenu.add(AddPlane);
+		AddPlane.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AddPlanebyAdmin ap=new AddPlanebyAdmin();
+				ap.setVisible(true);
+				
+			}
+		});
 		
 		JMenuItem RemovePlane = new JMenuItem("Remove Plane");
 		PlanesMenu.add(RemovePlane);
@@ -117,6 +125,8 @@ public class AdminMainPage {
 		
 		JMenuItem EditCap = new JMenuItem("Edit Captain Details");
 		CaptainMenu.add(EditCap);
+		
+		
 		
 		JMenu flightmenu = new JMenu("Flights");
 		menuBar.add(flightmenu);
@@ -146,8 +156,8 @@ public class AdminMainPage {
 		JButton ViewAllCustomer = new JButton("View All Customers");
 		ViewAllCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				ViewAllCustomers v=new ViewAllCustomers();
-//				v.setVisible(true);
+				ViewAllCustomers v=new ViewAllCustomers();
+				v.setVisible(true);
 			}
 		});
 		ViewAllCustomer.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -173,6 +183,15 @@ public class AdminMainPage {
 		frame.getContentPane().add(AddPackage);
 		
 		JButton AddPlanes = new JButton("Add Planes");
+		AddPlanes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AddPlanebyAdmin ap=new AddPlanebyAdmin();
+				ap.setVisible(true);
+				
+				
+			}
+		});
 		AddPlanes.setFont(new Font("Tahoma", Font.BOLD, 18));
 		AddPlanes.setBounds(404, 380, 205, 37);
 		frame.getContentPane().add(AddPlanes);

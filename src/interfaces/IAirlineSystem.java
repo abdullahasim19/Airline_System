@@ -5,6 +5,7 @@ import javax.swing.JTable;
 
 import classes.Customer;
 import classes.Person;
+import classes.Planes;
 
 public interface IAirlineSystem {
 	public boolean AdminLogin(Person p);
@@ -21,4 +22,7 @@ public interface IAirlineSystem {
 	
 	public void DisplayTrips(JTable table);
 	public void viewHistory(String username, JTable table);
+	public void fillPlaneTable(JTable table);
+	
+	public boolean removePlane(Planes p);
 }

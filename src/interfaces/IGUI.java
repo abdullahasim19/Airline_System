@@ -3,6 +3,7 @@ import javax.swing.JTable;
 
 import classes.Customer;
 import classes.Person;
+import classes.Planes;
 public interface IGUI {
 public boolean userLoginButton(Customer c);
 	public boolean signUpButton(Customer c) ;
@@ -25,6 +26,8 @@ public boolean userLoginButton(Customer c);
 	public void OpenFrontPage();
 	
 	public void displayAllCustomers(JTable table);
+	
+	public boolean removePlane(Planes p);
 	
 
 }
