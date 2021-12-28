@@ -1,13 +1,13 @@
 package classes;
 
-import java.sql.SQLException;
-
 import javax.swing.JTable;
 
 import gui.FrontPage;
 import interfaces.IGUI;
 
 public class GUI implements IGUI{
+	
+	private Airline arlineSystem=new Airline();
 	
 	public GUI()
 	{
@@ -16,115 +16,40 @@ public class GUI implements IGUI{
 	
 	// done signup button 
 	public boolean signUpButton(Customer c) {
-			
-			try {
-				database db=new database();
-				
-				db.signUp(c);
-			
-				return true;
-				
-				
-			} catch (ClassNotFoundException e1) {
-				
-				
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				
-				
-				
-				e1.printStackTrace();
-			} 
-			
-			return false;
+			return this.arlineSystem.signup(c);
 		}
 		
 	// done user login button
 	public boolean userLoginButton(Customer c) {
-		
-		try {
-			database d=new database();
-			
-			String b = d.login((Person)c);
-			
-			if(b.equals("1"))
-			{
-				
-				//frame.dispose();
-				return true;
-			}
-			else
-			{
-				
-				return false;
-			}
-			
-			
-		} catch (ClassNotFoundException e1) {
-			
-			e1.printStackTrace();
-			return false;
-		} catch (SQLException e1) {
-			
-			e1.printStackTrace();
-			return false;
-		} 
-		
-		
+			return this.arlineSystem.Customerlogin(c);
 	}
 	
 	// done admin login button
 	public boolean adminLoginButton(Person p) {
 			
-			
-			try {
-				database d=new database();
-				
-				String b = d.login(p);
-				
-				if(b.equals("1"))
-				{
-					
-					//frame.dispose();
-					return true;
-				}
-				else
-				{
-					
-					return false;
-				}
-				
-				
-			} catch (ClassNotFoundException e1) {
-				
-				e1.printStackTrace();
-				return false;
-			} catch (SQLException e1) {
-				
-				e1.printStackTrace();
-				return false;
-			} 
-			
-		}
+		return this.arlineSystem.AdminLogin(p);
+		
+	}
 	
 	// done
 	public void displayAllBookings(JTable table)
 	{
-		try {
-			database d=new database();
-			d.fillbookingTable(table);
-			
-		} catch (ClassNotFoundException e1) {
-			
-			e1.printStackTrace();
-			
-		} catch (SQLException e1) {
-			
-			e1.printStackTrace();
-		} 
+		this.arlineSystem.displayAllBookigs(table);
 	}
 	
 	
+	public void displayAllCustomers(JTable table) {
+		
+		this.arlineSystem.displayAllCustomers(table);
+		
+	}
+	
+	@Override
+	public void displayTrips(JTable table) {
+		this.arlineSystem.displayTrips(table);
+		
+	}
+
 	
 	
 	public void viewAllCustomers() {
@@ -161,17 +86,7 @@ public class GUI implements IGUI{
 		
 	}
 
-	@Override
-	public void displayTrips(JTable table) {
-		try {
-			database d=new database();
-			d.DisplayTrips(table);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
+
 
 	@Override
 	public void OpenFrontPage() {

@@ -20,4 +20,7 @@ public boolean userLoginButton(Customer c);
 	public void displayAllBookings(JTable table);
 	public void displayTrips(JTable table);
 	public void OpenFrontPage();
+	
+	public void displayAllCustomers(JTable table);
+	
 }

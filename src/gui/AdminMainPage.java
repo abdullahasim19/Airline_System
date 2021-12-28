@@ -9,6 +9,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
+import classes.Person;
+
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
@@ -17,7 +20,7 @@ import java.awt.event.ActionEvent;
 public class AdminMainPage {
 
 	private JFrame frame;
-
+	private Person p;
 	/**
 	 * Launch the application.
 	 */
@@ -67,15 +70,10 @@ public class AdminMainPage {
 		JMenuItem ViewCustomer = new JMenuItem("View all Customers");
 		ViewCustomer.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		customerMenu.add(ViewCustomer);
-		
-		JMenuItem EditCustomer = new JMenuItem("Edit Customer Details");
-		customerMenu.add(EditCustomer);
-		EditCustomer.addActionListener(new ActionListener() {
+		ViewCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				EditUserDetailsbyAdmin ed=new EditUserDetailsbyAdmin();
-				ed.setVisible(true);
-				
+				ViewAllCustomers v=new ViewAllCustomers();
+				v.setVisible(true);
 			}
 		});
 		
@@ -146,6 +144,12 @@ public class AdminMainPage {
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		JButton ViewAllCustomer = new JButton("View All Customers");
+		ViewAllCustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewAllCustomers v=new ViewAllCustomers();
+				v.setVisible(true);
+			}
+		});
 		ViewAllCustomer.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ViewAllCustomer.setBounds(92, 289, 205, 37);
 		frame.getContentPane().add(ViewAllCustomer);
@@ -214,5 +218,13 @@ public class AdminMainPage {
 	public void setExtendedState(int maximizedBoth) {
 		// TODO Auto-generated method stub
 		frame.setExtendedState(JFrame.NORMAL);
+	}
+
+	public Person getP() {
+		return p;
+	}
+
+	public void setP(Person p) {
+		this.p = p;
 	}
 }

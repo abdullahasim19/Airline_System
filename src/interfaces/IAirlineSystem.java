@@ -1,9 +1,19 @@
 package interfaces;
 
+import javax.swing.JTable;
+
+import classes.Customer;
+import classes.Person;
+
 public interface IAirlineSystem {
-	public void login();
+	public boolean AdminLogin(Person p);
 	
-	public void signup();
+	public boolean Customerlogin(Customer c);
+	public boolean signup(Customer c);
+	
+	public void displayTrips(JTable table);
+	public void displayAllCustomers(JTable table);
+	public void displayAllBookigs(JTable table);
 	public void editUserDetail();
 	public void bookingTrip();
 	public void getAirportInfo();

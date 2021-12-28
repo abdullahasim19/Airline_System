@@ -107,6 +107,7 @@ public class AdminLoginPage {
 				{
 					AdminMainPage ap = new AdminMainPage();
 					ap.setVisible(true);
+					ap.setP(p);
 					frame.dispose();
 				}
 				else
