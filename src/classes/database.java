@@ -4,7 +4,9 @@ import java.sql.*;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class database {
+import interfaces.IDatabase;
+
+public class database implements IDatabase{
 	
 	private static Connection con;
 	
@@ -134,6 +136,89 @@ public class database {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+
+	@Override
+	public void storeBookingTripDetails() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void verifyInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void storeFlightTimingInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void storeEditPlaneTime() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addUserInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editUserInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void verifyCredential() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkValidity() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayTrips() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewHistory(String username, JTable table) {
+		try {
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+			Statement st=connection.createStatement();
+			PreparedStatement ps=connection.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
+			ps.setString(1, username);
+			
+			//ResultSet rs=st.executeQuery("select *from User");
+			ResultSet rs=ps.executeQuery();
+			
+			while(rs.next())
+			{
+				String name=rs.getString("fullname");
+				String departure=rs.getString("departure");
+				String destination=rs.getString("destination");
+				String []arr= {name,departure,destination};
+				DefaultTableModel tb=(DefaultTableModel)table.getModel();
+				tb.addRow(arr);
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 	
 }

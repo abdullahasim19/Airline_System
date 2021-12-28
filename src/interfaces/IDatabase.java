@@ -1,5 +1,7 @@
 package interfaces;
 
+import javax.swing.JTable;
+
 public interface IDatabase {
 	public void storeBookingTripDetails();
 	public void verifyInfo();
@@ -10,4 +12,5 @@ public interface IDatabase {
 	public void verifyCredential();
 	public void checkValidity();
 	public void displayTrips();
+	public void viewHistory(String username, JTable table);
 }

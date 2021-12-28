@@ -35,6 +35,8 @@ create table Customer
     FOREIGN KEY(username) REFERENCES User(username) on delete cascade
 );
 
+select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username='abdullahlhe'; 
+
 #select * from Customer;
 #select * from User;
 
@@ -45,6 +47,7 @@ create table Airport
 	city varchar(50)
 );
 
+insert into Airport values (12,'Pakistan','Lahore');
 
 
 create table Plane
@@ -54,6 +57,40 @@ create table Plane
    airportID varchar(50),
 	FOREIGN KEY(airportID) REFERENCES Airport(airportID) on delete cascade
 );
+
+create table History
+(
+	username varchar(50),
+	tripID int,
+    foreign key (username) references User(username) on delete cascade,
+    foreign key (tripID) references Trip(tripID) on delete cascade
+);
+insert into History values ('abdullahlhe',1);
+ALTER TABLE plane ADD COLUMN airportID varchar(50) NOT NULL;
+ALTER TABLE plane ADD FOREIGN KEY (airportID) REFERENCES Airport(airportId);
+
+drop table Plane;
+insert into Plane values (123,'Jet','12');
+
+
+select * from Airport;
+select *from Plane;
+select *from Trip;
+select *from User;
+insert into History values ('123',1);
+select *from PrivatePlane;
+insert into PrivatePlane values (123);
+select departure,destination from Trip join Plane on Trip.planeID=Plane.planeID;
+
+ALTER TABLE Trip ADD COLUMN availableseats int;
+insert into Trip values (1,'KARACHI','LAHORE','KARACHI',123,13);
+select *from Flight;
+select *from Trip join Flight on Trip.planeID=Flight.planeID;
+insert into Flight values(100,123,12,'2021-4-7','karachi','10:12:12');
+
+select Trip.tripID,Trip.departure,Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats from Trip join Flight on Trip.planeID=Flight.planeID;
+
+select * from Trip join Flight on Trip.planeID=Flight.planeID;
 
 create table Flight
 (
@@ -72,7 +109,6 @@ create table PrivatePlane
    planeID int,
    FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade
 );
-
 create table GeneralPlane
 (
    planeID int,
@@ -82,11 +118,6 @@ create table GeneralPlane
    EconomicCLassSeatsCount int,
    FirstClassSeatsCount int
 );
-
-
-
-
-
 
 create table Packages
 ( 
@@ -126,6 +157,12 @@ create Table Trip
     departure varchar(50),
 	destination varchar(50)
 );
+select *from Trip;
+select *from Plane;
+ALTER TABLE Trip ADD COLUMN planeID int not null;
+ALTER TABLE Trip ADD FOREIGN KEY (planeID) REFERENCES Plane(planeID);
+insert into Trip values(1,'Karachi','Lahore','Karachi',123);
+
 
 create Table RoundTrip
 (
@@ -138,6 +175,7 @@ create Table SingleTrip
   tripID int,
     FOREIGN KEY(tripID) REFERENCES Trip(tripID) on delete cascade
 );
+
 
 
 
@@ -172,6 +210,7 @@ create table Feedback
    feedback varchar(300)
 
 );
+
 
 
 select b.bookingID, c.fullName,f.departure ,f.destination  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID

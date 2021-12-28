@@ -19,4 +19,5 @@ public boolean userLoginButton(Customer c);
 	public void editTripDetailButton() ;
 	public void displayAllBookings(JTable table);
 	public void displayTrips(JTable table);
+	public void viewHistory(String username, JTable table);
 }

@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import classes.Customer;
+import classes.GUI;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -17,7 +21,12 @@ public class ViewHistoryCustomer {
 	private JTable table;
 	private JScrollPane scrollPane;
 	private JButton Back;
-
+	private Customer customer;
+	public ViewHistoryCustomer(Customer c)
+	{
+		this.customer=c;
+		initialize();
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -33,7 +42,11 @@ public class ViewHistoryCustomer {
 			}
 		});
 	}
-
+	public void showHistory(JTable table)
+	{
+		GUI g=new GUI();
+		g.viewHistory(customer.getUsername(), table);
+	}
 	/**
 	 * Create the application.
 	 */
@@ -65,10 +78,10 @@ public class ViewHistoryCustomer {
 			new Object[][] {
 			},
 			new String[] {
-				"Name", "Date", "Trip Place"
+				"Name", "Trip Departure", "Trip Destination"
 			}
 		));
-		
+		showHistory(table);
 		Back = new JButton("Back");
 		Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

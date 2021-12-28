@@ -165,9 +165,21 @@ public class GUI implements IGUI{
 	@Override
 	public void displayTrips(JTable table) {
 		try {
-			database d=new database();
+			Airline d=new Airline();
 			d.DisplayTrips(table);
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void viewHistory(String username, JTable table) {
+		try {
+			Airline d=new Airline();
+			d.viewHistory(username, table);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
