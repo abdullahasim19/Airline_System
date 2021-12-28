@@ -182,6 +182,15 @@ public class BookingPage {
 		});
 		btnNewButton.setBounds(581, 375, 171, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		btnNewButton_1.setBounds(401, 492, 95, 23);
+		frame.getContentPane().add(btnNewButton_1);
 		table.getColumnModel().getColumn(5).setPreferredWidth(93);
 		
 		

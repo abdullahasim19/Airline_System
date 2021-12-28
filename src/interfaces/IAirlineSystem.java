@@ -2,6 +2,7 @@ package interfaces;
 
 import javax.swing.JTable;
 
+
 import classes.Customer;
 import classes.Person;
 
@@ -17,4 +18,7 @@ public interface IAirlineSystem {
 	public void editUserDetail();
 	public void bookingTrip();
 	public void getAirportInfo();
+	
+	public void DisplayTrips(JTable table);
+	public void viewHistory(String username, JTable table);
 }

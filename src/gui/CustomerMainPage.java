@@ -93,7 +93,7 @@ public class CustomerMainPage {
 		ProfileMenu.add(Viewhistory);
 		Viewhistory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewHistoryCustomer h=new ViewHistoryCustomer();
+				ViewHistoryCustomer h=new ViewHistoryCustomer(customer);
 				h.setVisible(true);
 				
 			}
@@ -134,8 +134,8 @@ public class CustomerMainPage {
 		BookTrip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//BookingPage b =new BookingPage();
-				//b.setVisible(true);
+				BookingPage b =new BookingPage();
+				b.setVisible(true);
 				
 			}
 		});

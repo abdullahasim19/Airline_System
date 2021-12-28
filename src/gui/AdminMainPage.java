@@ -72,8 +72,8 @@ public class AdminMainPage {
 		customerMenu.add(ViewCustomer);
 		ViewCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewAllCustomers v=new ViewAllCustomers();
-				v.setVisible(true);
+				//ViewAllCustomers v=new ViewAllCustomers();
+				//v.setVisible(true);
 			}
 		});
 		
@@ -146,8 +146,8 @@ public class AdminMainPage {
 		JButton ViewAllCustomer = new JButton("View All Customers");
 		ViewAllCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ViewAllCustomers v=new ViewAllCustomers();
-				v.setVisible(true);
+//				ViewAllCustomers v=new ViewAllCustomers();
+//				v.setVisible(true);
 			}
 		});
 		ViewAllCustomer.setFont(new Font("Tahoma", Font.BOLD, 18));

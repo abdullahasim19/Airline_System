@@ -2,6 +2,7 @@ package classes;
 
 import java.sql.SQLException;
 
+
 import javax.swing.JTable;
 
 import interfaces.IAirlineSystem;
@@ -150,14 +151,42 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	public void getAirportInfo() {
 		
 	}
+
+
+	@Override
+	public void viewHistory(String username, JTable table) {
+		try {
+			database d=new database();
+			d.viewHistory(username, table);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void DisplayTrips(JTable table) {
+		try {
+			database d=new database();
+			d.DisplayTrips(table);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	
 	
 	
 
-	@Override
+	
 	public void signup() {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 

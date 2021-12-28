@@ -45,10 +45,10 @@ public class GUI implements IGUI{
 	}
 	
 	@Override
-	public void displayTrips(JTable table) {
-		this.arlineSystem.displayTrips(table);
-		
-	}
+//	public void displayTrips(JTable table) {
+//		this.arlineSystem.displayTrips(table);
+//		
+//	}
 
 	
 	
@@ -88,7 +88,28 @@ public class GUI implements IGUI{
 
 
 
+	
+	public void displayTrips(JTable table) {
+		try {
+			Airline d=new Airline();
+			d.DisplayTrips(table);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 	@Override
+	public void viewHistory(String username, JTable table) {
+		try {
+			Airline d=new Airline();
+			d.viewHistory(username, table);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void OpenFrontPage() {
 		// TODO Auto-generated method stub
 		FrontPage fp=new FrontPage();
