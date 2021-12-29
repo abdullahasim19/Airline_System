@@ -264,13 +264,26 @@ public class database implements IDatabase{
 	}
 	
 	
+	public void addAirport(Airport a) throws SQLException
+	{
+		Statement st = con.createStatement(); 
+		st.executeUpdate("insert into Airport values(\"" + a.getAirportId() + "\", \""+ a.getCountry()  +"\", \""+ a.getCity() +"\");");
+	}
+	
 	public void removePlane(Planes p) throws SQLException
 	{
 		Statement st = con.createStatement(); 
 		st.executeUpdate("delete from Plane where planeID="+ p.getPlaneID() + ";");
 		
-		System.out.println("delete from Plane where planeID="+ String.valueOf(p.getPlaneID()) + ";");
+		//System.out.println("delete from Plane where planeID="+ String.valueOf(p.getPlaneID()) + ";");
 		
 	}
+	
+	
+	public void AddGeneralPlane()
+	{
+		
+	}
+	
 	
 }

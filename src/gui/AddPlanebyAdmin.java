@@ -9,8 +9,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+
+import classes.GUI;
+
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -221,7 +225,19 @@ public class AddPlanebyAdmin {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				
+				if(planetype.getSelectedItem().equals("General"))
+				{
+					GUI g = new GUI();
+					g.addGeneralPlane(planeid.getText(),Pname.getText(),capacity.getToolTipText(),FirstClassCap.getToolTipText(), businesClassCap.getToolTipText(),EconomicCap.getToolTipText());
+				}
+				else if(planetype.getSelectedItem().equals("Private"))
+				{
+					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Someting went wrong","Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}
 		});

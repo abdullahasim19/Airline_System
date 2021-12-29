@@ -23,8 +23,4 @@ public class Planes implements IPlane{
 	public void setPlaneName(String planeName) {
 		this.planeName = planeName;
 	}
-	public void setPlaneID(String text) {
-		// TODO Auto-generated method stub
-		
-	}
 }

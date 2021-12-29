@@ -2,7 +2,7 @@ package interfaces;
 
 import javax.swing.JTable;
 
-
+import classes.Airport;
 import classes.Customer;
 import classes.Person;
 import classes.Planes;
@@ -25,4 +25,7 @@ public interface IAirlineSystem {
 	public void fillPlaneTable(JTable table);
 	
 	public boolean removePlane(Planes p);
+	public boolean addAirport(String aid, String country, String city);
+	
+	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap);
 }

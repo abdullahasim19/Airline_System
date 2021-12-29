@@ -113,15 +113,27 @@ public class RemovePlane {
 				else
 				{
 					Planes p=new Planes();
-					p.setPlaneID(String.valueOf(PlaneID.getText()));
 					
-					System.out.println(p.getPlaneID());
+					p.setPlaneID(Integer.parseInt(PlaneID.getText()));
+					
+					//System.out.println(p.getPlaneID());
 					
 					GUI g = new GUI();
 					boolean b = g.removePlane(p);
 					if(b)
 					{
 						JOptionPane.showMessageDialog(null, "Plane removed successfully","Done", JOptionPane.INFORMATION_MESSAGE);
+						
+						DefaultTableModel dm = (DefaultTableModel)table.getModel();
+						while(dm.getRowCount() > 0)
+						{
+						    dm.removeRow(0);
+						}
+						
+						
+						
+						GUI g1=new GUI();
+						g1.fillPlaneTable(table);
 						return;
 					}
 					else
@@ -136,4 +148,12 @@ public class RemovePlane {
 		remove.setBounds(81, 304, 89, 23);
 		frame.getContentPane().add(remove);
 	}
+	
+	
+	
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		frame.setVisible(b);
+	}
+
 }

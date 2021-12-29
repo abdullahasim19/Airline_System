@@ -28,6 +28,7 @@ public boolean userLoginButton(Customer c);
 	public void displayAllCustomers(JTable table);
 	
 	public boolean removePlane(Planes p);
+	public boolean addAirportButton(String aid, String country, String city);
 	
-
+	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap);
 }

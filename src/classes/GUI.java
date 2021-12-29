@@ -50,6 +50,16 @@ public class GUI implements IGUI{
 		this.arlineSystem.fillPlaneTable(table);
 	}
 	
+	public boolean addAirportButton(String aid, String country, String city)
+	{
+		return this.arlineSystem.addAirport(aid,country,city);
+	}
+
+	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap)
+	{
+		return false;
+		
+	}
 	
 	public boolean removePlane(Planes p)
 	{
