@@ -2,7 +2,7 @@ package classes;
 
 import interfaces.IPlane;
 
-abstract public class Planes implements IPlane{
+public class Planes implements IPlane{
 	private int planeID;
 	private String planeName;
 	public void fuelLimit() {
@@ -22,5 +22,9 @@ abstract public class Planes implements IPlane{
 	}
 	public void setPlaneName(String planeName) {
 		this.planeName = planeName;
+	}
+	public void setPlaneID(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 }

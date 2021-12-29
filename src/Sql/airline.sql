@@ -51,7 +51,10 @@ insert into Customer Values("sallahudin","Sallahudin Awan", "M","2001-01-07","03
 insert into Customer Values("amina","Amina Qaiser", "F"," 2000-12-26","03334567890","Lahore");
 insert into Customer Values("seemal","Seemal Arif", "F","2001-10-30","03045852597","Lahore");
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31f5468994705c51b206d971991ebdda181000a
 
 #select * from Customer;
 select * from User;
@@ -80,6 +83,10 @@ create table Plane
 	FOREIGN KEY(airportID) REFERENCES Airport(airportID) on delete cascade
 );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e31f5468994705c51b206d971991ebdda181000a
 create table History
 (
 	username varchar(50),
@@ -147,7 +154,10 @@ create table PrivatePlane
    planeID int,
    FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31f5468994705c51b206d971991ebdda181000a
 
 insert into PrivatePlane Values (1);
 insert into PrivatePlane Values (2);
@@ -164,7 +174,10 @@ create table GeneralPlane
    FirstClassSeatsCount int
 );
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e31f5468994705c51b206d971991ebdda181000a
 
 insert into GeneralPlane Values (4,200,50,100,50);
 insert into GeneralPlane Values (3,350,50,200,100);
@@ -302,7 +315,7 @@ create table Feedback
 );
 
 
-<<<<<<< HEAD
+
 
 select b.bookingID, c.fullName,f.departure ,f.destination  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID
 join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID 

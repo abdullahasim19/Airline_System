@@ -1,11 +1,18 @@
 package interfaces;
 
 public interface IAirport {
-	public void addPlane();
-	
-	public void removePlane() ;
-	
-	public void viewPlanes();
 	
 	public void viewInfo() ;
+	
+	public String getAirportId();
+
+	public void setAirportId(String airportId);
+
+	public String getCountry();
+
+	public void setCountry(String country);
+
+	public String getCity();
+
+	public void setCity(String city);
 }

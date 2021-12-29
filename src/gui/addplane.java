@@ -62,6 +62,7 @@ public class addplane {
 		lblNewLabel.setBounds(148, 11, 105, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
+		
 		String []types= {"Private","General"};
 		JComboBox planetype = new JComboBox(types);
 		planetype.setForeground(Color.BLUE);
