@@ -1,8 +1,9 @@
 package classes;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
-
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 import interfaces.IAirlineSystem;
@@ -12,6 +13,13 @@ import interfaces.IEditDetails;
 import interfaces.IRegistration;
 
 public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBookingFunction, IAirportFunction{
+	private Airport airport=new Airport();
+	private Booking booking= new Booking();
+	private Planes plane = new Planes();
+	//private Package packag = new Package();
+	private Customer customer = new Customer();
+	//private Trip trip = new Trip();
+
 	public boolean AdminLogin(Person p)
 	{
 		try {
@@ -203,9 +211,86 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	}
 	
 
+	public boolean addAirport(String aid, String country, String city)
+	{
+		airport.setAirportId(aid);
+		airport.setCountry(country);
+		airport.setCity(city);
+		
+		try {
+			database d=new database();
+			d.addAirport(airport);
+			return true;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
+	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap)
+	{
+		return true;
+	}
 	
 	public void signup() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComboBoxes(JComboBox tripid) {
+		database d;
+		try {
+			d = new database();
+			d.setComboBoxes(tripid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public boolean checkSeats(int s,int trip) {
+		try {
+			database d=new database();
+			return d.checkSeats(s, trip);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+
+	@Override
+	public int getFlightID(int plane) {
+		try {
+			database d=new database();
+			return d.getFlightID(plane);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return -1;
+		}
+		
+	}
+
+	@Override
+	public void BookTrip(String bookingID, String username, int seats, String seatType, int packageID,int tripID, int flightID,
+			String bookingdate, String time) {
+		try {
+			database d=new database();
+			d.BookTrip(bookingID, username, seats, seatType, tripID,packageID, flightID, bookingdate, time);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

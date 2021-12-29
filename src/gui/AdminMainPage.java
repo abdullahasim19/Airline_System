@@ -105,8 +105,16 @@ public class AdminMainPage {
 			}
 		});
 		
-		JMenuItem RemovePlane = new JMenuItem("Remove Plane");
-		PlanesMenu.add(RemovePlane);
+		JMenuItem RemovePlanes = new JMenuItem("Remove Plane");
+		PlanesMenu.add(RemovePlanes);
+		RemovePlanes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				RemovePlane ap=new RemovePlane();
+				ap.setVisible(true);
+				
+			}
+		});
 		
 		JMenuItem AssignCap = new JMenuItem("Assign Captian");
 		PlanesMenu.add(AssignCap);

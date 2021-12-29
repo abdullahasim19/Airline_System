@@ -3,12 +3,16 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
+
+import classes.GUI;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,7 +23,7 @@ import java.awt.event.ActionEvent;
 public class AddAirportAdmin {
 
 	private JFrame frame;
-	private JTextField textField;
+	private JTextField AirportID;
 
 	/**
 	 * Launch the application.
@@ -62,49 +66,33 @@ public class AddAirportAdmin {
 		
 		JLabel lblNewLabel_1 = new JLabel("Country");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel_1.setBounds(101, 172, 105, 60);
+		lblNewLabel_1.setBounds(101, 271, 105, 60);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JComboBox<String> countries = new JComboBox<String>();
 		
 		
 		countries.setModel(new DefaultComboBoxModel<String>(new String[] { "","Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States", ""}));
-		countries.setBounds(271, 196, 218, 22);
+		countries.setBounds(271, 295, 218, 22);
 		frame.getContentPane().add(countries);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("City");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel_1_1.setBounds(101, 243, 105, 60);
+		lblNewLabel_1_1.setBounds(101, 330, 105, 60);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		JComboBox<String> city = new JComboBox<String>();
-		city.setBounds(271, 267, 218, 22);
+		city.setBounds(271, 354, 218, 22);
 		frame.getContentPane().add(city);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Airport Name");
-		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel_1_1_1.setBounds(101, 314, 160, 60);
-		frame.getContentPane().add(lblNewLabel_1_1_1);
-		
-		textField = new JTextField();
-		textField.setBounds(271, 339, 218, 20);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
 		JButton add = new JButton("Add");
-		add.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// more code needed
-				frame.dispose();
-				
-			}
-		});
+
 		add.setIcon(new ImageIcon(AddAirportAdmin.class.getResource("/imgs/add.png")));
 		add.setFont(new Font("Tahoma", Font.BOLD, 18));
 		add.setBounds(407, 427, 125, 45);
 		frame.getContentPane().add(add);
 		
-		JButton cancel = new JButton("Cancel");
+		JButton cancel = new JButton("Back");
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -115,6 +103,16 @@ public class AddAirportAdmin {
 		cancel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		cancel.setBounds(59, 427, 170, 45);
 		frame.getContentPane().add(cancel);
+		
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Airport ID");
+		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblNewLabel_1_1_1_1.setBounds(101, 200, 160, 60);
+		frame.getContentPane().add(lblNewLabel_1_1_1_1);
+		
+		AirportID = new JTextField();
+		AirportID.setColumns(10);
+		AirportID.setBounds(271, 225, 218, 20);
+		frame.getContentPane().add(AirportID);
 	
 		
 		
@@ -219,6 +217,28 @@ public class AddAirportAdmin {
 			}
 		});
 		
+		
+		
+		
+		add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// more code needed
+				
+				GUI g=new GUI();
+				boolean b = g.addAirportButton(AirportID.getText(),(String) countries.getSelectedItem(),(String)city.getSelectedItem());
+				if(b)
+				{
+					JOptionPane.showMessageDialog(null, "Airport added successfully","Done", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Someting went wrong","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
+				
+			}
+		});
 	}
 	
 	

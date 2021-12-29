@@ -1,4 +1,7 @@
 package interfaces;
+import java.sql.Date;
+
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 import classes.Customer;
@@ -28,6 +31,16 @@ public boolean userLoginButton(Customer c);
 	public void displayAllCustomers(JTable table);
 	
 	public boolean removePlane(Planes p);
+
 	public void viewProfile();
 
+	public void setComboBoxes(JComboBox tripid);
+	
+	public boolean addAirportButton(String aid, String country, String city);
+	
+	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap);
+	
+	public boolean checkSeats(int s,int trip);
+	public int getFlightID(int plane);
+	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time);
 }

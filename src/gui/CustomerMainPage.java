@@ -134,7 +134,7 @@ public class CustomerMainPage {
 		BookTrip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				BookingPage b =new BookingPage();
+				BookingPage b =new BookingPage(customer);
 				b.setVisible(true);
 				
 			}

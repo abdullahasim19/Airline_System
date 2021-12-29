@@ -1,5 +1,8 @@
 package classes;
 
+import java.sql.Date;
+
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 
 import gui.FrontPage;
@@ -50,6 +53,16 @@ public class GUI implements IGUI{
 		this.arlineSystem.fillPlaneTable(table);
 	}
 	
+	public boolean addAirportButton(String aid, String country, String city)
+	{
+		return this.arlineSystem.addAirport(aid,country,city);
+	}
+
+	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap)
+	{
+		return false;
+		
+	}
 	
 	public boolean removePlane(Planes p)
 	{
@@ -119,5 +132,36 @@ public class GUI implements IGUI{
 		FrontPage fp=new FrontPage();
 		fp.setVisible(true);
 	}
-	
+
+	@Override
+	public void viewProfile() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setComboBoxes(JComboBox tripid) {
+		Airline a= new Airline();
+		a.setComboBoxes(tripid);
+	}
+
+	@Override
+	public boolean checkSeats(int s,int trip) {
+		Airline a = new Airline();
+		return a.checkSeats(s, trip);
+		
+	}
+
+	@Override
+	public int getFlightID(int plane) {
+		Airline a =new Airline();
+		return a.getFlightID(plane);
+	}
+	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time)
+	{
+		
+		Airline a=new Airline();
+		a.BookTrip(bookingID, username, seats, seatType, tripID,packageID, flightID, bookingdate, time);
+		
+	}
 }

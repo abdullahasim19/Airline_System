@@ -1,6 +1,7 @@
 package classes;
 import java.sql.*;
 
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -242,7 +243,85 @@ public class database implements IDatabase{
 			e1.printStackTrace();
 		}
 	}
+	public boolean checkSeats(int s,int trip) {
+		
+		
+		try {
+			PreparedStatement ps=con.prepareStatement("select availableseats from Trip where tripID= ?");
+			ps.setInt(1, trip);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next())
+			{
+			int check=rs.getInt("availableseats");
+			//System.out.print(check);
+			if(check-s>0)
+				return true;
+			}
+			return false;
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	public int getFlightID(int planeid) {
+		
+		try {
+			PreparedStatement pp=con.prepareStatement("select planeID from Trip where tripID= ? ");
+			pp.setInt(1, planeid);
+			ResultSet rs1=pp.executeQuery();
+			int pid=0;
+			if(rs1.next())
+				pid=rs1.getInt("planeID");
+			
+			PreparedStatement ps=con.prepareStatement("select flightID from Flight join Trip on Flight.planeID=Trip.planeID where Trip.planeID= ?;");
+			ps.setInt(1, pid);
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				int ID=rs.getInt("flightID");
+				return ID;
+			}
+			return -1;
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			return -1;
+		}
+	
+	}
+	
+	@Override
+	public void setComboBoxes(JComboBox tripid) {
+		// TODO Auto-generated method stub
+		try {
+			
+			//Class.forName("com.mysql.cj.jdbc.Driver");
+			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+			Statement st=con.createStatement();
+			PreparedStatement ps=con.prepareStatement("select Trip.tripID from Trip join Flight on Trip.planeID=Flight.planeID;");
+			
+			
+			//ResultSet rs=st.executeQuery("select *from User");
+			ResultSet rs=ps.executeQuery();
+			int i=0;
+			while(rs.next())
+			{
+				
 
+				int ID=rs.getInt("tripID");
+				tripid.insertItemAt(ID, i);
+				
+				i++;
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	public void fillCustomerTable(JTable table) throws SQLException
 	{
 		Statement st = con.createStatement();
@@ -264,13 +343,58 @@ public class database implements IDatabase{
 	}
 	
 	
+	public void addAirport(Airport a) throws SQLException
+	{
+		Statement st = con.createStatement(); 
+		st.executeUpdate("insert into Airport values(\"" + a.getAirportId() + "\", \""+ a.getCountry()  +"\", \""+ a.getCity() +"\");");
+	}
+	
 	public void removePlane(Planes p) throws SQLException
 	{
 		Statement st = con.createStatement(); 
 		st.executeUpdate("delete from Plane where planeID="+ p.getPlaneID() + ";");
 		
-		System.out.println("delete from Plane where planeID="+ String.valueOf(p.getPlaneID()) + ";");
+		//System.out.println("delete from Plane where planeID="+ String.valueOf(p.getPlaneID()) + ";");
 		
 	}
+	
+	
+	public void AddGeneralPlane()
+	{
+		
+	}
+
+	
+	
+
+	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time)
+	{
+		
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("insert into Booking values(?,?,?,?,?,?,?,?,?);");
+			ps.setString(1, bookingID);
+			ps.setString(2,username);
+			ps.setInt(3, seats);
+			ps.setString(4, seatType);
+			ps.setInt(5, packageID);
+			ps.setInt(6, tripID);
+			ps.setInt(7, flightID);
+			ps.setString(8, bookingdate);
+			ps.setString(9, time);
+			int x=ps.executeUpdate();
+			if(x>0)
+				System.out.println("Done");
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+	}
+	
+
+	
+	
 	
 }

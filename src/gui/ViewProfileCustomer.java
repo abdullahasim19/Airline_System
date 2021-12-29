@@ -68,12 +68,12 @@ public class ViewProfileCustomer {
 		frame.getContentPane().add(Name);
 		Name.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Name");
+		JLabel lblNewLabel_1 = new JLabel("User Name");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel_1.setBounds(138, 213, 66, 20);
+		lblNewLabel_1.setBounds(120, 213, 109, 20);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Father Name");
+		JLabel lblNewLabel_1_1 = new JLabel("Full Name");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblNewLabel_1_1.setBounds(383, 213, 126, 20);
 		frame.getContentPane().add(lblNewLabel_1_1);

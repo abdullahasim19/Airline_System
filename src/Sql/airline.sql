@@ -51,10 +51,9 @@ insert into Customer Values("sallahudin","Sallahudin Awan", "M","2001-01-07","03
 insert into Customer Values("amina","Amina Qaiser", "F"," 2000-12-26","03334567890","Lahore");
 insert into Customer Values("seemal","Seemal Arif", "F","2001-10-30","03045852597","Lahore");
 
-<<<<<<< HEAD
 
-=======
->>>>>>> e31f5468994705c51b206d971991ebdda181000a
+
+
 
 #select * from Customer;
 select * from User;
@@ -83,10 +82,7 @@ create table Plane
 	FOREIGN KEY(airportID) REFERENCES Airport(airportID) on delete cascade
 );
 
-<<<<<<< HEAD
-=======
 
->>>>>>> e31f5468994705c51b206d971991ebdda181000a
 create table History
 (
 	username varchar(50),
@@ -120,6 +116,9 @@ insert into Flight values(100,123,12,'2021-4-7','karachi','10:12:12');
 select Trip.tripID,Trip.departure,Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats from Trip join Flight on Trip.planeID=Flight.planeID;
 
 select * from Trip join Flight on Trip.planeID=Flight.planeID;
+select * from Booking;
+alter table Booking add column BookingDate date;
+alter table Booking add column BookingTime time;
 
 insert into Plane Values (1,"Shaheen","90001");
 insert into Plane Values (2,"PIA","90001");
@@ -141,7 +140,10 @@ create table Flight
     destination varchar(50),
     flightTime time 
 );
-
+select * from Flight;
+select * from Booking;
+select * from Trip;
+select flightID from Flight join Trip on Flight.planeID=Trip.planeID where Trip.planeID=123;
 
 insert into Flight Values ('F-00001',1,'90001','2022-01-01','Jakarta','2:05:00');
 insert into Flight Values ('F-00002',2,'90004','2022-01-02','Mount Everest','18:30:00');
@@ -154,10 +156,7 @@ create table PrivatePlane
    planeID int,
    FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade
 );
-<<<<<<< HEAD
 
-=======
->>>>>>> e31f5468994705c51b206d971991ebdda181000a
 
 insert into PrivatePlane Values (1);
 insert into PrivatePlane Values (2);
@@ -174,10 +173,7 @@ create table GeneralPlane
    FirstClassSeatsCount int
 );
 
-<<<<<<< HEAD
 
-=======
->>>>>>> e31f5468994705c51b206d971991ebdda181000a
 
 insert into GeneralPlane Values (4,200,50,100,50);
 insert into GeneralPlane Values (3,350,50,200,100);
@@ -274,6 +270,7 @@ create Table SingleTrip
 );
 
 
+select * from Flight;
 insert into SingleTrip Values (1000);
 insert into SingleTrip Values (1002);
 
@@ -324,7 +321,6 @@ join Trip t on t.tripID=b.tripID join Flight f on f.flightID=b.flightID;
 select b.bookingID, c.fullName,ar.country ,f.destination, pp.packageID, b.seatsCount, f.flightdate  from Booking b 
 join Customer c on b.username=c.username  
 left join Packages pp on pp.packageID=b.packageID 
-left join Packages pp on pp.packageID=b.packageID  
 left join Trip t on t.tripID=b.tripID 
 join Flight f on f.flightID=b.flightID
 join Airport ar on ar.airportID=f.airportID; 
