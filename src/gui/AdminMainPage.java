@@ -119,9 +119,6 @@ public class AdminMainPage {
 		JMenuItem AssignCap = new JMenuItem("Assign Captian");
 		PlanesMenu.add(AssignCap);
 		
-		JMenuItem EditPlane = new JMenuItem("Edit Plane Details");
-		PlanesMenu.add(EditPlane);
-		
 		JMenu CaptainMenu = new JMenu("Captain");
 		menuBar.add(CaptainMenu);
 		

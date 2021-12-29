@@ -27,5 +27,13 @@ public interface IAirlineSystem {
 	public boolean removePlane(Planes p);
 	public boolean addAirport(String aid, String country, String city);
 	
-	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap);
+	public boolean addGeneralPlane(String planeId,String pname,int cap,int fclassCap, int businesClassCap,int econCap);
+	
+	public boolean addPrivatePlane(String planeId,String pname);
+	
+	public void fillAirportTable(JTable table,String country);
+	
+	public void fillPlaneTable(JTable table, String aid);
+	
+	public boolean AddFlight(String fid, String aid1, String aid2, String da, String dest, String time);
 }

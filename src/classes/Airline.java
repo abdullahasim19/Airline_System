@@ -18,6 +18,7 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	//private Package packag = new Package();
 	private Customer customer = new Customer();
 	//private Trip trip = new Trip();
+	private Flight flight=new Flight();
 
 	public boolean AdminLogin(Person p)
 	{
@@ -231,17 +232,119 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	}
 	
 	
-	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap)
+	public boolean addGeneralPlane(String planeId,String pname,int cap,int fclassCap, int businesClassCap,int econCap)
 	{
+		General pl=new General();
+		
+		pl.setPlaneID(Integer.valueOf(planeId));
+		pl.setPlaneName(pname);
+		pl.setTotalSeatsCount(cap);
+		pl.setBusinessClass(businesClassCap);
+		pl.setEconomicClass(econCap);
+		pl.setFirstClass(fclassCap);
+		
+		try {
+			database d=new database();
+			d.AddGeneralPlane(pl);
+			return true;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return false;
+	}
+	
+	public boolean addPrivatePlane(String planeId,String pname)
+	{
+		Private pl=new Private();
+		
+		pl.setPlaneID(Integer.valueOf(planeId));
+		pl.setPlaneName(pname);
+		
+		try {
+			database d=new database();
+			d.addPrivatePlane(pl);
+			return true;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return true;
 	}
+	
 	
 	public void signup() {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	public void fillAirportTable(JTable table,String country)
+	{
+		try {
+			database d=new database();
+			d.fillAirportTable(table, country);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
+	
+	public void fillPlaneTable(JTable table, String aid)
+	{
+		try {
+			database d=new database();
+			d.fillPlaneTable(table, aid);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
+	
+	public boolean AddFlight(String fid, String aid1, String aid2, String da, String dest, String time)
+	{
+		flight.getAirport().setAirportId(aid2);
+		flight.getPlane().setPlaneID(Integer.valueOf(aid1));
+		flight.setFlightid(fid);
+		flight.setDate(da);
+		flight.setDestination(dest);
+		flight.setTime(time);
+		
+		try {
+			database d=new database();
+			d.AddFlight(flight);
+			return true;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return false;
+		
+	}
 
 
 }

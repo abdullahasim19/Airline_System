@@ -70,6 +70,7 @@ insert into Airport Values("90004","India","Banglore");
 insert into Airport Values("90005","Germany","Barlin");
 insert into Airport Values("90006","Italy","Rome");
 
+select * from Airport;
 
 create table Plane
 (
@@ -122,6 +123,7 @@ insert into Plane Values (5,"Emirated","90001");
 insert into Plane Values (6,"Emirated","90002");
 insert into Plane Values (7,"Emirated","90004");
 
+select * from Plane;
 
 create table Flight
 (
@@ -151,7 +153,7 @@ create table PrivatePlane
 insert into PrivatePlane Values (1);
 insert into PrivatePlane Values (2);
 
-
+select * from PrivatePlane;
 
 create table GeneralPlane
 (
@@ -162,7 +164,7 @@ create table GeneralPlane
    EconomicCLassSeatsCount int,
    FirstClassSeatsCount int
 );
-
+select * from GeneralPlane;
 
 insert into GeneralPlane Values (4,200,50,100,50);
 insert into GeneralPlane Values (3,350,50,200,100);
@@ -317,5 +319,10 @@ join Airport ar on ar.airportID=f.airportID;
 
  
 
-
+create table Captain
+(
+	username varchar(50) not null,
+    FOREIGN KEY(username) REFERENCES User(username) on delete cascade,
+    CaptainName varchar(50)
+)
 

@@ -55,16 +55,32 @@ public class GUI implements IGUI{
 		return this.arlineSystem.addAirport(aid,country,city);
 	}
 
-	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap)
+	public boolean addGeneralPlane(String planeId,String pname,int cap,int fclassCap, int businesClassCap,int econCap)
 	{
-		return false;
 		
+		System.out.println(planeId);
+		
+		System.out.println(cap);
+		System.out.println(fclassCap);
+		System.out.println(businesClassCap);
+		System.out.println(econCap);
+		
+		return this.arlineSystem.addGeneralPlane(planeId, pname, cap, fclassCap, businesClassCap, econCap);
+		
+	}
+	
+	
+	public boolean addPrivatePlane(String planeId,String pname)
+	{
+		return this.arlineSystem.addPrivatePlane(planeId, pname);
 	}
 	
 	public boolean removePlane(Planes p)
 	{
 		return this.arlineSystem.removePlane(p);
 	}
+	
+	
 	
 	public void viewAllCustomers() {
 		
@@ -100,6 +116,11 @@ public class GUI implements IGUI{
 		
 	}
 
+	
+	public void fillAirportTable(JTable table,String country)
+	{
+		this.arlineSystem.fillAirportTable(table, country);
+	}
 
 
 	
@@ -128,6 +149,19 @@ public class GUI implements IGUI{
 		// TODO Auto-generated method stub
 		FrontPage fp=new FrontPage();
 		fp.setVisible(true);
+	}
+	
+	
+	public void fillPlaneTable(JTable table, String aid)
+	{
+		this.arlineSystem.fillPlaneTable(table, aid);
+	}
+	
+
+	public boolean AddFlight(String fid, String aid1, String aid2, String da, String dest, String time)
+	{
+		return this.arlineSystem.AddFlight(fid, aid1, aid2, da, dest, time);
+		 
 	}
 	
 }
