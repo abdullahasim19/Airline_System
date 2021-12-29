@@ -7,6 +7,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+
+import classes.Customer;
+import classes.GUI;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,13 +19,14 @@ import java.awt.Color;
 public class ViewProfileCustomer {
 
 	private JFrame frame;
-	private JTextField Name;
-	private JTextField FatherName;
+	private JTextField userName;
+	private JTextField fullName;
 	private JTextField Gender;
 	private JTextField DOB;
 	private JTextField Contact;
 	private JTextField Address;
 
+	Customer customer;
 	/**
 	 * Launch the application.
 	 */
@@ -44,6 +49,11 @@ public class ViewProfileCustomer {
 	public ViewProfileCustomer() {
 		initialize();
 	}
+	public ViewProfileCustomer(Customer c) {
+		customer=c;
+		initialize();
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -61,12 +71,12 @@ public class ViewProfileCustomer {
 		lblNewLabel.setBounds(95, 11, 443, 134);
 		frame.getContentPane().add(lblNewLabel);
 		
-		Name = new JTextField();
-		Name.setEditable(false);
-		Name.setEnabled(false);
-		Name.setBounds(95, 244, 141, 20);
-		frame.getContentPane().add(Name);
-		Name.setColumns(10);
+		userName = new JTextField();
+		userName.setEditable(false);
+		userName.setEnabled(false);
+		userName.setBounds(95, 244, 141, 20);
+		frame.getContentPane().add(userName);
+		userName.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("User Name");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -93,11 +103,11 @@ public class ViewProfileCustomer {
 		lblNewLabel_1_2_2.setBounds(138, 395, 82, 20);
 		frame.getContentPane().add(lblNewLabel_1_2_2);
 		
-		FatherName = new JTextField();
-		FatherName.setEnabled(false);
-		FatherName.setColumns(10);
-		FatherName.setBounds(371, 244, 141, 20);
-		frame.getContentPane().add(FatherName);
+		fullName = new JTextField();
+		fullName.setEnabled(false);
+		fullName.setColumns(10);
+		fullName.setBounds(371, 244, 141, 20);
+		frame.getContentPane().add(fullName);
 		
 		JLabel lblNewLabel_1_2_2_1 = new JLabel("Address");
 		lblNewLabel_1_2_2_1.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -139,6 +149,9 @@ public class ViewProfileCustomer {
 		Back.setFont(new Font("Tahoma", Font.BOLD, 14));
 		Back.setBounds(253, 494, 89, 23);
 		frame.getContentPane().add(Back);
+		
+		GUI g=new GUI();
+		g.viewDetails(userName, fullName, Gender, DOB, Contact, Address, customer.getUsername());
 	}
 	
 	

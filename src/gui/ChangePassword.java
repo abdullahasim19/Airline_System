@@ -3,8 +3,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JPasswordField;
+
+import classes.Customer;
+import classes.GUI;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -15,7 +21,7 @@ public class ChangePassword {
 	private JFrame frame;
 	private JPasswordField pass1;
 	private JPasswordField pass2;
-
+	Customer customer;
 	/**
 	 * Launch the application.
 	 */
@@ -36,6 +42,11 @@ public class ChangePassword {
 	 * Create the application.
 	 */
 	public ChangePassword() {
+		initialize();
+	}
+	
+	public ChangePassword(Customer c) {
+		this.customer=c;
 		initialize();
 	}
 
@@ -75,9 +86,16 @@ public class ChangePassword {
 		JButton Donebtn = new JButton("Done");
 		Donebtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				// more code need to be added
-				
+				String oldPass=new String(pass1.getPassword());
+				String newPass=new String(pass2.getPassword());
+				if(oldPass.equals(customer.getPassword())==false)
+				{
+					JOptionPane.showMessageDialog(null, "Please enter your correct old password");
+					return;
+				}
+				GUI g=new GUI();
+				g.ChangePassword(oldPass, newPass,customer.getUsername());
+				JOptionPane.showMessageDialog(null, "Password Changed Successfully");
 				frame.dispose();
 			}
 		});

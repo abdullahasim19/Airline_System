@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -10,12 +11,15 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
+
+import classes.GUI;
 
 public class AddFlightAdmin {
 
@@ -24,6 +28,7 @@ public class AddFlightAdmin {
 	private JTable table_1;
 	private JTextField aid;
 	private JTextField aid2;
+	private JTextField dest;
 
 	/**
 	 * Launch the application.
@@ -52,6 +57,7 @@ public class AddFlightAdmin {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 1100, 700);
@@ -85,7 +91,7 @@ public class AddFlightAdmin {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JComboBox<String> countries = new JComboBox<String>();
-		countries.setModel(new DefaultComboBoxModel<String>(new String[] {"Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States", ""}));
+		countries.setModel(new DefaultComboBoxModel(new String[] {"", "Australia", "France", "Germany", "India", "Italy", "Newzland", "Pakistan", "Spain", "United Kingdom", "United States"}));
 		countries.setBounds(538, 388, 134, 22);
 		frame.getContentPane().add(countries);
 		
@@ -111,7 +117,7 @@ public class AddFlightAdmin {
 			new Object[][] {
 			},
 			new String[] {
-				"Plane#", "Plane Name", "Plane Type"
+				"Plane#", "Plane Name"
 			}
 		));
 		table_1.setVisible(false);
@@ -158,25 +164,20 @@ public class AddFlightAdmin {
 		JComboBox<String> minutes = new JComboBox<String>();
 		minutes.setEnabled(false);
 		minutes.setModel(new DefaultComboBoxModel<String>(new String[] {"min", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59"}));
-		minutes.setBounds(124, 359, 52, 22);
+		minutes.setBounds(160, 359, 52, 22);
 		frame.getContentPane().add(minutes);
 		
 		JComboBox<String> hours = new JComboBox<String>();
 		hours.setEnabled(false);
-		hours.setModel(new DefaultComboBoxModel<String>(new String[] {"hour", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
-		hours.setBounds(60, 359, 54, 22);
+		hours.setModel(new DefaultComboBoxModel(new String[] {"hour", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+		hours.setBounds(79, 359, 54, 22);
 		frame.getContentPane().add(hours);
 		
-		JComboBox<String> am_pm = new JComboBox<String>();
-		am_pm.setEnabled(false);
-		am_pm.setModel(new DefaultComboBoxModel<String>(new String[] {"AM", "PM"}));
-		am_pm.setBounds(186, 359, 41, 22);
-		frame.getContentPane().add(am_pm);
-		
 		JButton done = new JButton("Done");
+
 		done.setFont(new Font("Tahoma", Font.BOLD, 18));
 		done.setEnabled(false);
-		done.setBounds(98, 459, 89, 22);
+		done.setBounds(98, 523, 89, 22);
 		frame.getContentPane().add(done);
 		
 		JButton Cancel = new JButton("Cancel");
@@ -188,6 +189,16 @@ public class AddFlightAdmin {
 		Cancel.setFont(new Font("Tahoma", Font.BOLD, 11));
 		Cancel.setBounds(490, 614, 89, 23);
 		frame.getContentPane().add(Cancel);
+		
+		dest = new JTextField();
+		dest.setBounds(72, 426, 140, 22);
+		frame.getContentPane().add(dest);
+		dest.setColumns(10);
+		
+		JLabel lblNewLabel_2_1_1_1 = new JLabel("Destination");
+		lblNewLabel_2_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_2_1_1_1.setBounds(79, 388, 100, 28);
+		frame.getContentPane().add(lblNewLabel_2_1_1_1);
 		GetPlanesList.setVisible(false);
 		
 		
@@ -195,11 +206,24 @@ public class AddFlightAdmin {
 			public void actionPerformed(ActionEvent e) {
 				// more code needed
 				
+				if(!countries.getSelectedItem().equals(""))
+				{
+					GUI g = new GUI();
+					g.fillAirportTable(table, (String)countries.getSelectedItem());
+					aid.setVisible(true);
+					GetPlanesList.setVisible(true);
+					aidlabel.setVisible(true);
+					table_1.setVisible(true);
+				}
+				else
+				{
+					aid.setVisible(false);
+					GetPlanesList.setVisible(false);
+					aidlabel.setVisible(false);
+					table_1.setVisible(false);
+				}
 				
-				aid.setVisible(true);
-				GetPlanesList.setVisible(true);
-				aidlabel.setVisible(true);
-				table_1.setVisible(true);
+				
 			}
 		});
 		
@@ -209,16 +233,73 @@ public class AddFlightAdmin {
 				/// more code needed
 				
 				
-				done.setEnabled(true);
-				minutes.setEnabled(true);
-				hours.setEnabled(true);
-				aid2.setEnabled(true);
-				Flightdate.setEnabled(true);
-				am_pm.setEnabled(true);
+				
+				
+				if(!aid.getText().equals(""))
+				{
+					GUI g = new GUI();
+					g.fillPlaneTable(table_1,aid.getText());
+					done.setEnabled(true);
+					minutes.setEnabled(true);
+					hours.setEnabled(true);
+					aid2.setEnabled(true);
+					Flightdate.setEnabled(true);
+					//am_pm.setEnabled(true);
+				}
+				else
+				{
+				
+					done.setEnabled(false);
+					minutes.setEnabled(false);
+					hours.setEnabled(false);
+					aid2.setEnabled(false);
+					Flightdate.setEnabled(false);
+					//am_pm.setEnabled(false);
+				}
+				
+				
+				
 				
 				
 			}
 		});
+		
+		
+		
+		done.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				int min = 10;
+			    int max = 100000;
+			        
+			    int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+				
+				GUI g = new GUI();
+				
+				String fid="F-00"+Integer.toString(random_int);
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String da = sdf.format(Flightdate.getDate());
+				
+				String ti= (String) hours.getSelectedItem() + ":" + (String) minutes.getSelectedItem() + ":00";
+				
+				boolean b  = g.AddFlight(fid,aid2.getText(),aid.getText(), da,dest.getText(),ti);
+				
+				if(b)
+				{
+					JOptionPane.showMessageDialog(null, "Flight Successfully Added","Done", JOptionPane.INFORMATION_MESSAGE);
+					frame.dispose();
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Something went wrong","Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
+			}
+		});
+		
 	}
 
 	

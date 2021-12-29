@@ -4,15 +4,28 @@ import classes.Airport;
 import classes.Planes;
 
 public interface IFlight {
-	public String getDestination();
-	public void setDestination(String destination);
-	public String getFlightTime();
-	public void setFlightTime(String flightTime);
-	public String getFlightDate();
-	public void setFlightDate(String flightDate);
+	public String getFlightid();
+
+	public void setFlightid(String flightid);
+
+	public Planes getPlane() ;
+
+	public void setPlane(Planes plane);
+
+	public String getDate();
+
+	public void setDate(String date);
+
 	public Airport getAirport();
+
 	public void setAirport(Airport airport);
-	public Planes getPlanes();
-	public void setPlanes(Planes planes);
+
+	public String getDestination();
+
+	public void setDestination(String destination);
+
+	public String getTime();
+	public void setTime(String time);
+	
 
 }

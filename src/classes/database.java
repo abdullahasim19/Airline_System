@@ -1,8 +1,10 @@
 package classes;
+import java.awt.Color;
 import java.sql.*;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import interfaces.IDatabase;
@@ -147,7 +149,7 @@ public class database implements IDatabase{
 	public void fillPlaneTable(JTable table) throws SQLException
 	{
 		Statement st = con.createStatement();
-		ResultSet rs=st.executeQuery("select * from Plane p join Airport a on a.airportID=p.airportID");
+		ResultSet rs=st.executeQuery("select * from Plane p left join Airport a on a.airportID=p.airportID");
 		
 		while(rs.next())
 		{
@@ -359,9 +361,11 @@ public class database implements IDatabase{
 	}
 	
 	
-	public void AddGeneralPlane()
+	public void AddGeneralPlane(General p)throws SQLException
 	{
-		
+		Statement st = con.createStatement(); 
+		st.executeUpdate("insert into Plane values (" + p.getPlaneID()+ ",\""+  p.getPlaneName() +"\", null );");
+		st.executeUpdate("insert into GeneralPlane values (" + p.getPlaneID()  + ", "+ p.getTotalSeatsCount()  + ","+ p.getBusinessClass() +","+ p.getEconomicClass() + ","+ p.getFirstClass() +");");
 	}
 
 	
@@ -396,5 +400,143 @@ public class database implements IDatabase{
 
 	
 	
+	
+	public void addPrivatePlane(Private p) throws SQLException
+	{
+		Statement st = con.createStatement(); 
+		st.executeUpdate("insert into Plane values (" + p.getPlaneID()+ ",\""+  p.getPlaneName() +"\", null );");
+		st.executeUpdate("insert into PrivatePlane values (" + p.getPlaneID() + ");");
+	}
+	
+	
+	
+	
+	public void fillAirportTable(JTable table, String coun) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select * from Airport where country=\"" + coun +"\";");
+		
+		while(rs.next())
+		{
+			
+			String id=rs.getString("airportID");
+			String country =rs.getString("country");
+			String city=rs.getString("city");
+
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{id,country,city});
+		}
+	}
+	
+	
+	public void fillPlaneTable(JTable table, String aid) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select * from Plane p join Airport a on a.airportID=p.airportID  where p.airportID=\"" + aid +"\";");
+		
+		while(rs.next())
+		{
+			
+			String id=rs.getString("planeID");
+			String fn=rs.getString("planeName");
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{id,fn});
+		}
+	}
+	
+	
+	public void AddFlight(Flight  f) throws SQLException
+	{
+		Statement st = con.createStatement(); 
+		
+		System.out.println("insert into Flight values (\"" + f.getFlightid() + "\","+ f.getPlane().getPlaneID()  + ",\""+ 
+		f.getAirport().getAirportId()  +"\",\""+ f.getDate()  + "\", \""+ f.getDestination() +"\", \""+f.getTime()  +"\");");
+		
+		st.executeUpdate("insert into Flight values (\"" + f.getFlightid() + "\","+ f.getPlane().getPlaneID()  + ",\""+ 
+		f.getAirport().getAirportId()  +"\",\""+ f.getDate()  + "\", \""+ f.getDestination() +"\", \""+f.getTime()  +"\");");
+	}
+
+	@Override
+	public void viewDetails(JTextField username, JTextField fullname, JTextField gender, JTextField dob,
+			JTextField contact, JTextField address,String ID) {
+		try {
+			PreparedStatement ps=con.prepareStatement("select * from Customer where username= ? ");
+			ps.setString(1, ID);
+			
+			
+			
+			
+			ResultSet rs=ps.executeQuery();
+			
+			if(rs.next())
+			{
+				username.setEnabled(true);
+				username.setText(rs.getString("username"));
+			
+				fullname.setEnabled(true);
+				fullname.setText(rs.getString("fullName"));
+				gender.setEnabled(true);
+				gender.setText(rs.getString("Gender"));
+				dob.setEnabled(true);
+				dob.setText((rs.getDate("dob").toString()));
+				contact.setEnabled(true);
+				contact.setText(rs.getString("contact"));
+				address.setEnabled(true);
+				address.setText(rs.getString("address"));
+			}
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+		
+	}
+
+	@Override
+	public void editDetails(String username, String fullname, String gender, String dob, String contact,
+			String address) {
+		
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("update Customer set fullName=? , Gender=?, dob=?, contact=?, address=? where username=? ");
+			ps.setString(1, fullname);
+			ps.setString(2, gender);
+			ps.setString(3, dob);
+			ps.setString(4, contact);
+			ps.setString(5, address);
+			ps.setString(6, username);
+			
+			int x=ps.executeUpdate();
+			if(x>0)
+				System.out.println("Done");
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+	}
+
+	@Override
+	public void ChangePassword(String oldPass, String newPass, String username) {
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("update User set password=? where username=? ");
+			ps.setString(1, newPass);
+			ps.setString(2, username);
+			
+			int x=ps.executeUpdate();
+			if(x>0)
+				System.out.println("Done");
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+		
+	}
 	
 }

@@ -3,6 +3,7 @@ import java.sql.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import classes.Customer;
 import classes.Person;
@@ -38,9 +39,19 @@ public boolean userLoginButton(Customer c);
 	
 	public boolean addAirportButton(String aid, String country, String city);
 	
+
 	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap);
 	
 	public boolean checkSeats(int s,int trip);
 	public int getFlightID(int plane);
 	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time);
+
+	public boolean addGeneralPlane(String planeId,String pname,int cap,int fclassCap, int businesClassCap,int econCap);
+	public boolean addPrivatePlane(String planeId,String pname);
+	public void fillAirportTable(JTable table,String country);
+	public void fillPlaneTable(JTable table, String aid);
+	public boolean AddFlight(String fid, String aid1, String aid2, String da, String dest, String time);
+	public void viewDetails(JTextField username, JTextField fullname,JTextField gender,JTextField dob,JTextField contact,JTextField address,String ID);
+	public void editDetails(String username, String fullname,String gender,String dob,String contact,String address);
+	public void ChangePassword(String oldPass,String newPass,String username);
 }

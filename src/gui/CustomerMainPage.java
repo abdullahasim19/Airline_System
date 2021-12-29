@@ -74,7 +74,7 @@ public class CustomerMainPage {
 		viewProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ViewProfileCustomer vp=new ViewProfileCustomer();
+				ViewProfileCustomer vp=new ViewProfileCustomer(customer);
 				vp.setVisible(true);
 			}
 		});
@@ -84,7 +84,7 @@ public class CustomerMainPage {
 		EditProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				EditCustomerProfile cp=new EditCustomerProfile();
+				EditCustomerProfile cp=new EditCustomerProfile(customer);
 				cp.setVisible(true);
 			}
 		});
@@ -103,7 +103,7 @@ public class CustomerMainPage {
 		ChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				ChangePassword cp=new ChangePassword();
+				ChangePassword cp=new ChangePassword(customer);
 				cp.setVisible(true);
 			}
 		});

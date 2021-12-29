@@ -11,13 +11,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.toedter.calendar.JDateChooser;
+
+import classes.Customer;
+import classes.GUI;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 
 public class EditCustomerProfile {
 
@@ -25,7 +31,7 @@ public class EditCustomerProfile {
 	private JTextField fname;
 	private JTextField contact;
 	private JTextField address;
-
+	private Customer customer;
 	/**
 	 * Launch the application.
 	 */
@@ -46,6 +52,11 @@ public class EditCustomerProfile {
 	 * Create the application.
 	 */
 	public EditCustomerProfile() {
+		initialize();
+	}
+	
+	public EditCustomerProfile(Customer c) {
+		this.customer=c;
 		initialize();
 	}
 
@@ -170,8 +181,19 @@ public class EditCustomerProfile {
 		JButton Confirm = new JButton("Confirm");
 		Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// more code is required
-				frame.dispose();
+				String gen="";
+				if(Male.isSelected())
+					gen="M";
+				else
+					gen="F";
+				
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String d = sdf.format(dateChooser.getDate());
+				GUI g=new GUI();
+				g.editDetails(customer.getUsername(), fname.getText(), gen, d, contact.getText(), address.getText());
+				JOptionPane.showMessageDialog(null, "Details Updated Successfully");
+				//frame.dispose();
 			}
 		});
 		Confirm.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -187,6 +209,8 @@ public class EditCustomerProfile {
 		Cancel.setFont(new Font("Tahoma", Font.BOLD, 18));
 		Cancel.setBounds(145, 519, 105, 32);
 		frame.getContentPane().add(Cancel);
+		
+		
 	}
 
 	

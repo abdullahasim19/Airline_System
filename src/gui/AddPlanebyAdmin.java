@@ -227,12 +227,51 @@ public class AddPlanebyAdmin {
 				
 				if(planetype.getSelectedItem().equals("General"))
 				{
+					
+					int total= (int) capacity.getValue();
+					int fclass= (int) FirstClassCap.getValue();
+					int bclass = (int) businesClassCap.getValue();
+					int eclass =(int) EconomicCap.getValue();
+					
+					//System.out.println(total);
+					
+					
+					
+					
+					if(total< fclass + bclass + eclass)
+					{
+						JOptionPane.showMessageDialog(null, "Seats type count exceeds total capacity","Error", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
+							
+					
 					GUI g = new GUI();
-					g.addGeneralPlane(planeid.getText(),Pname.getText(),capacity.getToolTipText(),FirstClassCap.getToolTipText(), businesClassCap.getToolTipText(),EconomicCap.getToolTipText());
+					boolean  b  = g.addGeneralPlane(planeid.getText(),Pname.getText(),total,fclass,bclass,eclass);
+				
+					if(b)
+					{
+						JOptionPane.showMessageDialog(null, "Plane added Successfully","Done", JOptionPane.INFORMATION_MESSAGE);
+						frame.dispose();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Someting went wrong","Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				else if(planetype.getSelectedItem().equals("Private"))
 				{
+					GUI g = new GUI();
+					boolean b = g.addPrivatePlane(planeid.getText(),Pname.getText());
 					
+					if(b)
+					{
+						JOptionPane.showMessageDialog(null, "Plane added Successfully","Done", JOptionPane.INFORMATION_MESSAGE);
+						frame.dispose();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Someting went wrong","Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 				else
 				{

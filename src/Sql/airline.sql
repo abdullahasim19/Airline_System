@@ -294,9 +294,9 @@ create table Booking
     FOREIGN KEY(flightID) REFERENCES Flight(flightID) on delete cascade
    
 );
-
-
-
+select *from Booking;
+select *from Customer;
+select *from Packages;
 insert into Booking values
 ("B-1001","amina",2,'E',null,null,"F-00001");
 
