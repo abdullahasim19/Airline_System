@@ -55,7 +55,7 @@ insert into Customer Values("seemal","Seemal Arif", "F","2001-10-30","0304585259
 
 
 
-#select * from Customer;
+select * from Customer;
 select * from User;
 
 create table Airport
