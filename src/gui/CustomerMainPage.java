@@ -21,6 +21,8 @@ import java.awt.CardLayout;
 import javax.swing.border.TitledBorder;
 
 import classes.Customer;
+import javax.swing.border.LineBorder;
+import javax.swing.JButton;
 
 public class CustomerMainPage {
 
@@ -50,17 +52,66 @@ public class CustomerMainPage {
 		frame.getContentPane().setBackground(new Color(204, 204, 255));
 		frame.getContentPane().setLayout(null);
 		
-		WelcomeLabel = new JLabel("Hi " + customer.getFullname());
+		WelcomeLabel = new JLabel("Welcome user  " + customer.getUsername());
 		WelcomeLabel.setIcon(new ImageIcon(CustomerMainPage.class.getResource("/imgs/hi.png")));
 		WelcomeLabel.setFont(new Font("Monospaced", Font.BOLD, 55));
-		WelcomeLabel.setBounds(86, 11, 546, 138);
+		WelcomeLabel.setBounds(67, 30, 1058, 213);
 		frame.getContentPane().add(WelcomeLabel);
 		
-		JLabel lblNewLabel = new JLabel("Hot Picks");
-		lblNewLabel.setFont(new Font("Lucida Sans Typewriter", Font.BOLD, 40));
-		lblNewLabel.setBounds(241, 150, 246, 71);
-		frame.getContentPane().add(lblNewLabel);
-		frame.setBounds(100, 100, 830, 590);
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 4, true));
+		panel.setBounds(214, 235, 690, 347);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("View Profile");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewProfileCustomer vp=new ViewProfileCustomer(customer);
+				vp.setVisible(true);
+			}
+		});
+		btnNewButton.setForeground(Color.BLUE);
+		btnNewButton.setBackground(Color.CYAN);
+		btnNewButton.setBounds(110, 86, 130, 40);
+		panel.add(btnNewButton);
+		
+		JButton btnEditDetails = new JButton("Edit Profile");
+		btnEditDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditCustomerProfile cp=new EditCustomerProfile(customer);
+				cp.setVisible(true);
+			}
+		});
+		btnEditDetails.setForeground(Color.BLUE);
+		btnEditDetails.setBackground(Color.CYAN);
+		btnEditDetails.setBounds(410, 86, 130, 40);
+		panel.add(btnEditDetails);
+		
+		JButton btnBookTrip = new JButton("Book Trip");
+		btnBookTrip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BookingPage b =new BookingPage(customer);
+				b.setVisible(true);
+			}
+		});
+		btnBookTrip.setForeground(Color.BLUE);
+		btnBookTrip.setBackground(Color.CYAN);
+		btnBookTrip.setBounds(110, 226, 130, 40);
+		panel.add(btnBookTrip);
+		
+		JButton btnChangePassword = new JButton("Change Password");
+		btnChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChangePassword cp=new ChangePassword(customer);
+				cp.setVisible(true);
+			}
+		});
+		btnChangePassword.setForeground(Color.BLUE);
+		btnChangePassword.setBackground(Color.CYAN);
+		btnChangePassword.setBounds(410, 226, 152, 40);
+		panel.add(btnChangePassword);
+		frame.setBounds(100, 100, 1170, 668);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -168,6 +219,4 @@ public class CustomerMainPage {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
 }

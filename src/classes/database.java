@@ -19,8 +19,8 @@ public class database implements IDatabase{
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
+			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
