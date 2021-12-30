@@ -52,10 +52,7 @@ insert into Customer Values("amina","Amina Qaiser", "F"," 2000-12-26","033345678
 insert into Customer Values("seemal","Seemal Arif", "F","2001-10-30","03045852597","Lahore");
 
 
-
-
-
-select * from Customer;
+#select * from Customer;
 select * from User;
 
 create table Airport
@@ -65,7 +62,6 @@ create table Airport
 	city varchar(50)
 );
 
-insert into Airport values (12,'Pakistan','Lahore');
 
 insert into Airport Values("90001","Pakistan","Lahore");
 insert into Airport Values("90002","France","Paris");
@@ -73,6 +69,7 @@ insert into Airport Values("90004","India","Banglore");
 insert into Airport Values("90005","Germany","Barlin");
 insert into Airport Values("90006","Italy","Rome");
 
+select * from Plane;
 
 create table Plane
 (
@@ -116,9 +113,6 @@ insert into Flight values(100,123,12,'2021-4-7','karachi','10:12:12');
 select Trip.tripID,Trip.departure,Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats from Trip join Flight on Trip.planeID=Flight.planeID;
 
 select * from Trip join Flight on Trip.planeID=Flight.planeID;
-select * from Booking;
-alter table Booking add column BookingDate date;
-alter table Booking add column BookingTime time;
 
 insert into Plane Values (1,"Shaheen","90001");
 insert into Plane Values (2,"PIA","90001");
@@ -128,6 +122,7 @@ insert into Plane Values (5,"Emirated","90001");
 insert into Plane Values (6,"Emirated","90002");
 insert into Plane Values (7,"Emirated","90004");
 
+select * from Flight;
 
 create table Flight
 (
@@ -140,10 +135,7 @@ create table Flight
     destination varchar(50),
     flightTime time 
 );
-select * from Flight;
-select * from Booking;
-select * from Trip;
-select flightID from Flight join Trip on Flight.planeID=Trip.planeID where Trip.planeID=123;
+
 
 insert into Flight Values ('F-00001',1,'90001','2022-01-01','Jakarta','2:05:00');
 insert into Flight Values ('F-00002',2,'90004','2022-01-02','Mount Everest','18:30:00');
@@ -157,11 +149,10 @@ create table PrivatePlane
    FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade
 );
 
-
 insert into PrivatePlane Values (1);
 insert into PrivatePlane Values (2);
 
-
+select * from PrivatePlane;
 
 create table GeneralPlane
 (
@@ -172,8 +163,7 @@ create table GeneralPlane
    EconomicCLassSeatsCount int,
    FirstClassSeatsCount int
 );
-
-
+select * from GeneralPlane;
 
 insert into GeneralPlane Values (4,200,50,100,50);
 insert into GeneralPlane Values (3,350,50,200,100);
@@ -270,7 +260,6 @@ create Table SingleTrip
 );
 
 
-select * from Flight;
 insert into SingleTrip Values (1000);
 insert into SingleTrip Values (1002);
 
@@ -294,9 +283,9 @@ create table Booking
     FOREIGN KEY(flightID) REFERENCES Flight(flightID) on delete cascade
    
 );
-select *from Booking;
-select *from Customer;
-select *from Packages;
+
+
+
 insert into Booking values
 ("B-1001","amina",2,'E',null,null,"F-00001");
 
@@ -321,6 +310,7 @@ join Trip t on t.tripID=b.tripID join Flight f on f.flightID=b.flightID;
 select b.bookingID, c.fullName,ar.country ,f.destination, pp.packageID, b.seatsCount, f.flightdate  from Booking b 
 join Customer c on b.username=c.username  
 left join Packages pp on pp.packageID=b.packageID 
+left join Packages pp on pp.packageID=b.packageID  
 left join Trip t on t.tripID=b.tripID 
 join Flight f on f.flightID=b.flightID
 join Airport ar on ar.airportID=f.airportID; 
@@ -328,5 +318,18 @@ join Airport ar on ar.airportID=f.airportID;
 
  
 
+create table Captain
+(
+	captainId varchar(30) not null primary key,
+	username varchar(50) not null,
+    FOREIGN KEY(username) REFERENCES User(username) on delete cascade,
+    CaptainName varchar(50),
+    age int,
+    gender varchar(2)
+);
 
+delete from Captain where captainId="Cap-00958032";
+
+
+select * from Captain;
 

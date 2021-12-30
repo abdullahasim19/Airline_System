@@ -21,6 +21,7 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	private Customer customer = new Customer();
 	//private Trip trip = new Trip();
 	private Flight flight=new Flight();
+	private Captain captain=new Captain();
 
 	public boolean AdminLogin(Person p)
 	{
@@ -446,6 +447,57 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 			e.printStackTrace();
 		}
 		
+		
+	}
+	
+	
+	
+	public boolean addCaptain(String username, String name, String age,String gender)
+	{
+		captain.setAge(Integer.valueOf(age));
+		captain.setUsername(username);
+		captain.setGender(gender);
+		captain.setCaptainname(name);
+		try {
+			database d=new database();
+			d.addCaptain(captain);
+			return true;
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+		
+	}
+	
+	public void fillCaptainTable(JTable table)
+	{
+		try {
+			database d=new database();
+			d.fillCaptainTable(table);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
+	
+	public boolean removeCaptain(String username, String captainID)
+	{
+		captain.setUsername(username);
+		captain.setCaptainID(captainID);
+		
+		try {
+			database d=new database();
+			d.removeCaptain(captain);
+			return true;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
 		
 	}
 

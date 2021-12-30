@@ -51,5 +51,11 @@ public interface IAirlineSystem {
 	public void viewDetails(JTextField username, JTextField fullname,JTextField gender,JTextField dob,JTextField contact,JTextField address,String ID);
 	public void editDetails(String username, String fullname,String gender,String dob,String contact,String address);
 	public void ChangePassword(String oldPass,String newPass,String username);
+	
+	public boolean addCaptain(String username, String name, String age,String gender);
+	
+	public void fillCaptainTable(JTable table);
+	
+	public boolean removeCaptain(String username, String captainID);
 
 }

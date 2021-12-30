@@ -19,8 +19,8 @@ public class database implements IDatabase{
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
-			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
+			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -450,9 +450,6 @@ public class database implements IDatabase{
 	{
 		Statement st = con.createStatement(); 
 		
-		System.out.println("insert into Flight values (\"" + f.getFlightid() + "\","+ f.getPlane().getPlaneID()  + ",\""+ 
-		f.getAirport().getAirportId()  +"\",\""+ f.getDate()  + "\", \""+ f.getDestination() +"\", \""+f.getTime()  +"\");");
-		
 		st.executeUpdate("insert into Flight values (\"" + f.getFlightid() + "\","+ f.getPlane().getPlaneID()  + ",\""+ 
 		f.getAirport().getAirportId()  +"\",\""+ f.getDate()  + "\", \""+ f.getDestination() +"\", \""+f.getTime()  +"\");");
 	}
@@ -535,6 +532,86 @@ public class database implements IDatabase{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			
+		}
+		
+	}
+	
+	
+	public void addCaptain(Captain captain) throws SQLException
+	{
+		Statement st = con.createStatement(); 
+		st.executeUpdate("insert into User values (\""+ captain.getUsername() + "\", null)");
+		
+		int min = 10;
+	    int max = 1000000;
+	        
+	    int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+		
+	    String capid="Cap-00"+Integer.toString(random_int);
+	    
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("insert into Captain values(?,?,?,?,?);");
+			ps.setString(1, capid);
+			ps.setString(2,captain.getUsername());
+			ps.setString(3, captain.getCaptainname());
+			ps.setInt(4, captain.getAge());
+			ps.setString(5, captain.getGender());
+			int x=ps.executeUpdate();
+			if(x>0)
+				System.out.println("Done");
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+	}
+	
+	
+	
+	public void removeCaptain(Captain captain)
+	{
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("delete from Captain where captainId=? and username=?");
+			ps.setString(1, captain.getCaptainID());
+			ps.setString(2, captain.getUsername());
+			
+			int x=ps.executeUpdate();
+			if(x>0)
+				System.out.println("Done");
+			
+			ps=con.prepareStatement("delete from User where username=?");
+			ps.setString(1, captain.getUsername());
+			x=ps.executeUpdate();
+			if(x>0)
+				System.out.println("Done");
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+	}
+	
+	
+	public void fillCaptainTable(JTable table)throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select * from Captain");
+		
+		while(rs.next())
+		{
+			
+			String capid=rs.getString("captainId");
+			String usr=rs.getString("username");
+			String name=rs.getString("CaptainName");
+			String age=rs.getString("age");
+			String gender=rs.getString("gender");
+			
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{capid,usr,name,age,gender});
 		}
 		
 	}

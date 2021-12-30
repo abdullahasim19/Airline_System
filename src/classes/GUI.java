@@ -163,27 +163,23 @@ public class GUI implements IGUI{
 
 	@Override
 	public void setComboBoxes(JComboBox tripid) {
-		Airline a= new Airline();
-		a.setComboBoxes(tripid);
+		this.arlineSystem.setComboBoxes(tripid);
 	}
 
 	@Override
 	public boolean checkSeats(int s,int trip) {
-		Airline a = new Airline();
-		return a.checkSeats(s, trip);
+		return this.arlineSystem.checkSeats(s, trip);
 		
 	}
 
 	@Override
 	public int getFlightID(int plane) {
-		Airline a =new Airline();
-		return a.getFlightID(plane);
+		return this.arlineSystem.getFlightID(plane);
 	}
 	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time)
 	{
 		
-		Airline a=new Airline();
-		a.BookTrip(bookingID, username, seats, seatType, tripID,packageID, flightID, bookingdate, time);
+		this.arlineSystem.BookTrip(bookingID, username, seats, seatType, tripID,packageID, flightID, bookingdate, time);
 		
 	}
 
@@ -210,24 +206,37 @@ public class GUI implements IGUI{
 	@Override
 	public void viewDetails(JTextField username, JTextField fullname, JTextField gender, JTextField dob,
 			JTextField contact, JTextField address,String ID) {
-		Airline a=new Airline();
-		a.viewDetails(username, fullname, gender, dob, contact, address, ID);
+		this.arlineSystem.viewDetails(username, fullname, gender, dob, contact, address, ID);
 		
 	}
 
 	@Override
 	public void editDetails(String username, String fullname, String gender, String dob, String contact,
 			String address) {
-		Airline a=new Airline();
-		a.editDetails(username, fullname, gender, dob, contact, address);
+		this.arlineSystem.editDetails(username, fullname, gender, dob, contact, address);
 		
 	}
 
 	@Override
 	public void ChangePassword(String oldPass, String newPass, String username) {
-		Airline a=new Airline();
-		a.ChangePassword(oldPass, newPass, username);
+		this.arlineSystem.ChangePassword(oldPass, newPass, username);
 		
+	}
+	
+	
+	public boolean addCaptain(String username, String name, String age,String gender)
+	{
+		return this.arlineSystem.addCaptain(username, name, age, gender);
+	}
+	
+	public void fillCaptainTable(JTable table)
+	{
+		this.arlineSystem.fillCaptainTable(table);
+	}
+	
+	public boolean removeCaptain(String username, String captainID)
+	{
+		return this.arlineSystem.removeCaptain(username, captainID);
 	}
 
 }

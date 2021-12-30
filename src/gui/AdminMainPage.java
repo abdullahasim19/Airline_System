@@ -124,13 +124,23 @@ public class AdminMainPage {
 		
 		JMenuItem AddCap = new JMenuItem("Add Captain");
 		CaptainMenu.add(AddCap);
+		AddCap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddCaptain ac=new AddCaptain();
+				ac.setVisible(true);
+			}
+		});
+		
+		
 		
 		JMenuItem RemoveCap = new JMenuItem("Remove Captain");
 		CaptainMenu.add(RemoveCap);
-		
-		JMenuItem EditCap = new JMenuItem("Edit Captain Details");
-		CaptainMenu.add(EditCap);
-		
+		RemoveCap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RemoveCaptain ac=new RemoveCaptain();
+				ac.setVisible(true);
+			}
+		});
 		
 		
 		JMenu flightmenu = new JMenu("Flights");
