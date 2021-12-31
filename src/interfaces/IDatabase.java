@@ -1,6 +1,7 @@
 package interfaces;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -8,6 +9,7 @@ import javax.swing.JTextField;
 
 import classes.Booking;
 import classes.Feedback;
+import classes.Trip;
 
 public interface IDatabase {
 	public void storeBookingTripDetails();
@@ -32,4 +34,7 @@ public interface IDatabase {
 	public void AddHistory(String username,int tripID);
 	public void showUserTrips(JComboBox trips,String username);
 	public void InsertFeedback(Feedback feedback);
+	public void fillFlightTable(JTable table)throws SQLException;
+	public boolean MergeFlighttoTrip(Trip trip, String type)throws SQLException;
+	public int getPlaneID(String fid) throws SQLException;
 }

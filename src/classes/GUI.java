@@ -299,6 +299,20 @@ public class GUI implements IGUI{
 		//System.out.println(flightid);
 		return this.arlineSystem.AssignCaptain(capid,flightid);
 	}
+	
+	public void fillFlightTable(JTable table)
+	{
+		this.arlineSystem.fillFlightTable(table);
+	}
+	
+	public boolean MergeFlighttoTrip(String tripName, int fid, String sOrR, String dep, String dest)
+	{
+		return this.arlineSystem.MergeFlighttoTrip(tripName, fid, sOrR,dep,dest);
+	}
+	public int getPlaneID(String fid)
+	{
+		return this.arlineSystem.getPlaneID(fid);
+	}
 
 }
 

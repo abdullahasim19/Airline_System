@@ -143,6 +143,14 @@ public class AdminMainPage {
 			}
 		});
 		
+		AssignCap.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AssignCaptainAdmin ac=new AssignCaptainAdmin();
+				ac.setVisible(true);
+			}
+		});
+		
+		
 		
 		
 		JMenuItem RemoveCap = new JMenuItem("Remove Captain");
@@ -168,26 +176,54 @@ public class AdminMainPage {
 			}
 		});
 		
-		JMenuItem editflight = new JMenuItem("Edit Flight Details");
-		flightmenu.add(editflight);
-		
-		JMenu mnNewMenu = new JMenu("Packages");
-		menuBar.add(mnNewMenu);
+		JMenu PackagesMenu = new JMenu("Packages");
+		menuBar.add(PackagesMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Add Package");
-		mnNewMenu.add(mntmNewMenuItem);
+		PackagesMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Remove Package");
-		mnNewMenu.add(mntmNewMenuItem_1);
+		PackagesMenu.add(mntmNewMenuItem_1);
 		
 		JMenu Tripmenu = new JMenu("Trip");
 		menuBar.add(Tripmenu);
 		
+		JMenuItem MergeTrip = new JMenuItem("Merge Flight to Trip");
+		Tripmenu.add(MergeTrip);
+		
+		MergeTrip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				MergeFlightAndTrip v=new MergeFlightAndTrip();
+				v.setVisible(true);
+				
+			}
+		});
+		
+		
 		JMenuItem Addtrip = new JMenuItem("Add Trip");
 		Tripmenu.add(Addtrip);
 		
+		Addtrip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AddTripAdmin v=new AddTripAdmin();
+				v.setVisible(true);
+				
+			}
+		});
+		
 		JMenuItem removeTrip = new JMenuItem("Remove Trip");
 		Tripmenu.add(removeTrip);
+		
+		removeTrip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				RemoveTripAdmin v=new RemoveTripAdmin();
+				v.setVisible(true);
+				
+			}
+		});
 		
 		JButton ViewAllCustomer = new JButton("View All Customers");
 		ViewAllCustomer.addActionListener(new ActionListener() {

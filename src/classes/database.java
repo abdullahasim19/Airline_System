@@ -1,5 +1,4 @@
 package classes;
-import java.awt.Color;
 import java.sql.*;
 import java.util.Random;
 
@@ -20,8 +19,8 @@ public class database implements IDatabase{
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
-			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
+			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld"); // for abdullah
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "Panthom3813");// for rasaal
 		}catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -225,8 +224,7 @@ public class database implements IDatabase{
 	public void viewHistory(String username, JTable table) {
 		try {
 
-			
-			Statement st=con.createStatement();
+		
 			PreparedStatement ps=con.prepareStatement("select Trip.tripID,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
 
 			//PreparedStatement ps=con.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
@@ -648,6 +646,7 @@ public class database implements IDatabase{
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void setPlaneCombo(JComboBox p,int tripID) {
 		// TODO Auto-generated method stub
@@ -755,7 +754,7 @@ public class database implements IDatabase{
 		
 
 	}
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void showUserTrips(JComboBox trips,String username)
 	{
 		try {
@@ -898,6 +897,119 @@ public class database implements IDatabase{
 			
 		}
 
+		
+		
+		return false;
+	}
+	
+	
+	
+	public void fillFlightTable(JTable table) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select f.flightID, a.airportID, f.planeID ,a.city, f.destination,f.flightdate,f.flightTime  "
+				+ "from Flight f join Airport a on a.airportID=f.airportID ; ");
+		
+		while(rs.next())
+		{
+			
+			String fid=rs.getString("f.flightID");
+			String aid=rs.getString("a.airportID");
+			String pid=rs.getString("f.planeID");
+			String dep=rs.getString("a.city");
+			String dest=rs.getString("f.destination");
+			String date=rs.getString("f.flightdate");
+			String ftime=rs.getString("f.flightTime");
+
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{fid,aid,pid,dep,dest,date,ftime});
+		}
+	}
+	
+	
+	public int getPlaneID(String fid) throws SQLException
+	{
+
+		PreparedStatement ps=con.prepareStatement("select f.planeID from Flight f where f.flightID=?");
+		
+		//System.out.println(cap.getCaptain().getCaptainname());
+		ps.setString(1, fid);
+		
+		ResultSet rs=ps.executeQuery();
+		int pid=0;
+		if(rs.next())
+		{
+			
+			pid=rs.getInt("f.planeID");
+			//System.out.println(cid);
+		}
+		return pid;
+	}
+	
+	public int getSeatsCount(int pid) throws SQLException
+	{
+		PreparedStatement ps=con.prepareStatement("select g.totalSeatsCount from GeneralPlane g where g.planeID=?");
+		
+		//System.out.println(cap.getCaptain().getCaptainname());
+		ps.setInt(1, pid);
+		
+		ResultSet rs=ps.executeQuery();
+		int count=0;
+		if(rs.next())
+		{
+			
+			count=rs.getInt("g.totalSeatsCount");
+			//System.out.println(cid);
+		}
+		return count;
+	}
+	
+	
+	public boolean MergeFlighttoTrip(Trip trip, String type)throws SQLException
+	{
+		
+		
+		int min = 100;
+	    int max = 1000000;
+	        
+	    int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+		
+	    
+		try {
+			
+		
+			
+			Statement st = con.createStatement(); 
+			
+			st.executeUpdate("insert into Trip values (" + random_int  + ",\""+ trip.getTripName()  +"\",\""+ trip.getDeparture()  + "\", \""+ trip.getDestination() +"\", "+ trip.getPlane().getPlaneID() +  ","+ this.getSeatsCount(trip.getPlane().getPlaneID()) +");");
+			PreparedStatement ps;
+			
+			if(type.equals("R"))
+			{
+				ps=con.prepareStatement("insert into RoundTrip values (?)");
+				ps.setInt(1, random_int);
+			}
+			else
+			{
+				ps=con.prepareStatement("insert into SingleTrip values (?)");
+				ps.setInt(1, random_int);
+			}
+			
+			int x=ps.executeUpdate();
+			
+			
+			if(x>0)
+				return true;
+			else
+				return false;
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+
+		
 		
 		
 		return false;

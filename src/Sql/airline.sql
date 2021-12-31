@@ -155,7 +155,7 @@ create table PrivatePlane
 insert into PrivatePlane Values (1);
 insert into PrivatePlane Values (2);
 
-select * from PrivatePlane;
+select * from Plane;
 
 create table GeneralPlane
 (
@@ -231,7 +231,7 @@ create Table Trip
 	destination varchar(50)
 );
 select *from Trip;
-select *from Plane;
+select *from GeneralPlane;
 ALTER TABLE Trip ADD COLUMN planeID int not null;
 ALTER TABLE Trip ADD FOREIGN KEY (planeID) REFERENCES Plane(planeID);
 insert into Trip values(1,'Karachi','Lahore','Karachi',123);
@@ -254,7 +254,10 @@ insert into RoundTrip Values (1001);
 insert into RoundTrip Values (1004);
 insert into RoundTrip Values (1003);
 
+select * from Trip;
 
+select f.flightID, a.airportID, f.planeID ,a.city, f.destination,f.flightdate,f.flightTime 
+from Flight f join Airport a on a.airportID=f.airportID ;
 
 create Table SingleTrip
 (
@@ -306,16 +309,15 @@ create table Feedback
 
 );
 
-<<<<<<< HEAD
 select *from Trip;
 select *from GeneralPlane;
 select *from PrivatePlane;
 select * from Trip join GeneralPlane on Trip.planeID=GeneralPlane.planeID where tripID=1;
 select * from Trip join PrivatePlane on Trip.planeID=PrivatePlane.planeID where tripID=1;
-=======
+
 
 select * from Booking;
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
 
 select b.bookingID, c.fullName,f.departure ,f.destination  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID
 join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID 
