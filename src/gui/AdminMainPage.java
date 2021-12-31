@@ -82,10 +82,22 @@ public class AdminMainPage {
 		
 		JMenuItem AddAirport = new JMenuItem("Add Airport");
 		AirportMenu.add(AddAirport);
+		
+		JMenuItem AddPlanetoAp = new JMenuItem("Add Plane to Airport");
+		AirportMenu.add(AddPlanetoAp);
 		AddAirport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				AddAirportAdmin ap=new AddAirportAdmin();
+				ap.setVisible(true);
+				
+			}
+		});
+		
+		AddPlanetoAp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				AddPlaneToAirport ap = new AddPlaneToAirport();
 				ap.setVisible(true);
 				
 			}
@@ -167,6 +179,15 @@ public class AdminMainPage {
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Remove Package");
 		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		JMenu Tripmenu = new JMenu("Trip");
+		menuBar.add(Tripmenu);
+		
+		JMenuItem Addtrip = new JMenuItem("Add Trip");
+		Tripmenu.add(Addtrip);
+		
+		JMenuItem removeTrip = new JMenuItem("Remove Trip");
+		Tripmenu.add(removeTrip);
 		
 		JButton ViewAllCustomer = new JButton("View All Customers");
 		ViewAllCustomer.addActionListener(new ActionListener() {

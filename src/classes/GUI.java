@@ -261,5 +261,46 @@ public class GUI implements IGUI{
 		Airline a=new Airline();
 		a.InsertFeedback(feedback);
 	}
+	
+	public static void setCustomerDetails(Customer c)
+	{
+		Airline.setCustomerDetails(c);
+	}
+	
+	public void planesForAiportTable(JTable table)
+	{
+		this.arlineSystem.planesForAiportTable(table);
+	}
+	
+	public void fillAirportTableForTrip(JTable table)
+	{
+		this.arlineSystem.fillAirportTableForTrip(table);
+	}
+	
+	public boolean addPlanetoairpot(String aid, int pid)
+	{
+		return this.arlineSystem.addPlanetoairpot(aid, pid);
+	}
+	
+	
+	public void fillTableForAssignCaptain(JTable table)
+	{
+		this.arlineSystem.fillTableForAssignCaptain(table);
+	}
+
+	@SuppressWarnings("rawtypes")
+	public void fillCaptainComboBox(JComboBox box)
+	{
+		this.arlineSystem.fillCaptainComboBox(box);
+	}
+	
+	public boolean AssignCaptain(String capid, String flightid)
+	{
+		//System.out.println(flightid);
+		return this.arlineSystem.AssignCaptain(capid,flightid);
+	}
 
 }
+
+
+

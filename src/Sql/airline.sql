@@ -97,7 +97,9 @@ insert into Plane values (123,'Jet','12');
 
 
 select * from Airport;
-select *from Plane;
+select p.PlaneID, PlaneName from Plane p where p.airportID is null;
+select * from Plane where airportID=null;
+select * from Plane;
 select *from Trip;
 select *from User;
 insert into History values ('123',1);
@@ -304,11 +306,16 @@ create table Feedback
 
 );
 
+<<<<<<< HEAD
 select *from Trip;
 select *from GeneralPlane;
 select *from PrivatePlane;
 select * from Trip join GeneralPlane on Trip.planeID=GeneralPlane.planeID where tripID=1;
 select * from Trip join PrivatePlane on Trip.planeID=PrivatePlane.planeID where tripID=1;
+=======
+
+select * from Booking;
+>>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
 
 select b.bookingID, c.fullName,f.departure ,f.destination  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID
 join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID 
@@ -335,8 +342,29 @@ create table Captain
     gender varchar(2)
 );
 
+
+create table AssignCaptain
+(
+	AssignedID varchar(30) not null primary key,
+    flightID varchar(50),
+    FOREIGN KEY(flightID) REFERENCES Flight(flightID) on delete cascade,
+   captainId varchar(30),
+   FOREIGN KEY(captainId) REFERENCES Captain(captainId) on delete cascade
+);
+
+
+select f.flightID,a.city,f.destination,f.flightdate,f.flightTime  from Flight f left join AssignCaptain ac on f.flightID=ac.flightID 
+join Airport a on a.airportID=f.airportID where ac.AssignedID is null; 
+
+select c.CaptainName  from Captain c left join AssignCaptain ac on c.captainId=ac.captainId  where ac.AssignedID is null;
+
+
+
+select * from AssignCaptain;
+
+drop table AssignCaptain;
 delete from Captain where captainId="Cap-00958032";
 
 
-select * from Captain;
+select * from Captain where CaptainName='Ali Hassan';
 

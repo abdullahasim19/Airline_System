@@ -105,7 +105,8 @@ public class CustomerLoginPage {
 				if(b)
 				{
 					CustomerMainPage ap = new CustomerMainPage(p);
-					//ap.setCustomer((Customer) p);
+					ap.setCustomer((Customer) p);
+					GUI.setCustomerDetails((Customer)p);
 					ap.setVisible(true);
 					frame.dispose();
 				}
