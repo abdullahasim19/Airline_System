@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import classes.AssignCaptain;
 import classes.Customer;
 import classes.Person;
 import classes.Planes;
@@ -35,6 +36,7 @@ public boolean userLoginButton(Customer c);
 
 	public void viewProfile();
 
+	@SuppressWarnings("rawtypes")
 	public void setComboBoxes(JComboBox tripid);
 	
 	public boolean addAirportButton(String aid, String country, String city);
@@ -61,4 +63,16 @@ public boolean userLoginButton(Customer c);
 	public boolean removeCaptain(String username, String captainID);
 	public static void setCustomerDetails(Customer c) {
 	}
+	
+	public void planesForAiportTable(JTable table);
+	
+	public void fillAirportTableForTrip(JTable table);
+	public boolean addPlanetoairpot(String aid, int pid);
+	
+	public void fillTableForAssignCaptain(JTable table);
+	
+	@SuppressWarnings("rawtypes")
+	public void fillCaptainComboBox(JComboBox box);
+	
+	public boolean AssignCaptain(String capid, String flightid);
 }

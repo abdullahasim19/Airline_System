@@ -238,7 +238,7 @@ public class AddPlanebyAdmin {
 					
 					
 					
-					if(total< fclass + bclass + eclass)
+					if(total < fclass + bclass + eclass)
 					{
 						JOptionPane.showMessageDialog(null, "Seats type count exceeds total capacity","Error", JOptionPane.ERROR_MESSAGE);
 						return;

@@ -117,9 +117,6 @@ public class database implements IDatabase{
 	{
 		try {
 		
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
-			Statement st=con.createStatement();
 			PreparedStatement ps=con.prepareStatement("select Trip.tripID,Trip.departure,"
 					+ "Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats "
 					+ "from Trip join Flight on Trip.planeID=Flight.planeID;");
@@ -221,10 +218,6 @@ public class database implements IDatabase{
 	@Override
 	public void viewHistory(String username, JTable table) {
 		try {
-			
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
-			Statement st=con.createStatement();
 			PreparedStatement ps=con.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
 			ps.setString(1, username);
 			
@@ -296,6 +289,7 @@ public class database implements IDatabase{
 	
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void setComboBoxes(JComboBox tripid) {
 		// TODO Auto-generated method stub
@@ -303,7 +297,6 @@ public class database implements IDatabase{
 			
 			//Class.forName("com.mysql.cj.jdbc.Driver");
 			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
-			Statement st=con.createStatement();
 			PreparedStatement ps=con.prepareStatement("select Trip.tripID from Trip join Flight on Trip.planeID=Flight.planeID;");
 			
 			
@@ -614,6 +607,166 @@ public class database implements IDatabase{
 			model.addRow(new Object[]{capid,usr,name,age,gender});
 		}
 		
+	}
+	
+	
+	public void planesForAiportTable(JTable table) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select p.PlaneID, PlaneName from Plane p where p.airportID is null;");
+		
+		while(rs.next())
+		{
+			
+			String pid=rs.getString("planeID");
+			String pname=rs.getString("planeName");
+
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{pid,pname});
+		}
+	}
+	
+	
+	public void fillAirportTableForTrip(JTable table) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select * from Airport");
+		
+		while(rs.next())
+		{
+			
+			String aid=rs.getString("airportID");
+			String country=rs.getString("country");
+			String city=rs.getString("city");
+
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{aid,country,city});
+		}
+	}
+	
+	
+	public boolean addPlanetoairpot(Planes p)
+	{
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("update Plane set airportID=? where PlaneID=?");
+			ps.setString(1, p.getAirport().getAirportId());
+			ps.setInt(2, p.getPlaneID());
+			
+			int x=ps.executeUpdate();
+			if(x>0)
+				return true;
+			
+			else
+				return false;
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+		
+		return false;
+	}
+	
+	
+	
+	public void fillTableForAssignCaptain(JTable table) throws SQLException
+	{
+		Statement st = con.createStatement();
+		ResultSet rs=st.executeQuery("select f.flightID,a.city,f.destination,f.flightdate,f.flightTime  "
+				+ "from Flight f left join AssignCaptain ac on f.flightID=ac.flightID \r\n"
+				+ "join Airport a on a.airportID=f.airportID where ac.AssignedID is null; ");
+		
+		while(rs.next())
+		{
+			
+			String fid=rs.getString("f.flightID");
+			String dep=rs.getString("a.city");
+			String dest=rs.getString("f.destination");
+			String date=rs.getString("f.flightdate");
+			String ftime=rs.getString("f.flightTime");
+
+			DefaultTableModel model = (DefaultTableModel) table.getModel();
+			model.addRow(new Object[]{fid,dep,dest,date,ftime});
+		}
+	}
+	
+	
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void fillCaptainComboBox(JComboBox box)
+	{
+		try {
+			
+
+			PreparedStatement ps=con.prepareStatement("select c.CaptainName  from Captain c left join AssignCaptain "
+					+ "ac on c.captainId=ac.captainId  where ac.AssignedID is null;");
+			
+			
+			//ResultSet rs=st.executeQuery("select *from User");
+			ResultSet rs=ps.executeQuery();
+			int i=0;
+			while(rs.next())
+			{
+				
+
+				String name=rs.getString("c.CaptainName");
+				box.insertItemAt(name, i);
+				
+				i++;
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	
+	public boolean AssignCaptain(AssignCaptain cap) throws SQLException
+	{
+		PreparedStatement ps=con.prepareStatement("select captainId from Captain c where c.CaptainName=?");
+		
+		//System.out.println(cap.getCaptain().getCaptainname());
+		ps.setString(1, cap.getCaptain().getCaptainname());
+		
+		ResultSet rs=ps.executeQuery();
+		String cid = null;
+		if(rs.next())
+		{
+			
+			cid=rs.getString("captainId");
+			//System.out.println(cid);
+		}
+		
+		
+		int min = 10;
+	    int max = 1000000;
+	        
+	    int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
+		
+	    String AID="AAC-00"+Integer.toString(random_int);
+	    
+		try {
+			
+			ps=con.prepareStatement("insert into AssignCaptain values(?,?,?);");
+			ps.setString(1,AID);
+			ps.setString(2, cap.getFlight().getFlightid());
+			ps.setString(3, cid);
+
+	
+			int x=ps.executeUpdate();
+			if(x>0)
+				return true;
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+		
+		
+		return false;
 	}
 	
 }

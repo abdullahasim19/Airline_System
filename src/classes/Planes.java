@@ -5,6 +5,7 @@ import interfaces.IPlane;
 public class Planes implements IPlane{
 	private int planeID;
 	private String planeName;
+	private Airport airport=new Airport();
 	public void fuelLimit() {
 		
 	}
@@ -22,5 +23,11 @@ public class Planes implements IPlane{
 	}
 	public void setPlaneName(String planeName) {
 		this.planeName = planeName;
+	}
+	public Airport getAirport() {
+		return airport;
+	}
+	public void setAirport(Airport airport) {
+		this.airport = airport;
 	}
 }

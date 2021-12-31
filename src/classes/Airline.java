@@ -22,6 +22,7 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	//private Trip trip = new Trip();
 	private Flight flight=new Flight();
 	private Captain captain=new Captain();
+	private AssignCaptain cap=new AssignCaptain();
 
 	public boolean AdminLogin(Person p)
 	{
@@ -512,5 +513,88 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 		
 	}
 
+	
+	public void planesForAiportTable(JTable table)
+	{
+		try {
+			database d=new database();
+			d.planesForAiportTable(table);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
+	
+	
+	public void fillAirportTableForTrip(JTable table)
+	{
+		try {
+			database d=new database();
+			d.fillAirportTableForTrip(table);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
+	
+	
+	public boolean addPlanetoairpot(String aid, int pid)
+	{
+		plane.getAirport().setAirportId(aid);
+		plane.setPlaneID(pid);
+		try {
+			database d=new database();
+			return d.addPlanetoairpot(plane);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return false;
+	}
 
+	
+	
+	public void fillTableForAssignCaptain(JTable table)
+	{
+		try {
+			database d=new database();
+			d.fillTableForAssignCaptain(table);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public void fillCaptainComboBox(JComboBox box)
+	{
+		try {
+			database d=new database();
+			d.fillCaptainComboBox(box);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
+	
+	public boolean AssignCaptain(String capid, String flightid)
+	{
+		cap.getCaptain().setCaptainname(capid);
+		cap.getFlight().setFlightid(flightid);
+		try {
+			database d=new database();
+			return d.AssignCaptain(cap);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		return false;
+	}
 }

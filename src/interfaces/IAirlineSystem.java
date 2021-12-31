@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import classes.Airport;
+import classes.AssignCaptain;
 import classes.Customer;
 import classes.Person;
 import classes.Planes;
@@ -31,6 +32,7 @@ public interface IAirlineSystem {
 	public boolean removePlane(Planes p);
 	public boolean addAirport(String aid, String country, String city);
 
+	@SuppressWarnings("rawtypes")
 	public void setComboBoxes(JComboBox tripid);
 	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap);
 	public boolean checkSeats(int s,int trip);
@@ -61,5 +63,17 @@ public interface IAirlineSystem {
 	{
 	}
 	
+	
+	public void planesForAiportTable(JTable table);
+	
+	public void fillAirportTableForTrip(JTable table);
+	
+	public boolean addPlanetoairpot(String aid, int pid);
+	
+	public void fillTableForAssignCaptain(JTable table);
+	
+	@SuppressWarnings("rawtypes")
+	public void fillCaptainComboBox(JComboBox box);
+	public boolean AssignCaptain(String capid, String flightid);
 
 }
