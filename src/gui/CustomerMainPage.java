@@ -51,11 +51,15 @@ public class CustomerMainPage {
 		frame.getContentPane().setBackground(new Color(204, 204, 255));
 		frame.getContentPane().setLayout(null);
 		
+<<<<<<< HEAD
 		WelcomeLabel = new JLabel("Hi ");
 		WelcomeLabel.setText("Hi " + customer.getFullname());
 
 		WelcomeLabel = new JLabel("Welcome user  " + customer.getUsername());
 
+=======
+		WelcomeLabel = new JLabel("Welcome user  " + customer.getUsername());
+>>>>>>> 44ad8470d62a27a5a1fa3cdf27163790a909e76f
 		WelcomeLabel.setIcon(new ImageIcon(CustomerMainPage.class.getResource("/imgs/hi.png")));
 		WelcomeLabel.setFont(new Font("Monospaced", Font.BOLD, 55));
 		WelcomeLabel.setBounds(67, 30, 1058, 213);
