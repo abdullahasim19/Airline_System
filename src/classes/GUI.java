@@ -239,4 +239,9 @@ public class GUI implements IGUI{
 		return this.arlineSystem.removeCaptain(username, captainID);
 	}
 
+	
+	public static void setCustomerDetails(Customer c)
+	{
+		Airline.setCustomerDetails(c);
+	}
 }

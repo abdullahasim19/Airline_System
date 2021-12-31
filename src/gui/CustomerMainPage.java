@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -22,6 +20,7 @@ import javax.swing.border.TitledBorder;
 
 import classes.Customer;
 
+@SuppressWarnings("unused")
 public class CustomerMainPage {
 
 	private JFrame frame;
@@ -50,7 +49,8 @@ public class CustomerMainPage {
 		frame.getContentPane().setBackground(new Color(204, 204, 255));
 		frame.getContentPane().setLayout(null);
 		
-		WelcomeLabel = new JLabel("Hi " + customer.getFullname());
+		WelcomeLabel = new JLabel("Hi ");
+		WelcomeLabel.setText("Hi " + customer.getFullname());
 		WelcomeLabel.setIcon(new ImageIcon(CustomerMainPage.class.getResource("/imgs/hi.png")));
 		WelcomeLabel.setFont(new Font("Monospaced", Font.BOLD, 55));
 		WelcomeLabel.setBounds(86, 11, 546, 138);

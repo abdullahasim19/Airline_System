@@ -59,4 +59,6 @@ public boolean userLoginButton(Customer c);
 	public void fillCaptainTable(JTable table);
 	
 	public boolean removeCaptain(String username, String captainID);
+	public static void setCustomerDetails(Customer c) {
+	}
 }

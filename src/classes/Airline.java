@@ -500,6 +500,17 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 		return false;
 		
 	}
+	
+	public static void setCustomerDetails(Customer c)
+	{
+		try {
+			database.setCustomerDetails(c);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 
 }
