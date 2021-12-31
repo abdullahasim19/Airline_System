@@ -762,7 +762,13 @@ public class database implements IDatabase{
 			
 			PreparedStatement ps=con.prepareStatement("select tripID from History where username=?;");
 			ps.setString(1, username);
-			
+			ResultSet rs=ps.executeQuery();
+			int i=0;
+			while(rs.next())
+			{
+				trips.insertItemAt(rs.getInt("tripID"), i);
+				i++;
+			}
 			
 		}
 		catch(Exception e)
@@ -813,11 +819,6 @@ public class database implements IDatabase{
 			int i=0;
 			while(rs.next())
 			{
-				
-
-
-				int ID=rs.getInt("tripID");
-				trips.insertItemAt(ID, i);
 
 				String name=rs.getString("c.CaptainName");
 				box.insertItemAt(name, i);
