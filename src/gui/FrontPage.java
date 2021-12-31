@@ -54,8 +54,7 @@ public class FrontPage {
 		JButton adminlogin = new JButton("Login as Admin");
 		adminlogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+					
 				AdminLoginPage ap=new AdminLoginPage();
 				ap.setVisible(true);
 				

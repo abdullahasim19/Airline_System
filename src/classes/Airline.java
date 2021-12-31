@@ -322,14 +322,14 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	}
 
 	@Override
-	public boolean checkSeats(int s,int trip) {
+	public int checkSeats(int s,int trip) {
 		try {
 			database d=new database();
 			return d.checkSeats(s, trip);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return -1;
 		}
 		
 	}
@@ -348,11 +348,10 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	}
 
 	@Override
-	public void BookTrip(String bookingID, String username, int seats, String seatType, int packageID,int tripID, int flightID,
-			String bookingdate, String time) {
+	public void BookTrip(Booking obj) {
 		try {
 			database d=new database();
-			d.BookTrip(bookingID, username, seats, seatType, tripID,packageID, flightID, bookingdate, time);
+			d.BookTrip(obj);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -501,5 +500,45 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 		
 	}
 
+	@Override
+	public void updateSeats(int newseats, int tripID) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void setPlaneCombo(JComboBox p,int tripID) {
+		// TODO Auto-generated method stub
+		database d;
+		try {
+			d = new database();
+			d.setPlaneCombo(p, tripID);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void showUserTrips(JComboBox trips,String username)
+	{
+		database d;
+		try {
+			d = new database();
+			d.showUserTrips(trips, username);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void InsertFeedback(Feedback feedback)
+	{
+		database d;
+		try {
+			d = new database();
+			d.InsertFeedback(feedback);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

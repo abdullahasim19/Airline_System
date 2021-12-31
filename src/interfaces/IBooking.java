@@ -6,23 +6,24 @@ import classes.Planes;
 import classes.Trip;
 
 public interface IBooking {
+	public String getBookID();
+	public void setBookID(String bookID);
+	public String getUsername();
+	public void setUsername(String username);
+	public int getSeats();
+	public void setSeats(int seats);
+	public String getSeatsType() ;
+	public void setSeatsType(String seatsType);
+	public int getPackageID();
+	public void setPackageID(int packageID);
+	public int getTripID();
+	public void setTripID(int tripID);
+	public int getFlightID();
+	public void setFlightID(int flightID);
+	public String getBookingDate();
+	public void setBookingDate(String bookingDate);
 	public void bookTrip();
 	public void cancelTrip();
 	
 	public void editTrip();
-	
-	public Customer getCustomer();
-	public void setCustomer(Customer customer);
-	public Planes getPlane();
-	public void setPlane(Planes plane);
-	public int getSeatsCount();
-	public void setSeatsCount(int seatsCount);
-	public String getSeatsType() ;
-	public void setSeatsType(String seatsType);
-	public Trip getTrip();
-	public void setTrip(Trip trip) ;
-	public Package getPackages() ;
-	public void setPackages(Package packages);
-	public Flight getFlight();
-	public void setFlight(Flight flight);
 }

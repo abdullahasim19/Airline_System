@@ -1,6 +1,7 @@
 package classes;
 import java.awt.Color;
 import java.sql.*;
+import java.util.Random;
 
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -117,14 +118,14 @@ public class database implements IDatabase{
 	{
 		try {
 		
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
+			DefaultTableModel tremove=(DefaultTableModel)table.getModel();
+			tremove.setRowCount(0);
 			Statement st=con.createStatement();
 			PreparedStatement ps=con.prepareStatement("select Trip.tripID,Trip.departure,"
 					+ "Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats "
 					+ "from Trip join Flight on Trip.planeID=Flight.planeID;");
 			
-			//ResultSet rs=st.executeQuery("select *from User");
+			
 			ResultSet rs=ps.executeQuery();
 			
 			while(rs.next())
@@ -222,10 +223,8 @@ public class database implements IDatabase{
 	public void viewHistory(String username, JTable table) {
 		try {
 			
-			//Class.forName("com.mysql.cj.jdbc.Driver");
-			//Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/airlinesystem", "root", "helloworld");
 			Statement st=con.createStatement();
-			PreparedStatement ps=con.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
+			PreparedStatement ps=con.prepareStatement("select Trip.tripID,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
 			ps.setString(1, username);
 			
 			//ResultSet rs=st.executeQuery("select *from User");
@@ -233,7 +232,7 @@ public class database implements IDatabase{
 			
 			while(rs.next())
 			{
-				String name=rs.getString("fullname");
+				String name=rs.getString("tripID");
 				String departure=rs.getString("departure");
 				String destination=rs.getString("destination");
 				String []arr= {name,departure,destination};
@@ -245,7 +244,7 @@ public class database implements IDatabase{
 			e1.printStackTrace();
 		}
 	}
-	public boolean checkSeats(int s,int trip) {
+	public int checkSeats(int s,int trip) {
 		
 		
 		try {
@@ -257,13 +256,13 @@ public class database implements IDatabase{
 			int check=rs.getInt("availableseats");
 			//System.out.print(check);
 			if(check-s>0)
-				return true;
+				return check;
 			}
-			return false;
+			return -1;
 			
 		} catch (Exception e1) {
 			e1.printStackTrace();
-			return false;
+			return -1;
 		}
 		
 	}
@@ -371,31 +370,7 @@ public class database implements IDatabase{
 	
 	
 
-	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time)
-	{
-		
-		try {
-			
-			PreparedStatement ps=con.prepareStatement("insert into Booking values(?,?,?,?,?,?,?,?,?);");
-			ps.setString(1, bookingID);
-			ps.setString(2,username);
-			ps.setInt(3, seats);
-			ps.setString(4, seatType);
-			ps.setInt(5, packageID);
-			ps.setInt(6, tripID);
-			ps.setInt(7, flightID);
-			ps.setString(8, bookingdate);
-			ps.setString(9, time);
-			int x=ps.executeUpdate();
-			if(x>0)
-				System.out.println("Done");
-			
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			
-		}
-	}
+	
 	
 
 	
@@ -615,5 +590,152 @@ public class database implements IDatabase{
 		}
 		
 	}
-	
+
+	@Override
+	public void updateSeats(int newseats, int tripID) {
+		// TODO Auto-generated method stub
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("update Trip set availableseats=? where tripID=? ");
+			ps.setInt(1, newseats);
+			ps.setInt(2, tripID);
+			
+			int x=ps.executeUpdate();
+			if(x>0)
+				System.out.println("Done");
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+	}
+	public void BookTrip(Booking obj)
+	{
+		
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("insert into Booking values(?,?,?,?,?,?,?,?);");
+			ps.setString(1, obj.getBookID());
+			ps.setString(2,obj.getUsername());
+			ps.setInt(3, obj.getSeats());
+			ps.setString(4, obj.getSeatsType());
+			ps.setInt(5, obj.getPackageID());
+			ps.setInt(6, obj.getTripID());
+			ps.setInt(7, obj.getFlightID());
+			ps.setString(8, obj.getBookingDate());
+			
+			int x=ps.executeUpdate();
+			if(x>0)
+			{
+				int total=checkSeats(obj.getSeats(),obj.getTripID());
+				int newseats=total-obj.getSeats();
+				updateSeats(newseats,obj.getTripID());
+				AddHistory(obj.getUsername(),obj.getTripID());
+				System.out.println("Done");
+			}
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+	}
+
+	@Override
+	public void setPlaneCombo(JComboBox p,int tripID) {
+		// TODO Auto-generated method stub
+		try {
+			
+			
+			PreparedStatement ps=con.prepareStatement("select * from Trip join GeneralPlane on Trip.planeID=GeneralPlane.planeID where tripID=?;");
+			ps.setInt(1, tripID);
+			int i=0;
+			ResultSet rs=ps.executeQuery();
+			if(rs.next())
+			{
+				p.insertItemAt("General", i);
+				i++;
+				
+			}
+			ps=con.prepareStatement("select * from Trip join PrivatePlane on Trip.planeID=PrivatePlane.planeID where tripID=?;");
+			ps.setInt(1, tripID);
+			rs=ps.executeQuery();
+			if(rs.next())
+			{
+				p.insertItemAt("Private", i);
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	public void AddHistory(String username,int tripID)
+	{
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("insert into History values(?,?);");
+			ps.setString(1, username);
+			ps.setInt(2, tripID);
+			int x=ps.executeUpdate();
+			if(x>0)
+			{
+				System.out.println("Done");
+			}
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+		
+	}
+	public void showUserTrips(JComboBox trips,String username)
+	{
+		try {
+			
+			
+			PreparedStatement ps=con.prepareStatement("select tripID from History where username=?;");
+			ps.setString(1, username);
+			
+			
+			ResultSet rs=ps.executeQuery();
+			int i=0;
+			while(rs.next())
+			{
+				
+
+				int ID=rs.getInt("tripID");
+				trips.insertItemAt(ID, i);
+				
+				i++;
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	public void InsertFeedback(Feedback feedback)
+	{
+		try {
+			Random r=new Random();
+			String feedbackID="F-";
+			feedbackID+=Integer.toString(r.nextInt(1000));
+			PreparedStatement ps=con.prepareStatement("insert into Feedback values (?,?,?,?);");
+			ps.setString(1, feedbackID);
+			ps.setString(2, feedback.getUsername());
+			ps.setInt(3, feedback.getTripID());
+			ps.setString(4, feedback.getFeedback());
+			int x=ps.executeUpdate();
+			if(x>0)
+			{
+				System.out.println("Done");
+			}
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			
+		}
+	}
 }

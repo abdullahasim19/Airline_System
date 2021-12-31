@@ -16,13 +16,16 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import classes.Booking;
 import classes.Customer;
 import classes.GUI;
 
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
 
@@ -32,7 +35,6 @@ public class BookingPage {
 	private JPasswordField passwordField;
 	private JTable table;
 	private Customer customer;
-	private JTextField flightdate;
 
 	/**
 	 * Launch the application.
@@ -94,37 +96,33 @@ public class BookingPage {
 		seats.setBounds(164, 57, 44, 20);
 		frame.getContentPane().add(seats);
 		
-		JLabel lblNewLabel_3 = new JLabel("Select Time");
-		lblNewLabel_3.setBounds(6, 121, 78, 14);
-		frame.getContentPane().add(lblNewLabel_3);
-		
 		JLabel lblNewLabel_4 = new JLabel("Select Date");
-		lblNewLabel_4.setBounds(10, 161, 65, 14);
+		lblNewLabel_4.setBounds(6, 106, 65, 14);
 		frame.getContentPane().add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("Choose Seat Type");
-		lblNewLabel_5.setBounds(10, 186, 190, 14);
+		lblNewLabel_5.setBounds(6, 137, 190, 14);
 		frame.getContentPane().add(lblNewLabel_5);
 		
 		JRadioButton economic = new JRadioButton("Economic");
-		economic.setBounds(6, 207, 78, 23);
+		economic.setBounds(6, 164, 127, 23);
 		frame.getContentPane().add(economic);
 		
 		JRadioButton firstclass = new JRadioButton("First Class");
-		firstclass.setBounds(100, 207, 86, 23);
+		firstclass.setBounds(6, 190, 86, 23);
 		frame.getContentPane().add(firstclass);
 		
 		JLabel lblNewLabel_6 = new JLabel("Enter Password to Confirm");
-		lblNewLabel_6.setBounds(10, 244, 161, 14);
+		lblNewLabel_6.setBounds(10, 263, 161, 14);
 		frame.getContentPane().add(lblNewLabel_6);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(181, 237, 102, 20);
+		passwordField.setBounds(181, 260, 102, 20);
 		frame.getContentPane().add(passwordField);
 		
 		JButton booktrip = new JButton("Book Trip");
 		
-		booktrip.setBounds(85, 459, 89, 23);
+		booktrip.setBounds(117, 512, 89, 23);
 		frame.getContentPane().add(booktrip);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -161,19 +159,20 @@ public class BookingPage {
 		GUI g =new GUI();
 		g.setComboBoxes(tripid);
 		
-		JLabel lblNewLabel_9 = new JLabel("Plane Type");
-		lblNewLabel_9.setBounds(20, 359, 68, 14);
+		JLabel lblNewLabel_9 = new JLabel("Click the button to check Plane Types:");
+		lblNewLabel_9.setBounds(16, 359, 267, 14);
 		frame.getContentPane().add(lblNewLabel_9);
 		
 		JComboBox planetype = new JComboBox();
-		planetype.setBounds(106, 355, 65, 22);
-		planetype.insertItemAt("General", 0);
-		planetype.insertItemAt("Private", 1);
+		planetype.setBounds(143, 386, 65, 22);
+		//planetype.insertItemAt("General", 0);
+		//planetype.insertItemAt("Private", 1);
 		frame.getContentPane().add(planetype);
 		
 		JButton btnNewButton = new JButton("View Trips");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				GUI g=new GUI();
 				g.displayTrips(table);
 			}
@@ -187,15 +186,15 @@ public class BookingPage {
 				frame.dispose();
 			}
 		});
-		btnNewButton_1.setBounds(401, 492, 95, 23);
+		btnNewButton_1.setBounds(571, 512, 95, 23);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JRadioButton buisness = new JRadioButton("Buisness");
-		buisness.setBounds(188, 207, 109, 23);
+		buisness.setBounds(6, 214, 109, 23);
 		frame.getContentPane().add(buisness);
 		
 		JComboBox packageID = new JComboBox();
-		packageID.setBounds(106, 404, 65, 22);
+		packageID.setBounds(121, 432, 65, 22);
 		packageID.insertItemAt(3, 0);
 		packageID.insertItemAt(2, 0);
 		packageID.insertItemAt(1, 0);
@@ -203,76 +202,59 @@ public class BookingPage {
 		
 		
 		JLabel lblNewLabel_10 = new JLabel("Package ID");
-		lblNewLabel_10.setBounds(20, 404, 68, 14);
+		lblNewLabel_10.setBounds(16, 436, 68, 14);
 		frame.getContentPane().add(lblNewLabel_10);
 		
-		JComboBox hours = new JComboBox();
-		hours.setBounds(85, 117, 44, 22);
-		frame.getContentPane().add(hours);
 		
-		JComboBox minutes = new JComboBox();
-		minutes.setBounds(144, 117, 42, 22);
-		frame.getContentPane().add(minutes);
+		JDateChooser flightDate = new JDateChooser();
+		flightDate.setBounds(100, 106, 121, 20);
+		frame.getContentPane().add(flightDate);
 		
-		JComboBox seconds = new JComboBox();
-		seconds.setBounds(209, 117, 44, 22);
-		frame.getContentPane().add(seconds);
-		
-		for(int i=0;i<=12;i++)
-			hours.insertItemAt(i, i);
-		
-		for(int i=0;i<60;i++)
-			minutes.insertItemAt(i, i);
-		
-		for(int i=0;i<60;i++)
-			seconds.insertItemAt(i, i);
-		
-		JLabel lblNewLabel_8 = new JLabel("Hours");
-		lblNewLabel_8.setBounds(85, 96, 46, 14);
-		frame.getContentPane().add(lblNewLabel_8);
-		
-		JLabel lblNewLabel_11 = new JLabel("Minutes");
-		lblNewLabel_11.setBounds(144, 96, 46, 14);
-		frame.getContentPane().add(lblNewLabel_11);
-		
-		JLabel lblNewLabel_12 = new JLabel("Seconds");
-		lblNewLabel_12.setBounds(207, 96, 46, 14);
-		frame.getContentPane().add(lblNewLabel_12);
-		
-		flightdate = new JTextField();
-		flightdate.setBounds(81, 158, 86, 20);
-		frame.getContentPane().add(flightdate);
-		flightdate.setColumns(10);
-		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(179, 161, 74, 20);
-		frame.getContentPane().add(dateChooser);
+		JButton btnNewButton_2 = new JButton("Check");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int trip=(int) tripid.getSelectedItem(); //tripID
+				GUI g=new GUI();
+				g.setPlaneCombo(planetype, trip);
+			}
+		});
+		btnNewButton_2.setBounds(12, 386, 89, 23);
+		frame.getContentPane().add(btnNewButton_2);
 		table.getColumnModel().getColumn(5).setPreferredWidth(93);
 		
 		
 		booktrip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int r=(int) Math.random();
+				String passwordcurrent=new String(passwordField.getPassword());
+				if(passwordcurrent.equals(customer.getPassword())==false)
+				{
+					JOptionPane.showMessageDialog(null, "Invalid Password");
+					return;
+				}
+				
+				
+				Random gen=new Random();
+				int r=gen.nextInt(1000);
+				
+				
 				String bid="B-";
 				bid+=Integer.toString(r);
 				//bid booking id
 				
 				int val=(int) seats.getValue();//seats count
+				if(val<=0)
+				{
+					JOptionPane.showMessageDialog(null, "Invalid Seats");
+					return;
+				}
 				int trip=(int) tripid.getSelectedItem(); //tripID
 				GUI g = new GUI();
 				int f=g.getFlightID(trip); //flightID
 				//System.out.print(f);
 				
-//				String time=(String) hours.getSelectedItem(); 
-//				time+="-";
-//				time+=(String)minutes.getSelectedItem();
-//				time+="-";
-//				time+=(String)seconds.getSelectedItem(); //booking time
-				String time="12:12:12";
-				
-				
-				java.sql.Date d=(java.sql.Date) dateChooser.getDate();
+			
+			
 				int pid=(int) packageID.getSelectedItem();//packageID
 				String seatType=" ";
 				
@@ -283,14 +265,16 @@ public class BookingPage {
 				else if(buisness.isSelected())
 					seatType="B";
 				
-				if(g.checkSeats(val, trip)==false)
+				if(g.checkSeats(val, trip)==-1)
 				{
 					JOptionPane.showMessageDialog(null, "Not enough seats\n");
 					return;
 				}
-					String datee=flightdate.getSelectedText();
-					
-				g.BookTrip(bid, customer.getUsername(), val, seatType,pid, trip, f,  datee, time);
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String datee = sdf.format(flightDate.getDate());
+				Booking b=new Booking(bid, customer.getUsername(), val, seatType,pid, trip, f,  datee);
+				
+				g.BookTrip(b);
 				JOptionPane.showMessageDialog(null, "Booking done\n");
 			}
 		});

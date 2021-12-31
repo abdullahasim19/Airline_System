@@ -167,7 +167,7 @@ public class GUI implements IGUI{
 	}
 
 	@Override
-	public boolean checkSeats(int s,int trip) {
+	public int checkSeats(int s,int trip) {
 		return this.arlineSystem.checkSeats(s, trip);
 		
 	}
@@ -176,10 +176,10 @@ public class GUI implements IGUI{
 	public int getFlightID(int plane) {
 		return this.arlineSystem.getFlightID(plane);
 	}
-	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time)
+	public void BookTrip(Booking obj)
 	{
 		
-		this.arlineSystem.BookTrip(bookingID, username, seats, seatType, tripID,packageID, flightID, bookingdate, time);
+		this.arlineSystem.BookTrip(obj);
 		
 	}
 
@@ -237,6 +237,29 @@ public class GUI implements IGUI{
 	public boolean removeCaptain(String username, String captainID)
 	{
 		return this.arlineSystem.removeCaptain(username, captainID);
+	}
+
+	@Override
+	public void updateSeats(int newseats, int tripID) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setPlaneCombo(JComboBox p,int tripID) {
+		Airline a=new Airline();
+		a.setPlaneCombo(p, tripID);
+		
+	}
+	public void showUserTrips(JComboBox trips,String username)
+	{
+		Airline a=new Airline();
+		a.showUserTrips(trips, username);
+	}
+	public void InsertFeedback(Feedback feedback)
+	{
+		Airline a=new Airline();
+		a.InsertFeedback(feedback);
 	}
 
 }

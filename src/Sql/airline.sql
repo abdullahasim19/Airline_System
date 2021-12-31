@@ -85,7 +85,8 @@ create table History
 	username varchar(50),
 	tripID int,
     foreign key (username) references User(username) on delete cascade,
-    foreign key (tripID) references Trip(tripID) on delete cascade
+    foreign key (tripID) references Trip(tripID) on delete cascade,
+    primary key(username,tripID)
 );
 insert into History values ('abdullahlhe',1);
 ALTER TABLE plane ADD COLUMN airportID varchar(50) NOT NULL;
@@ -284,24 +285,30 @@ create table Booking
    
 );
 
-
-
+select *from Booking;
+delete from Booking where bookingID='B-834';
+select *from History;
+delete from History where TripID=1;
 insert into Booking values
 ("B-1001","amina",2,'E',null,null,"F-00001");
-
+select *from Trip;
+update Trip set availableseats=20 where tripID=1;
 
 create table Feedback
 ( 
    username varchar(50) not null,
    FOREIGN KEY(username) REFERENCES Customer(username) on delete cascade,
-    planeID int,
-   FOREIGN KEY(planeID) REFERENCES Plane(planeID) on delete cascade,
+    tripID int,
+   FOREIGN KEY(planeID) REFERENCES trip(tripID) on delete cascade,
    feedback varchar(300)
 
 );
 
-
-
+select *from Trip;
+select *from GeneralPlane;
+select *from PrivatePlane;
+select * from Trip join GeneralPlane on Trip.planeID=GeneralPlane.planeID where tripID=1;
+select * from Trip join PrivatePlane on Trip.planeID=PrivatePlane.planeID where tripID=1;
 
 select b.bookingID, c.fullName,f.departure ,f.destination  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID
 join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID 

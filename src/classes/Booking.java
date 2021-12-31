@@ -4,14 +4,78 @@ import interfaces.IBooking;
 
 public class Booking implements IBooking{
 	
-	private Customer customer;
-	private Planes plane;
-	private int seatsCount;
-	private String SeatsType;
-	private Trip trip;
-	private Package packages;
-	private Flight flight;
-	
+	private String bookID;
+	private String username;
+	private int seats;
+	private String seatsType;
+	private int packageID;
+	private int tripID;
+	private int flightID;
+	private String bookingDate;
+	public String getBookID() {
+		return bookID;
+	}
+	public void setBookID(String bookID) {
+		this.bookID = bookID;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public int getSeats() {
+		return seats;
+	}
+	public Booking()
+	{
+		
+	}
+	public Booking(String bookID, String username, int seats, String seatsType, int packageID, int tripID, int flightID,
+			String bookingDate) {
+		super();
+		this.bookID = bookID;
+		this.username = username;
+		this.seats = seats;
+		this.seatsType = seatsType;
+		this.packageID = packageID;
+		this.tripID = tripID;
+		this.flightID = flightID;
+		this.bookingDate = bookingDate;
+	}
+	public void setSeats(int seats) {
+		this.seats = seats;
+	}
+	public String getSeatsType() {
+		return seatsType;
+	}
+	public void setSeatsType(String seatsType) {
+		this.seatsType = seatsType;
+	}
+	public int getPackageID() {
+		return packageID;
+	}
+	public void setPackageID(int packageID) {
+		this.packageID = packageID;
+	}
+	public int getTripID() {
+		return tripID;
+	}
+	public void setTripID(int tripID) {
+		this.tripID = tripID;
+	}
+	public int getFlightID() {
+		return flightID;
+	}
+	public void setFlightID(int flightID) {
+		this.flightID = flightID;
+	}
+	public String getBookingDate() {
+		return bookingDate;
+	}
+	public void setBookingDate(String bookingDate) {
+		this.bookingDate = bookingDate;
+	}
 	public void bookTrip() {
 		
 	}
@@ -22,46 +86,8 @@ public class Booking implements IBooking{
 	public void editTrip() {
 		
 	}
-	public Customer getCustomer() {
-		return customer;
-	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	public Planes getPlane() {
-		return plane;
-	}
-	public void setPlane(Planes plane) {
-		this.plane = plane;
-	}
-	public int getSeatsCount() {
-		return seatsCount;
-	}
-	public void setSeatsCount(int seatsCount) {
-		this.seatsCount = seatsCount;
-	}
-	public String getSeatsType() {
-		return SeatsType;
-	}
-	public void setSeatsType(String seatsType) {
-		SeatsType = seatsType;
-	}
-	public Trip getTrip() {
-		return trip;
-	}
-	public void setTrip(Trip trip) {
-		this.trip = trip;
-	}
-	public Package getPackages() {
-		return packages;
-	}
-	public void setPackages(Package packages) {
-		this.packages = packages;
-	}
-	public Flight getFlight() {
-		return flight;
-	}
-	public void setFlight(Flight flight) {
-		this.flight = flight;
-	}
+	
+	
+	
+	
 }

@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class ViewHistoryCustomer {
 
@@ -22,6 +23,8 @@ public class ViewHistoryCustomer {
 	private JScrollPane scrollPane;
 	private JButton Back;
 	private Customer customer;
+	private JLabel lblNewLabel_1;
+	private JButton btnNewButton;
 	public ViewHistoryCustomer(Customer c)
 	{
 		this.customer=c;
@@ -59,13 +62,13 @@ public class ViewHistoryCustomer {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 628, 527);
+		frame.setBounds(100, 100, 779, 711);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("BookingPage History");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 50));
-		lblNewLabel.setBounds(90, 43, 428, 70);
+		lblNewLabel.setBounds(63, 24, 568, 70);
 		frame.getContentPane().add(lblNewLabel);
 		
 		scrollPane = new JScrollPane();
@@ -78,10 +81,11 @@ public class ViewHistoryCustomer {
 			new Object[][] {
 			},
 			new String[] {
-				"Name", "Trip Departure", "Trip Destination"
+				"Trip ID", "Trip Departure", "Trip Destination"
 			}
 		));
-		showHistory(table);
+		showHistory(table); //displaying
+		
 		Back = new JButton("Back");
 		Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -91,8 +95,30 @@ public class ViewHistoryCustomer {
 			}
 		});
 		Back.setFont(new Font("Tahoma", Font.BOLD, 14));
-		Back.setBounds(269, 454, 89, 23);
+		Back.setBounds(334, 634, 89, 23);
 		frame.getContentPane().add(Back);
+		
+		lblNewLabel_1 = new JLabel("Select Trip to give feedback");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(141, 470, 210, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JComboBox trips = new JComboBox();
+		trips.setBounds(396, 475, 72, 22);
+		frame.getContentPane().add(trips);
+		
+		GUI g=new GUI();
+		g.showUserTrips(trips, customer.getUsername());
+		
+		btnNewButton = new JButton("Give Feedback");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FeedbackGUI ff=new FeedbackGUI(customer.getUsername(),(int)trips.getSelectedItem());
+				ff.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(188, 533, 280, 23);
+		frame.getContentPane().add(btnNewButton);
 	}
 	
 	
@@ -116,5 +142,4 @@ public class ViewHistoryCustomer {
 		// TODO Auto-generated method stub
 		frame.setExtendedState(JFrame.NORMAL);
 	}
-	
 }

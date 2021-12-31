@@ -5,7 +5,9 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import classes.Booking;
 import classes.Customer;
+import classes.Feedback;
 import classes.Person;
 import classes.Planes;
 public interface IGUI {
@@ -42,9 +44,9 @@ public boolean userLoginButton(Customer c);
 
 	public boolean addGeneralPlane(String planeId,String pname,String cap,String fclassCap, String businesClassCap,String econCap);
 	
-	public boolean checkSeats(int s,int trip);
+	public int checkSeats(int s,int trip);
 	public int getFlightID(int plane);
-	public void BookTrip(String bookingID,String username,int seats,String seatType,int packageID,int tripID,int flightID,String bookingdate,String time);
+	public void BookTrip(Booking obj);
 
 	public boolean addGeneralPlane(String planeId,String pname,int cap,int fclassCap, int businesClassCap,int econCap);
 	public boolean addPrivatePlane(String planeId,String pname);
@@ -59,4 +61,8 @@ public boolean userLoginButton(Customer c);
 	public void fillCaptainTable(JTable table);
 	
 	public boolean removeCaptain(String username, String captainID);
+	public void updateSeats(int newseats,int tripID);
+	public void setPlaneCombo(JComboBox p,int tripID);
+	public void showUserTrips(JComboBox trips,String username);
+	public void InsertFeedback(Feedback feedback);
 }
