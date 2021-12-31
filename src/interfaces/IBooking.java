@@ -1,10 +1,5 @@
 package interfaces;
 
-import classes.Customer;
-import classes.Flight;
-import classes.Planes;
-import classes.Trip;
-
 public interface IBooking {
 	public String getBookID();
 	public void setBookID(String bookID);

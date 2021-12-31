@@ -755,6 +755,7 @@ public class database implements IDatabase{
 		
 
 	}
+	@SuppressWarnings("rawtypes")
 	public void showUserTrips(JComboBox trips,String username)
 	{
 		try {
