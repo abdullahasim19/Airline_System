@@ -118,12 +118,11 @@ public class database implements IDatabase{
 	{
 		try {
 		
-<<<<<<< HEAD
+
 			DefaultTableModel tremove=(DefaultTableModel)table.getModel();
 			tremove.setRowCount(0);
 			Statement st=con.createStatement();
-=======
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
 			PreparedStatement ps=con.prepareStatement("select Trip.tripID,Trip.departure,"
 					+ "Flight.destination,Flight.flightTime,Flight.flightDate,Trip.availableseats "
 					+ "from Trip join Flight on Trip.planeID=Flight.planeID;");
@@ -225,13 +224,13 @@ public class database implements IDatabase{
 	@Override
 	public void viewHistory(String username, JTable table) {
 		try {
-<<<<<<< HEAD
+
 			
 			Statement st=con.createStatement();
 			PreparedStatement ps=con.prepareStatement("select Trip.tripID,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
-=======
-			PreparedStatement ps=con.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
+			//PreparedStatement ps=con.prepareStatement("select Customer.fullname,Trip.departure,Trip.destination from Customer join History on Customer.username=History.username join Trip on History.tripID=Trip.tripID where History.username=?");
+
 			ps.setString(1, username);
 			
 			//ResultSet rs=st.executeQuery("select *from User");
@@ -597,7 +596,6 @@ public class database implements IDatabase{
 		}
 		
 	}
-<<<<<<< HEAD
 
 	@Override
 	public void updateSeats(int newseats, int tripID) {
@@ -690,7 +688,11 @@ public class database implements IDatabase{
 			{
 				System.out.println("Done");
 			}
-=======
+		}catch(Exception ee)
+		{
+			System.out.println(ee);
+		}
+	}
 	
 	
 	public void planesForAiportTable(JTable table) throws SQLException
@@ -742,15 +744,16 @@ public class database implements IDatabase{
 			
 			else
 				return false;
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
 			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			return false;
 			
 		}
 		
-<<<<<<< HEAD
+
 	}
 	public void showUserTrips(JComboBox trips,String username)
 	{
@@ -761,8 +764,12 @@ public class database implements IDatabase{
 			ps.setString(1, username);
 			
 			
-=======
-		return false;
+		}
+		catch(Exception e)
+		{
+			System.out.print(e);
+		}
+		
 	}
 	
 	
@@ -801,20 +808,20 @@ public class database implements IDatabase{
 			
 			
 			//ResultSet rs=st.executeQuery("select *from User");
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
 			ResultSet rs=ps.executeQuery();
 			int i=0;
 			while(rs.next())
 			{
 				
 
-<<<<<<< HEAD
+
 				int ID=rs.getInt("tripID");
 				trips.insertItemAt(ID, i);
-=======
+
 				String name=rs.getString("c.CaptainName");
 				box.insertItemAt(name, i);
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
 				
 				i++;
 			}
@@ -823,7 +830,7 @@ public class database implements IDatabase{
 			e1.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	public void InsertFeedback(Feedback feedback)
 	{
 		try {
@@ -840,7 +847,12 @@ public class database implements IDatabase{
 			{
 				System.out.println("Done");
 			}
-
+		}
+			catch(Exception ee)
+			{
+				System.out.println(ee);
+			}
+		}
 	
 	public boolean AssignCaptain(AssignCaptain cap) throws SQLException
 	{

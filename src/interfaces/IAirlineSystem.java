@@ -7,11 +7,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import classes.Airport;
-<<<<<<< HEAD
+
 import classes.Booking;
-=======
 import classes.AssignCaptain;
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
 import classes.Customer;
 import classes.Feedback;
 import classes.Person;
@@ -64,12 +63,12 @@ public interface IAirlineSystem {
 	public void fillCaptainTable(JTable table);
 	
 	public boolean removeCaptain(String username, String captainID);
-<<<<<<< HEAD
+
 	public void updateSeats(int newseats,int tripID);
 	public void setPlaneCombo(JComboBox p,int tripID);
 	public void showUserTrips(JComboBox trips,String username);
 	public void InsertFeedback(Feedback feedback);
-=======
+
 	public static void setCustomerDetails(Customer c)
 	{
 	}
@@ -87,5 +86,5 @@ public interface IAirlineSystem {
 	public void fillCaptainComboBox(JComboBox box);
 	public boolean AssignCaptain(String capid, String flightid);
 
->>>>>>> febc2306453c883133e7c77d72114c1d7f420da6
+
 }

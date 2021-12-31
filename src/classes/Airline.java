@@ -512,7 +512,6 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 		
 	}
 
-<<<<<<< HEAD
 	@Override
 	public void updateSeats(int newseats, int tripID) {
 		// TODO Auto-generated method stub
