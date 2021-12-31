@@ -13,6 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RemoveTripAdmin {
 
@@ -21,6 +24,7 @@ public class RemoveTripAdmin {
 	private JTable table;
 	private JTable table_1;
 	private JScrollPane scrollPane;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -103,5 +107,22 @@ public class RemoveTripAdmin {
 			}
 		));
 		table_1.setToolTipText("");
+		
+		lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.dispose();
+			}
+		});
+		lblNewLabel_2.setIcon(new ImageIcon(RemoveTripAdmin.class.getResource("/imgs/back2.png")));
+		lblNewLabel_2.setBounds(0, 0, 92, 39);
+		frame.getContentPane().add(lblNewLabel_2);
 	}
+	
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		frame.setVisible(b);
+	}
+
 }

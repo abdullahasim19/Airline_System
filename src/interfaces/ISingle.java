@@ -1,12 +1,6 @@
 package interfaces;
 
-import classes.Planes;
-
-public interface ITrip {
-public void getpickUpLocation();
-	public void getDestinationLocation();
-	public void stayDetails() ;
-	public void facility() ;
+public interface ISingle extends ITrip {
 	
 	public String getDeparture();
 	public void setDeparture(String departure) ;
@@ -16,7 +10,5 @@ public void getpickUpLocation();
 	public void setTripName(String tripName) ;
 	public int getTripId() ;
 	public void setTripId(int tripId);
-	
-	public Planes getPlane();
-	public void setPlane(Planes plane) ;
+
 }

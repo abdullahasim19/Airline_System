@@ -2,11 +2,12 @@ package classes;
 
 import interfaces.ITrip;
 
-abstract public class Trip implements ITrip{
+public class Trip implements ITrip{
 	
 	private String departure;
 	private String destination;
 	private String tripName;
+	private Planes plane=new Planes();
 	private int tripId;
 	
 	public void getpickUpLocation() {
@@ -44,5 +45,11 @@ abstract public class Trip implements ITrip{
 	}
 	public void setTripId(int tripId) {
 		this.tripId = tripId;
+	}
+	public Planes getPlane() {
+		return plane;
+	}
+	public void setPlane(Planes plane) {
+		this.plane = plane;
 	}
 }

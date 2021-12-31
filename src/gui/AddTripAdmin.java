@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AddTripAdmin {
 
@@ -112,9 +114,21 @@ public class AddTripAdmin {
 		frame.getContentPane().add(Add);
 		
 		JButton Back = new JButton("Back");
+		Back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		Back.setFont(new Font("Tahoma", Font.BOLD, 18));
 		Back.setBackground(Color.RED);
 		Back.setBounds(56, 323, 89, 23);
 		frame.getContentPane().add(Back);
 	}
+	
+	
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		frame.setVisible(b);
+	}
+
 }

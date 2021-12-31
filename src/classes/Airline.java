@@ -19,7 +19,7 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 	private Planes plane = new Planes();
 	//private Package packag = new Package();
 	private Customer customer = new Customer();
-	//private Trip trip = new Trip();
+	private Trip trip=new Trip();
 	private Flight flight=new Flight();
 	private Captain captain=new Captain();
 	private AssignCaptain cap=new AssignCaptain();
@@ -638,15 +638,71 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 		return false;
 
 	}
+
 	public void ShowPackages(JComboBox packages)
 	{
 		try {
 			database d=new database();
 			d.ShowPackages(packages);
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
+	
+	
+	public void fillFlightTable(JTable table)
+	{
+		try {
+			database d=new database();
+			d.fillFlightTable(table);
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
 		}
 	}
+
+	
+	
+	public boolean MergeFlighttoTrip(String tripName, int pid, String sOrR,String dep, String dest)
+	{
+		
+		
+		trip.setTripName(tripName);
+		trip.getPlane().setPlaneID(pid);
+		trip.setDeparture(dep);
+		trip.setDestination(dest);
+		
+		//System.out.println(tripName);
+		
+		try {
+			database d=new database();
+			return d.MergeFlighttoTrip(trip, sOrR);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		
+		return false;
+	}
+	
+	
+	public int getPlaneID(String fid)
+	{
+		try {
+			database d=new database();
+			return d.getPlaneID(fid);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		return 0;
+	}
+
 }

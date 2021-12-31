@@ -83,6 +83,14 @@ public boolean userLoginButton(Customer c);
 	
 	public boolean AssignCaptain(String capid, String flightid);
 	
+
 	public void ShowPackages(JComboBox packages);
+
+	
+	public void fillFlightTable(JTable table);
+	
+	public boolean MergeFlighttoTrip(String tripName, int fid, String sOrR, String dep, String dest);
+	public int getPlaneID(String fid);
+
 
 }
