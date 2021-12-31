@@ -901,5 +901,27 @@ public class database implements IDatabase{
 		
 		return false;
 	}
+	public void ShowPackages(JComboBox packages)
+	{
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("select packageID from Packages;");
+			ResultSet rs=ps.executeQuery();
+			int i=0;
+			while(rs.next())
+			{
+				
+
+				int ID=rs.getInt("packageID");
+				packages.insertItemAt(ID, i);
+				
+				i++;
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+	}
 	
 }

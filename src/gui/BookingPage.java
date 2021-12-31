@@ -195,9 +195,11 @@ public class BookingPage {
 		
 		JComboBox packageID = new JComboBox();
 		packageID.setBounds(121, 432, 65, 22);
-		packageID.insertItemAt(3, 0);
-		packageID.insertItemAt(2, 0);
-		packageID.insertItemAt(1, 0);
+		GUI pck=new GUI();
+		pck.ShowPackages(packageID);
+//		packageID.insertItemAt(3, 0);
+//		packageID.insertItemAt(2, 0);
+//		packageID.insertItemAt(1, 0);
 		frame.getContentPane().add(packageID);
 		
 		

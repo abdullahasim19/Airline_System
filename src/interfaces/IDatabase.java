@@ -32,4 +32,5 @@ public interface IDatabase {
 	public void AddHistory(String username,int tripID);
 	public void showUserTrips(JComboBox trips,String username);
 	public void InsertFeedback(Feedback feedback);
+	public void ShowPackages(JComboBox packages);
 }

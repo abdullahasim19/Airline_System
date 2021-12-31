@@ -300,6 +300,13 @@ public class GUI implements IGUI{
 		return this.arlineSystem.AssignCaptain(capid,flightid);
 	}
 
+	@Override
+	public void ShowPackages(JComboBox packages) {
+		Airline a =new Airline();
+		a.ShowPackages(packages);
+		
+	}
+
 }
 
 

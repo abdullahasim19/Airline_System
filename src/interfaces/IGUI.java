@@ -82,5 +82,7 @@ public boolean userLoginButton(Customer c);
 	public void fillCaptainComboBox(JComboBox box);
 	
 	public boolean AssignCaptain(String capid, String flightid);
+	
+	public void ShowPackages(JComboBox packages);
 
 }

@@ -638,4 +638,15 @@ public class Airline implements IEditDetails, IAirlineSystem, IRegistration, IBo
 		return false;
 
 	}
+	public void ShowPackages(JComboBox packages)
+	{
+		try {
+			database d=new database();
+			d.ShowPackages(packages);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+	}
 }
