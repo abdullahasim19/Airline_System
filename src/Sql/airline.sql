@@ -308,25 +308,24 @@ create table Feedback
    feedback varchar(300)
 
 );
-<<<<<<< HEAD
+
 select *from Feedback;
 delete from Feedback where tripID=1;
-=======
 
->>>>>>> 525dd00708b7b6244daae85de369b47d96c03a63
+
+
 select *from Trip;
 
 select *from GeneralPlane;
 select *from PrivatePlane;
 select * from Trip join GeneralPlane on Trip.planeID=GeneralPlane.planeID where tripID=1;
 select * from Trip join PrivatePlane on Trip.planeID=PrivatePlane.planeID where tripID=1;
-<<<<<<< HEAD
-=======
+
 
 
 select * from Booking;
 
->>>>>>> 525dd00708b7b6244daae85de369b47d96c03a63
+
 
 select b.bookingID, c.fullName,f.departure ,f.destination  from Booking b join Customer c on b.username=c.username join Plane p on p.planeID=b.planeID
 join Airport ar on ar.airportID=p.airportID join Packages pp on pp.packageID=b.packageID 
